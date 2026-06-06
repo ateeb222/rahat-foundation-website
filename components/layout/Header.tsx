@@ -1,5 +1,6 @@
 "use client";
 
+import Image from 'next/image';
 import { useState } from 'react';
 import Link from 'next/link';
 
@@ -21,8 +22,14 @@ export default function Header() {
       <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 md:px-6">
         <div className="flex items-center gap-4">
           <div className="flex items-center gap-3">
-            <div className="h-10 w-10 flex-shrink-0 overflow-hidden rounded-full bg-[#1A4D2E] flex items-center justify-center text-sm font-bold text-white">
-              <span aria-hidden>R</span>
+            <div className="relative h-16 w-16 flex-shrink-0 overflow-hidden rounded-full bg-white">
+              <Image
+                src="/images/LOGO/hero.jpg"
+                alt="Rahat Social Impact Foundation logo"
+                width={64}
+                height={64}
+                className="object-cover"
+              />
             </div>
             <div>
               <p className="text-sm font-semibold text-[#1A4D2E]">Rahat Social Impact Foundation</p>
