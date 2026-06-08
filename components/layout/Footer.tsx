@@ -2,6 +2,7 @@ import Link from 'next/link';
 
 const footerLinks = [
   { label: 'Home', href: '/' },
+  { label: 'Wheelchair Campaign', href: '/wheelchair' },
   { label: 'About', href: '/about' },
   { label: 'Programs', href: '/programs' },
   { label: 'Impact', href: '/impact' },
@@ -13,7 +14,7 @@ const footerLinks = [
 
 export default function Footer() {
   return (
-    <footer className="bg-[#F8F5EF] text-[#1F2937] border-t border-slate-200">
+    <footer className="border-t border-slate-200 bg-[#F8F5EF] text-[#1F2937]">
       <div className="mx-auto max-w-7xl px-4 py-10">
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-3">
           <div>
@@ -21,7 +22,7 @@ export default function Footer() {
             <p className="mt-2 text-xs text-slate-600">Healthcare impact through trust and transparency</p>
           </div>
 
-          <nav className="sm:col-span-1">
+          <nav className="sm:col-span-1" aria-label="Footer navigation">
             <ul className="grid grid-cols-2 gap-2 text-sm text-slate-700">
               {footerLinks.map((link) => (
                 <li key={link.href}>
@@ -40,7 +41,7 @@ export default function Footer() {
         </div>
 
         <div className="mt-8 border-t border-slate-100 pt-6">
-          <p className="text-xs text-slate-500">© 2026 Rahat Social Impact Foundation. All rights reserved.</p>
+          <p className="text-xs text-slate-500">Copyright 2026 Rahat Social Impact Foundation. All rights reserved.</p>
         </div>
       </div>
     </footer>

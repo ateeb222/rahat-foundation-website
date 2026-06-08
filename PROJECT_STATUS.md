@@ -40,3 +40,41 @@ Volunteers
 Healthcare supporters
 AMU alumni
 NRI supporters
+Wheelchairs:
+80 target
+
+Ownership:
+Transferred permanently to JNMC Hospital
+
+Branding:
+Rahat branding and identification number on wheelchair
+
+Recognition:
+Anonymous, donor name, or loved one name
+
+Current Sponsorship:
+₹5,800
+
+Expected Local Sponsorship:
+30–40 wheelchairs
+
+Remaining Target:
+Primarily online fundraising
+
+Media Assets Available:
+Factory visit photos
+Factory visit videos
+Instagram reels
+
+Future Trust Asset:
+Potential wheelchair handover ceremony with AMU leadership after implementation and confirmation
+
+Phase 2:
+Stretcher Support Program
+Approximate cost: ₹15,000 each
+
+Phase 3:
+Digital Healthcare Transformation
+Software vendor: Ease of Eon
+Software cost: ₹1.18 crore including GST
+Hardware budget separate
