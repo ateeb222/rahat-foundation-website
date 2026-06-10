@@ -32,7 +32,7 @@ export default function HomePage() {
             </p>
             <div className="mt-6 flex flex-col gap-3 sm:flex-row">
               <Link
-                href="/wheelchair"
+                href="/donate"
                 className="inline-flex min-h-[48px] w-full items-center justify-center rounded-full bg-[#1A4D2E] px-5 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-[#16402a] focus:outline-none focus:ring-2 focus:ring-[#2A7A45] focus:ring-offset-2 focus:ring-offset-[#F8F5EF] sm:w-auto"
               >
                 Sponsor a wheelchair
@@ -151,7 +151,7 @@ export default function HomePage() {
       </section>
 
       <Link
-        href="/wheelchair"
+        href="/donate"
         className="fixed inset-x-4 bottom-4 z-50 rounded-full bg-[#1A4D2E] px-5 py-4 text-center text-sm font-semibold text-white shadow-xl sm:hidden"
       >
         Sponsor a wheelchair

@@ -41,7 +41,7 @@ export default function WheelchairPage() {
             </p>
             <div className="mt-6 flex flex-col gap-3 sm:flex-row">
               <Link
-                href="/donate#donor-details"
+                href="/donate"
                 className="inline-flex min-h-[48px] w-full items-center justify-center rounded-full bg-[#1A4D2E] px-5 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-[#16402a] focus:outline-none focus:ring-2 focus:ring-[#2A7A45] focus:ring-offset-2 focus:ring-offset-[#F8F5EF] sm:w-auto"
               >
                 Sponsor for Rs. 5,800
@@ -68,7 +68,7 @@ export default function WheelchairPage() {
               </div>
               <div className="rounded-2xl bg-[#FFF8E6] p-4">
                 <p className="text-sm font-semibold uppercase tracking-wide text-[#8A6511]">Payment status</p>
-                <p className="mt-2 text-sm leading-6 text-slate-700">Razorpay application submitted. Checkout will activate after approval and production credentials.</p>
+                <p className="mt-2 text-sm leading-6 text-slate-700">Razorpay activation is pending. Use the official UPI or bank transfer details on the donation page.</p>
               </div>
             </div>
           </aside>
@@ -105,7 +105,7 @@ export default function WheelchairPage() {
           <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[#1A4D2E]">Official donation safety</p>
           <h2 className="mt-3 text-2xl font-semibold leading-tight text-[#1A4D2E]">Use only verified Rahat payment channels.</h2>
           <p className="mt-4 text-base leading-7 text-slate-700">
-            Please do not donate through unofficial QR codes, screenshots, or payment links shared on social media. Rahat will keep the donation page updated with official Razorpay, UPI, and QR options after verification.
+            Please do not donate through unofficial QR codes, screenshots, or payment links shared on social media. Rahat will keep the donation page updated with official UPI, bank transfer, and Razorpay status.
           </p>
           <Link
             href="/donate"
@@ -117,7 +117,7 @@ export default function WheelchairPage() {
       </section>
 
       <Link
-        href="/donate#donor-details"
+        href="/donate"
         className="fixed inset-x-4 bottom-4 z-50 rounded-full bg-[#1A4D2E] px-5 py-4 text-center text-sm font-semibold text-white shadow-xl sm:hidden"
       >
         Sponsor for Rs. 5,800
