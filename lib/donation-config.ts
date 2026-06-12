@@ -3,9 +3,9 @@ export const donationConfig = {
     name: 'JNMC Hospital Patient Mobility Initiative',
     phase: 'Phase 1',
     totalGoal: 80,
-    verifiedSponsored: 0,
+    verifiedSponsored: 30,
     sponsorshipAmount: 5800,
-    lastUpdated: 'Pending first verified reconciliation',
+    lastUpdated: 'Updated after confirmed donor reconciliation',
   },
   razorpay: {
     status: 'pending',
@@ -40,34 +40,35 @@ export const donationConfig = {
     accepted: ['Wheelchair Sadaqah', 'General Sadaqah', 'Interest / Riba Disposal', 'Stretcher Support'],
     notAccepted: ['Zakat', 'Foreign donations'],
     riba:
-      'For donors who wish to dispose of bank interest or impermissible income, Rahat may use such funds for public healthcare benefit, including patient mobility support. This is not Zakat. If you are unsure, please consult a qualified scholar.',
+      'Received bank interest you do not wish to keep? You may direct it toward public healthcare benefit through Rahat. These funds can help support patient mobility, wheelchairs, stretchers, and hospital access. This is not Zakat.',
     zakat:
       "Please do not send Zakat to this account at present. Rahat's current wheelchair and public healthcare support model is structured as Sadaqah, voluntary support, and interest/riba disposal for public benefit, not as a Zakat distribution mechanism.",
   },
   contact: {
-    whatsapp: '',
-    phone: '',
-    email: '',
-    note: 'Official WhatsApp, call, and email details are pending final approval.',
+    whatsapp: 'https://wa.me/919625293030',
+    phone: 'tel:+919625293030',
+    displayPhone: '+91-9625293030',
+    email: 'mailto:info@rahatsocialimpact.com',
+    displayEmail: 'info@rahatsocialimpact.com',
+    note: 'Reach Rahat through official call, WhatsApp, or email channels.',
   },
   social: {
-    instagram: '',
-    linkedin: '',
-    youtube: '',
-    whatsappUpdates: '',
-    note: 'Official social links are pending final approval.',
+    instagram: 'https://www.instagram.com/rahat.social.impact.foundation/',
+    linkedin: 'https://www.linkedin.com/company/rahatsocialimpactfoundation',
+    note: 'Follow official Rahat updates on verified social channels.',
   },
 } as const;
 
 export const donationAmounts = [
-  { amount: '₹500', label: 'Support patient mobility', featured: false },
-  { amount: '₹1,000', label: 'Help healthcare access', featured: false },
-  { amount: '₹5,800', label: 'Sponsor one wheelchair', featured: true },
+  { amount: '\u20b9500', label: 'Support patient mobility', featured: false },
+  { amount: '\u20b91,000', label: 'Help healthcare access', featured: false },
+  { amount: '\u20b95,800', label: 'Sponsor one wheelchair', featured: true },
+  { amount: '\u20b915,000', label: 'Support one stretcher', featured: false },
   { amount: 'Custom Amount', label: 'Give as per your intention', featured: false },
 ] as const;
 
 export const recurringOptions = {
-  Weekly: ['₹100/week', '₹250/week', '₹500/week'],
-  Monthly: ['₹500/month', '₹1,000/month', '₹5,800/month - sponsor one wheelchair every month'],
-  Yearly: ['₹5,800/year - sponsor one wheelchair every year', '₹15,000/year - stretcher support', 'Custom yearly support'],
+  Weekly: ['\u20b9100/week', '\u20b9250/week', '\u20b9500/week'],
+  Monthly: ['\u20b9500/month', '\u20b91,000/month', '\u20b95,800/month - sponsor one wheelchair every month'],
+  Yearly: ['\u20b95,800/year - sponsor one wheelchair every year', '\u20b915,000/year - stretcher support', 'Custom yearly support'],
 } as const;

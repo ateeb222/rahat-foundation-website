@@ -1,6 +1,8 @@
 import Image from 'next/image';
 import Link from 'next/link';
 
+import { donationConfig } from '@/lib/donation-config';
+
 const trustSignals = [
   'Official donation path through /donate',
   'Domestic donations only at present',
@@ -21,6 +23,9 @@ const secondaryLink =
   'inline-flex min-h-[52px] w-full items-center justify-center rounded-full border-2 border-[#07361F] bg-white px-6 py-3 text-lg font-bold text-[#07361F] shadow-sm transition hover:-translate-y-0.5 hover:border-[#D9A441] hover:bg-[#F8F5EC] focus:outline-none focus:ring-2 focus:ring-[#D9A441] focus:ring-offset-2 active:translate-y-0 sm:w-auto';
 const surfaceCard =
   'rounded-[1.25rem] border border-[#D9A441]/30 bg-white p-5 shadow-[0_14px_36px_rgba(7,54,31,0.08)] sm:p-6';
+
+const remainingWheelchairs =
+  donationConfig.campaign.totalGoal - donationConfig.campaign.verifiedSponsored;
 
 export default function HomePage() {
   return (
@@ -64,6 +69,7 @@ export default function HomePage() {
                   src="/images/hero/hero.png"
                   alt="Rahat Social Impact Foundation healthcare impact visual"
                   fill
+                  sizes="(min-width: 1024px) 560px, 100vw"
                   className="object-contain p-3"
                   priority
                 />
@@ -79,7 +85,9 @@ export default function HomePage() {
                 </div>
                 <div className="rounded-2xl bg-[#FFF7DF] px-4 py-3">
                   <p className="text-sm font-bold uppercase tracking-wide text-[#6A5518]">Reporting</p>
-                  <p className="mt-1 text-base font-bold text-[#07361F]">Verified only</p>
+                  <p className="mt-1 text-base font-bold text-[#07361F]">
+                    {donationConfig.campaign.verifiedSponsored} confirmed
+                  </p>
                 </div>
               </div>
             </div>
@@ -125,7 +133,9 @@ export default function HomePage() {
             <div className={surfaceCard}>
               <p className="text-sm font-bold uppercase tracking-wide text-[#3B635D]">Wheelchair target</p>
               <p className="mt-3 text-5xl font-bold text-[#07361F]">80</p>
-              <p className="mt-3 text-lg leading-8 text-[#1F2933]">Campaign progress will use verified sponsorship counts only.</p>
+              <p className="mt-3 text-lg leading-8 text-[#1F2933]">
+                {donationConfig.campaign.verifiedSponsored} confirmed, {remainingWheelchairs} remaining.
+              </p>
             </div>
             <div className={surfaceCard}>
               <p className="text-sm font-bold uppercase tracking-wide text-[#3B635D]">One sponsorship</p>

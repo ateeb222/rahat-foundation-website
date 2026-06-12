@@ -1,6 +1,8 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 
+import { donationConfig } from '@/lib/donation-config';
+
 export const metadata: Metadata = {
   title: 'Sponsor Wheelchairs for JNMC Hospital',
   description:
@@ -28,6 +30,9 @@ const primaryLink =
   'inline-flex min-h-[52px] w-full items-center justify-center rounded-full border border-[#D9A441] bg-[#07361F] px-6 py-3 text-lg font-bold text-white shadow-[0_12px_28px_rgba(7,54,31,0.24)] transition hover:-translate-y-0.5 hover:bg-[#25472D] hover:shadow-[0_16px_32px_rgba(7,54,31,0.3)] focus:outline-none focus:ring-2 focus:ring-[#D9A441] focus:ring-offset-2 focus:ring-offset-[#F8F5EF] active:translate-y-0 sm:w-auto';
 const secondaryLink =
   'inline-flex min-h-[52px] w-full items-center justify-center rounded-full border-2 border-[#07361F] bg-white px-6 py-3 text-lg font-bold text-[#07361F] shadow-sm transition hover:-translate-y-0.5 hover:border-[#D9A441] hover:bg-[#F8F5EC] focus:outline-none focus:ring-2 focus:ring-[#D9A441] focus:ring-offset-2 focus:ring-offset-[#F8F5EF] active:translate-y-0 sm:w-auto';
+
+const remainingWheelchairs =
+  donationConfig.campaign.totalGoal - donationConfig.campaign.verifiedSponsored;
 
 export default function WheelchairPage() {
   return (
@@ -65,7 +70,16 @@ export default function WheelchairPage() {
             <div className="mt-5 grid gap-3">
               <div className="rounded-2xl bg-[#F8F5EF] p-4">
                 <p className="text-sm font-semibold uppercase tracking-wide text-slate-500">Target</p>
-                <p className="mt-2 text-3xl font-semibold text-[#1A4D2E]">80 wheelchairs</p>
+                <p className="mt-2 text-3xl font-semibold text-[#1A4D2E]">
+                  {donationConfig.campaign.totalGoal} wheelchairs
+                </p>
+              </div>
+              <div className="rounded-2xl bg-[#F8F5EF] p-4">
+                <p className="text-sm font-semibold uppercase tracking-wide text-slate-500">Confirmed</p>
+                <p className="mt-2 text-3xl font-semibold text-[#1A4D2E]">
+                  {donationConfig.campaign.verifiedSponsored} / {donationConfig.campaign.totalGoal}
+                </p>
+                <p className="mt-2 text-sm font-semibold text-slate-600">{remainingWheelchairs} remaining</p>
               </div>
               <div className="rounded-2xl bg-[#F8F5EF] p-4">
                 <p className="text-sm font-semibold uppercase tracking-wide text-slate-500">Sponsorship</p>

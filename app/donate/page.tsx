@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 
 import { CopyButton } from '@/components/donation/CopyButton';
-import { DonationAcknowledgementForm } from '@/components/donation/DonationAcknowledgementForm';
+import { DonationPurposeAndForm } from '@/components/donation/DonationPurposeAndForm';
 import { donationAmounts, donationConfig, recurringOptions } from '@/lib/donation-config';
 
 export const metadata: Metadata = {
@@ -21,6 +21,8 @@ const bankFields = [
 
 const progressPercent =
   (donationConfig.campaign.verifiedSponsored / donationConfig.campaign.totalGoal) * 100;
+const remainingWheelchairs =
+  donationConfig.campaign.totalGoal - donationConfig.campaign.verifiedSponsored;
 
 const primaryLink =
   'inline-flex min-h-[52px] w-full items-center justify-center rounded-full border border-[#D9A441] bg-[#07361F] px-6 py-3 text-lg font-bold text-white shadow-[0_12px_28px_rgba(7,54,31,0.24)] transition hover:-translate-y-0.5 hover:bg-[#25472D] hover:shadow-[0_16px_32px_rgba(7,54,31,0.3)] focus:outline-none focus:ring-2 focus:ring-[#D9A441] focus:ring-offset-2 active:translate-y-0 active:bg-[#07361F] sm:w-auto';
@@ -82,8 +84,10 @@ export default function DonatePage() {
                   <p className="mt-1 text-3xl font-bold text-[#07361F]">80 wheelchairs</p>
                 </div>
                 <div className="rounded-2xl border border-[#77A625]/35 bg-[#F8F5EC] p-4">
-                  <p className="text-sm font-bold uppercase tracking-wide text-[#3B635D]">Verified sponsored</p>
-                  <p className="mt-1 text-3xl font-bold text-[#07361F]">0 / 80</p>
+                  <p className="text-sm font-bold uppercase tracking-wide text-[#3B635D]">Confirmed</p>
+                  <p className="mt-1 text-3xl font-bold text-[#07361F]">
+                    {donationConfig.campaign.verifiedSponsored} / {donationConfig.campaign.totalGoal}
+                  </p>
                 </div>
               </div>
 
@@ -115,18 +119,20 @@ export default function DonatePage() {
               <div className="mt-5">
                 <div className="flex items-end justify-between gap-4">
                   <div>
-                    <p className="text-base font-semibold text-white/75">Verified sponsored</p>
+                    <p className="text-base font-semibold text-white/75">Confirmed</p>
                     <p className="mt-1 text-5xl font-bold text-white">
                       {donationConfig.campaign.verifiedSponsored} / {donationConfig.campaign.totalGoal}
                     </p>
                   </div>
-                  <p className="text-right text-base font-bold text-[#D9A441]">₹5,800 each</p>
+                  <p className="text-right text-base font-bold text-[#D9A441]">
+                    {remainingWheelchairs} remaining
+                  </p>
                 </div>
                 <div className="mt-6 h-4 overflow-hidden rounded-full bg-white/20" aria-hidden="true">
                   <div className="h-full rounded-full bg-[#D9A441]" style={{ width: `${progressPercent}%` }} />
                 </div>
                 <p className="mt-5 text-lg leading-8 text-white/88">
-                  Progress is updated only after payment confirmation and internal reconciliation.
+                  Progress reflects confirmed acknowledgements after payment confirmation and internal reconciliation.
                 </p>
                 <p className="mt-3 rounded-2xl bg-white/10 px-4 py-3 text-sm font-semibold text-white/80">
                   Last updated: {donationConfig.campaign.lastUpdated}
@@ -146,7 +152,7 @@ export default function DonatePage() {
         <div id="amounts-title" className="sr-only">
           Quick donation amounts
         </div>
-        <div className="mt-6 grid gap-4 md:grid-cols-4">
+        <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
           {donationAmounts.map((item) => (
             <a
               key={item.amount}
@@ -169,7 +175,7 @@ export default function DonatePage() {
       <section id="payment-methods" className="mx-auto w-full max-w-7xl px-4 py-9 sm:px-6">
         <SectionIntro
           eyebrow="Payment methods"
-          title="Use official UPI or bank transfer until Razorpay is live"
+          title="Use official UPI or bank transfer until Razorpay activation is approved"
           description="Please verify the payee name before payment. On mobile, copy the UPI ID first because scanning a QR from the same phone can be difficult inside Instagram."
         />
 
@@ -241,50 +247,7 @@ export default function DonatePage() {
         </div>
       </section>
 
-      <section className="mx-auto w-full max-w-7xl px-4 py-9 sm:px-6">
-        <SectionIntro
-          eyebrow="Donation purpose"
-          title="I want to give for:"
-          description="Please choose the correct giving type. Zakat and foreign donations are not accepted through this account at present."
-        />
-        <div className="mt-6 grid gap-4 md:grid-cols-2">
-          {donationConfig.religiousGiving.accepted.map((item) => (
-            <article key={item} className="rounded-[1.25rem] border border-[#D9A441]/30 bg-white p-5 shadow-[0_12px_28px_rgba(7,54,31,0.07)]">
-              <h3 className="text-2xl font-bold text-[#07361F]">{item}</h3>
-              {item === 'Interest / Riba Disposal' ? (
-                <p className="mt-3 text-lg leading-8 text-[#1F2933]">
-                  For disposing bank interest or impermissible income. This is not Zakat.
-                </p>
-              ) : null}
-            </article>
-          ))}
-        </div>
-
-        <div className="mt-5 rounded-[1.25rem] border border-[#D9A441] bg-[#FFF7DF] p-5 shadow-[0_12px_28px_rgba(7,54,31,0.07)] sm:p-6">
-          <h3 className="text-2xl font-bold text-[#07361F]">Giving Guidance</h3>
-          <ul className="mt-4 grid gap-3 text-lg leading-8 text-[#1F2933]">
-            <li>Sadaqah and voluntary support are accepted.</li>
-            <li>Bank interest or riba disposal may be used for public healthcare benefit. This is not Zakat.</li>
-            <li>Zakat is not accepted through this account.</li>
-            <li>Foreign donations are not accepted until FCRA registration or prior permission.</li>
-          </ul>
-        </div>
-      </section>
-
-      <section id="donor-details" className="mx-auto w-full max-w-7xl px-4 py-9 sm:px-6">
-        <div className="grid gap-8 lg:grid-cols-[0.8fr_1.2fr]">
-          <div>
-            <SectionIntro
-              eyebrow="Acknowledgement"
-              title="Already donated? Share your details for acknowledgement."
-              description="This form is ready for donor acknowledgement details, but backend submission is not connected yet."
-            />
-          </div>
-          <div className={surfaceCard}>
-            <DonationAcknowledgementForm />
-          </div>
-        </div>
-      </section>
+      <DonationPurposeAndForm />
 
       <section className="mx-auto w-full max-w-7xl px-4 py-9 sm:px-6">
         <SectionIntro
@@ -318,21 +281,31 @@ export default function DonatePage() {
           <h2 className="text-3xl font-bold text-[#07361F]">Need help?</h2>
           <p className="mt-3 text-lg leading-8 text-[#1F2933]">{donationConfig.contact.note}</p>
           <div className="mt-5 grid gap-3 sm:grid-cols-3">
-            {['WhatsApp', 'Call', 'Email'].map((item) => (
-              <a key={item} href="/contact" className={primaryLink}>
-                {item}
+            {[
+              { label: 'WhatsApp', href: donationConfig.contact.whatsapp },
+              { label: 'Call', href: donationConfig.contact.phone },
+              { label: 'Email', href: donationConfig.contact.email },
+            ].map((item) => (
+              <a key={item.label} href={item.href} className={primaryLink}>
+                {item.label}
               </a>
             ))}
           </div>
+          <p className="mt-4 text-base font-semibold text-[#1F2933]">
+            {donationConfig.contact.displayPhone} | {donationConfig.contact.displayEmail}
+          </p>
         </div>
 
         <div className={surfaceCard}>
           <h2 className="text-3xl font-bold text-[#07361F]">Follow Rahat updates</h2>
           <p className="mt-3 text-lg leading-8 text-[#1F2933]">{donationConfig.social.note}</p>
           <div className="mt-5 grid gap-3 sm:grid-cols-2">
-            {['Instagram', 'LinkedIn', 'YouTube', 'WhatsApp updates'].map((item) => (
-              <a key={item} href="/contact" className={secondaryLink}>
-                {item}
+            {[
+              { label: 'Instagram', href: donationConfig.social.instagram },
+              { label: 'LinkedIn', href: donationConfig.social.linkedin },
+            ].map((item) => (
+              <a key={item.label} href={item.href} className={secondaryLink}>
+                {item.label}
               </a>
             ))}
           </div>

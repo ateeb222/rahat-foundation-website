@@ -22,29 +22,29 @@ export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
 
   return (
-    <header className="border-b border-[#D9A441]/25 bg-[#F8F5EC]">
-      <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 md:px-6">
+    <header className="sticky top-0 z-40 border-b border-[#D9A441]/25 bg-[#F8F5EC]/95 backdrop-blur">
+      <div className="mx-auto flex max-w-7xl items-center justify-between gap-3 px-4 py-3 md:px-6">
         <div className="flex items-center gap-4">
           <div className="flex items-center gap-3">
-            <div className="relative h-16 w-16 flex-shrink-0 overflow-hidden rounded-full bg-white">
+            <div className="relative h-14 w-14 flex-shrink-0 overflow-hidden rounded-full bg-white sm:h-16 sm:w-16">
               <Image
                 src="/images/LOGO/hero.jpg"
                 alt="Rahat Social Impact Foundation logo"
-                width={64}
-                height={64}
+                fill
+                sizes="64px"
                 className="object-cover"
               />
             </div>
-            <div>
-              <p className="text-sm font-semibold text-[#07361F]">Rahat Social Impact Foundation</p>
-              <p className="text-[11px] text-slate-600">Healthcare impact through trust and transparency</p>
+            <div className="min-w-0">
+              <p className="text-sm font-semibold leading-5 text-[#07361F] sm:text-base">Rahat Social Impact Foundation</p>
+              <p className="text-[11px] leading-4 text-slate-600 sm:text-xs">Healthcare impact through trust and transparency</p>
             </div>
           </div>
         </div>
 
         <button
           type="button"
-          className="inline-flex min-h-[44px] min-w-[44px] items-center justify-center rounded-md border border-[#D9A441]/40 bg-white p-2 text-[#07361F] shadow-sm transition hover:bg-[#F8F5EC] focus:outline-none focus:ring-2 focus:ring-[#D9A441] md:hidden"
+          className="inline-flex min-h-[48px] min-w-[48px] items-center justify-center rounded-md border border-[#D9A441]/40 bg-white p-2 text-[#07361F] shadow-sm transition hover:bg-[#F8F5EC] focus:outline-none focus:ring-2 focus:ring-[#D9A441] lg:hidden"
           aria-controls="mobile-menu"
           aria-expanded={menuOpen}
           onClick={() => setMenuOpen((value) => !value)}
@@ -67,8 +67,8 @@ export default function Header() {
           </svg>
         </button>
 
-        <nav className="hidden flex-1 justify-center md:flex" aria-label="Primary navigation">
-          <ul className="flex flex-wrap items-center justify-center gap-6 text-sm text-slate-700">
+        <nav className="hidden flex-1 justify-center lg:flex" aria-label="Primary navigation">
+          <ul className="flex flex-wrap items-center justify-center gap-x-4 gap-y-2 text-sm text-slate-700 xl:gap-x-6">
             {navLinks.map((link) => (
               <li key={link.href}>
                 <Link
@@ -82,7 +82,7 @@ export default function Header() {
           </ul>
         </nav>
 
-        <div className="hidden md:flex md:items-center md:gap-4">
+        <div className="hidden lg:flex lg:items-center lg:gap-4">
           <Link
             href="/donate"
             className={donateButtonClass}
@@ -94,7 +94,7 @@ export default function Header() {
 
       <div
         id="mobile-menu"
-        className={`${menuOpen ? 'block' : 'hidden'} border-t border-[#D9A441]/25 bg-[#F8F5EC] md:hidden`}
+        className={`${menuOpen ? 'block' : 'hidden'} border-t border-[#D9A441]/25 bg-[#F8F5EC] lg:hidden`}
       >
         <nav className="px-4 py-4" aria-label="Mobile primary navigation">
           <ul className="space-y-2 text-base text-slate-700">

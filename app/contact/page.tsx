@@ -1,5 +1,8 @@
 import type { Metadata } from 'next';
 
+import { ContactForm } from '@/components/forms/ContactForm';
+import { donationConfig } from '@/lib/donation-config';
+
 export const metadata: Metadata = {
   title: 'Contact',
   description: 'Contact Rahat Social Impact Foundation for donations, volunteering, and healthcare support enquiries.',
@@ -17,7 +20,7 @@ export default function ContactPage() {
             Donation, volunteer, and healthcare support enquiries.
           </h1>
           <p className="mt-4 text-base leading-7 text-slate-700 sm:text-lg">
-            Use this page for official Rahat communication. Verified email, phone, WhatsApp, and social links should be added here after final approval.
+            Use this page for official Rahat communication. You can also call, WhatsApp, or email the team directly.
           </p>
         </div>
       </section>
@@ -28,25 +31,20 @@ export default function ContactPage() {
           <p className="mt-3 text-sm leading-6 text-slate-700">
             Do not donate through unofficial QR codes, screenshots, or social media payment links. Official payment details will be published only through verified Rahat channels.
           </p>
+          <div className="mt-5 grid gap-3">
+            <a className="rounded-2xl border border-[#2A7A45]/30 bg-[#F8F5EF] px-4 py-3 text-base font-semibold text-[#1A4D2E]" href={donationConfig.contact.phone}>
+              Call {donationConfig.contact.displayPhone}
+            </a>
+            <a className="rounded-2xl border border-[#2A7A45]/30 bg-[#F8F5EF] px-4 py-3 text-base font-semibold text-[#1A4D2E]" href={donationConfig.contact.whatsapp}>
+              WhatsApp {donationConfig.contact.displayPhone}
+            </a>
+            <a className="rounded-2xl border border-[#2A7A45]/30 bg-[#F8F5EF] px-4 py-3 text-base font-semibold text-[#1A4D2E]" href={donationConfig.contact.email}>
+              {donationConfig.contact.displayEmail}
+            </a>
+          </div>
         </div>
 
-        <form className="grid gap-4 rounded-3xl border border-slate-200 bg-white p-5 shadow-sm sm:p-8" aria-label="Contact form">
-          <label className="grid gap-2 text-sm font-semibold text-slate-800">
-            Name
-            <input className="min-h-[48px] rounded-xl border border-slate-300 bg-white px-4 text-base font-normal" name="name" required />
-          </label>
-          <label className="grid gap-2 text-sm font-semibold text-slate-800">
-            Email
-            <input className="min-h-[48px] rounded-xl border border-slate-300 bg-white px-4 text-base font-normal" name="email" type="email" required />
-          </label>
-          <label className="grid gap-2 text-sm font-semibold text-slate-800">
-            Message
-            <textarea className="min-h-32 rounded-xl border border-slate-300 bg-white px-4 py-3 text-base font-normal" name="message" required />
-          </label>
-          <button type="button" className="min-h-[48px] rounded-full bg-[#1A4D2E] px-5 py-3 text-sm font-semibold text-white opacity-75" aria-disabled="true">
-            Submission backend pending
-          </button>
-        </form>
+        <ContactForm />
       </section>
     </main>
   );

@@ -1,5 +1,7 @@
 import type { Metadata } from 'next';
 
+import { VolunteerForm } from '@/components/forms/VolunteerForm';
+
 export const metadata: Metadata = {
   title: 'Volunteer',
   description:
@@ -13,8 +15,6 @@ const categories = [
   'Hospital Volunteers',
   'Remote Volunteers',
 ];
-
-const modes = ['On-ground', 'Remote', 'Hybrid'];
 
 export default function VolunteerPage() {
   return (
@@ -51,48 +51,12 @@ export default function VolunteerPage() {
               <h2 className="mt-3 text-2xl font-semibold leading-tight text-[#1A4D2E] sm:text-3xl">
                 Share your availability and skills.
               </h2>
-              <p className="mt-4 text-sm leading-6 text-slate-700">
-                This form structure is ready for secure handling when backend submission is connected.
+              <p className="mt-4 text-base leading-7 text-slate-700">
+                Keep it short. Rahat will review your application and follow up through official contact channels.
               </p>
             </div>
 
-            <form className="grid gap-4" aria-label="Volunteer interest form">
-              <div className="grid gap-4 sm:grid-cols-2">
-                <label className="grid gap-2 text-sm font-semibold text-slate-800">
-                  Name
-                  <input className="min-h-[48px] rounded-xl border border-slate-300 bg-white px-4 text-base font-normal" name="name" required />
-                </label>
-                <label className="grid gap-2 text-sm font-semibold text-slate-800">
-                  Mobile
-                  <input className="min-h-[48px] rounded-xl border border-slate-300 bg-white px-4 text-base font-normal" name="mobile" type="tel" required />
-                </label>
-              </div>
-              <label className="grid gap-2 text-sm font-semibold text-slate-800">
-                Email
-                <input className="min-h-[48px] rounded-xl border border-slate-300 bg-white px-4 text-base font-normal" name="email" type="email" required />
-              </label>
-              <div className="grid gap-4 sm:grid-cols-2">
-                <label className="grid gap-2 text-sm font-semibold text-slate-800">
-                  Availability
-                  <input className="min-h-[48px] rounded-xl border border-slate-300 bg-white px-4 text-base font-normal" name="availability" placeholder="Weekends, evenings, weekdays..." />
-                </label>
-                <label className="grid gap-2 text-sm font-semibold text-slate-800">
-                  Mode
-                  <select className="min-h-[48px] rounded-xl border border-slate-300 bg-white px-4 text-base font-normal" name="mode" defaultValue="Hybrid">
-                    {modes.map((mode) => (
-                      <option key={mode}>{mode}</option>
-                    ))}
-                  </select>
-                </label>
-              </div>
-              <label className="grid gap-2 text-sm font-semibold text-slate-800">
-                Skills
-                <textarea className="min-h-28 rounded-xl border border-slate-300 bg-white px-4 py-3 text-base font-normal" name="skills" placeholder="Outreach, coordination, design, healthcare operations, content, data..." />
-              </label>
-              <button type="button" className="min-h-[48px] rounded-full bg-[#1A4D2E] px-5 py-3 text-sm font-semibold text-white opacity-75" aria-disabled="true">
-                Submission backend pending
-              </button>
-            </form>
+            <VolunteerForm />
           </div>
         </div>
       </section>
