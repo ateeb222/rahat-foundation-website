@@ -3,6 +3,7 @@
 import Image from 'next/image';
 import { useState } from 'react';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 
 const navLinks = [
   { label: 'Home', href: '/' },
@@ -20,6 +21,23 @@ const donateButtonClass =
 
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const pathname = usePathname();
+
+  if (pathname === '/donate') {
+    return (
+      <header className="border-b border-[#D9A441]/20 bg-white">
+        <div className="mx-auto flex max-w-7xl items-center justify-between gap-3 px-4 py-3 sm:px-6">
+          <div className="min-w-0">
+            <p className="text-base font-bold leading-5 text-[#07361F]">Rahat Social Impact Foundation</p>
+            <p className="mt-0.5 text-sm font-semibold text-[#2A7A45]">Official donation page</p>
+          </div>
+          <p className="shrink-0 rounded-full border border-[#D9A441]/35 bg-[#F8F5EF] px-3 py-1.5 text-xs font-bold text-[#07361F]">
+            rahatsocialimpact.com
+          </p>
+        </div>
+      </header>
+    );
+  }
 
   return (
     <header className="sticky top-0 z-40 border-b border-[#D9A441]/25 bg-[#F8F5EC]/95 backdrop-blur">

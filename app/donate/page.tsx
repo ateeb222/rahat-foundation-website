@@ -1,13 +1,14 @@
 import type { Metadata } from 'next';
+import type { ReactNode } from 'react';
 
 import { CopyButton } from '@/components/donation/CopyButton';
 import { DonationPurposeAndForm } from '@/components/donation/DonationPurposeAndForm';
-import { donationAmounts, donationConfig, recurringOptions } from '@/lib/donation-config';
+import { donationAmounts, donationConfig } from '@/lib/donation-config';
 
 export const metadata: Metadata = {
   title: 'Official Donation Page',
   description:
-    'Donate through official Rahat Social Impact Foundation channels for the JNMC Hospital Patient Mobility Initiative.',
+    'Official Rahat Social Impact Foundation donation page for the JNMC Hospital Patient Mobility Initiative.',
 };
 
 const bankFields = [
@@ -19,298 +20,289 @@ const bankFields = [
   { label: 'Account Type', value: donationConfig.bank.accountType },
 ];
 
-const progressPercent =
-  (donationConfig.campaign.verifiedSponsored / donationConfig.campaign.totalGoal) * 100;
 const remainingWheelchairs =
   donationConfig.campaign.totalGoal - donationConfig.campaign.verifiedSponsored;
+const donatePhoneDisplay = '+91 9625293030';
 
-const primaryLink =
-  'inline-flex min-h-[52px] w-full items-center justify-center rounded-full border border-[#D9A441] bg-[#07361F] px-6 py-3 text-lg font-bold text-white shadow-[0_12px_28px_rgba(7,54,31,0.24)] transition hover:-translate-y-0.5 hover:bg-[#25472D] hover:shadow-[0_16px_32px_rgba(7,54,31,0.3)] focus:outline-none focus:ring-2 focus:ring-[#D9A441] focus:ring-offset-2 active:translate-y-0 active:bg-[#07361F] sm:w-auto';
-const secondaryLink =
-  'inline-flex min-h-[52px] w-full items-center justify-center rounded-full border-2 border-[#07361F] bg-white px-6 py-3 text-lg font-bold text-[#07361F] shadow-sm transition hover:-translate-y-0.5 hover:border-[#D9A441] hover:bg-[#F8F5EC] focus:outline-none focus:ring-2 focus:ring-[#D9A441] focus:ring-offset-2 active:translate-y-0 sm:w-auto';
-const surfaceCard =
-  'rounded-[1.25rem] border border-[#D9A441]/35 bg-white p-5 shadow-[0_14px_36px_rgba(7,54,31,0.08)] sm:p-6';
+const primaryButton =
+  'inline-flex min-h-[50px] w-full items-center justify-center rounded-full bg-[#07361F] px-5 py-3 text-base font-bold text-white shadow-[0_10px_24px_rgba(7,54,31,0.18)] transition hover:-translate-y-0.5 hover:bg-[#1A4D2E] focus:outline-none focus:ring-2 focus:ring-[#C8951A] focus:ring-offset-2 active:translate-y-0 sm:w-auto';
+const secondaryButton =
+  'inline-flex min-h-[50px] w-full items-center justify-center rounded-full border border-[#1A4D2E] bg-white px-5 py-3 text-base font-bold text-[#07361F] transition hover:-translate-y-0.5 hover:border-[#C8951A] hover:bg-[#F8F5EF] focus:outline-none focus:ring-2 focus:ring-[#C8951A] focus:ring-offset-2 active:translate-y-0 sm:w-auto';
+const cardClass =
+  'rounded-[1rem] border border-[#D9A441]/25 bg-white p-4 shadow-[0_10px_28px_rgba(7,54,31,0.06)] sm:p-6';
 
-function SectionIntro({
-  eyebrow,
+function StatChip({ label, value }: { label: string; value: string | number }) {
+  return (
+    <div className="rounded-2xl border border-[#2A7A45]/20 bg-white px-4 py-3">
+      <p className="text-xs font-bold uppercase tracking-[0.14em] text-[#3B635D]">{label}</p>
+      <p className="mt-1 text-2xl font-bold leading-none text-[#07361F]">{value}</p>
+    </div>
+  );
+}
+
+function VerificationRow({ label, value, href }: { label: string; value: string; href?: string }) {
+  const content = href ? (
+    <a className="break-words font-bold text-[#07361F] underline decoration-[#C8951A]/60 underline-offset-4" href={href}>
+      {value}
+    </a>
+  ) : (
+    <span className="break-words font-bold text-[#07361F]">{value}</span>
+  );
+
+  return (
+    <div className="rounded-2xl border border-[#2A7A45]/15 bg-[#F8F5EF] px-4 py-3">
+      <p className="text-xs font-bold uppercase tracking-[0.14em] text-[#3B635D]">{label}</p>
+      <p className="mt-1 text-base leading-6">{content}</p>
+    </div>
+  );
+}
+
+function AccordionCard({
   title,
-  description,
+  children,
 }: {
-  eyebrow: string;
   title: string;
-  description?: string;
+  children: ReactNode;
 }) {
   return (
-    <div className="max-w-3xl">
-      <p className="text-sm font-bold uppercase tracking-[0.16em] text-[#3B635D]">{eyebrow}</p>
-      <h2 className="mt-3 text-3xl font-bold leading-tight text-[#07361F] sm:text-4xl">{title}</h2>
-      {description ? <p className="mt-3 text-lg leading-8 text-[#1F2933]">{description}</p> : null}
-    </div>
+    <details className="rounded-[1rem] border border-[#D9A441]/25 bg-white p-4 shadow-[0_10px_28px_rgba(7,54,31,0.05)]">
+      <summary className="cursor-pointer text-base font-bold text-[#07361F]">{title}</summary>
+      <div className="mt-3 text-sm leading-6 text-slate-700">{children}</div>
+    </details>
   );
 }
 
 export default function DonatePage() {
   return (
-    <main className="min-h-screen overflow-x-hidden bg-[#F8F5EC] pb-16 text-[#1F2933]">
-      <section className="border-b border-[#D9A441]/40 bg-white">
-        <div className="mx-auto max-w-7xl px-4 py-5 sm:px-6">
-          <p className="text-2xl font-bold text-[#07361F] sm:text-3xl">Official Donation Page</p>
-          <p className="mt-2 text-lg leading-8 text-[#1F2933]">
-            Donate only through the official Rahat Social Impact Foundation channels shown on this page.
-          </p>
-          <p className="mt-3 rounded-2xl border border-[#D9A441] bg-[#FFF7DF] px-4 py-3 text-base font-bold leading-6 text-[#6A5518]">
-            Beware of fake QR codes, unofficial UPI IDs, and impersonation. Always verify the payee name before payment.
-          </p>
-        </div>
-      </section>
-
-      <section className="bg-[radial-gradient(circle_at_top_left,rgba(119,166,37,0.18),transparent_36%),linear-gradient(135deg,#F8F5EC_0%,#FFFFFF_48%,#EEF5E7_100%)]">
-        <div className="mx-auto w-full max-w-7xl px-4 py-9 sm:px-6 sm:py-14 lg:py-16">
-          <div className="grid gap-6 lg:grid-cols-[1fr_0.78fr] lg:items-stretch">
-            <div className="rounded-[1.5rem] border border-[#D9A441]/40 bg-white/90 p-5 shadow-[0_20px_55px_rgba(7,54,31,0.1)] sm:p-8">
-              <p className="inline-flex rounded-full border border-[#77A625]/50 bg-[#F8F5EC] px-4 py-2 text-sm font-bold uppercase tracking-[0.14em] text-[#25472D]">
-                {donationConfig.campaign.phase}: {donationConfig.campaign.name}
+    <main className="min-h-screen overflow-x-hidden bg-[#F8F5EF] pb-32 text-[#1F2937] sm:pb-16">
+      <section className="border-b border-[#D9A441]/20 bg-[#F8F5EF]">
+        <div className="mx-auto w-full max-w-7xl px-4 py-6 sm:px-6 sm:py-10 lg:py-12">
+          <div className="grid gap-5 lg:grid-cols-[1fr_0.86fr] lg:items-center">
+            <div className="max-w-3xl">
+              <p className="inline-flex rounded-full border border-[#2A7A45]/25 bg-white px-3 py-1.5 text-xs font-bold uppercase tracking-[0.14em] text-[#1A4D2E]">
+                Official Donation Page
               </p>
-              <h1 className="mt-5 max-w-3xl text-[40px] font-bold leading-[1.02] text-[#07361F] sm:text-5xl lg:text-6xl">
-                Help Patients Move With Dignity
+              <h1 className="mt-4 text-[30px] font-bold leading-tight text-[#07361F] sm:text-4xl lg:text-[44px]">
+                JNMC Hospital Patient Mobility Initiative
               </h1>
-              <p className="mt-5 max-w-2xl text-xl font-semibold leading-8 text-[#25472D]">
-                ₹5,800 helps sponsor one wheelchair for the JNMC Hospital Patient Mobility Initiative.
+              <p className="mt-3 text-lg font-semibold leading-7 text-[#25472D] sm:text-xl">
+                Sponsor one wheelchair for ₹5,800
               </p>
 
-              <div className="mt-6 grid gap-3 sm:grid-cols-2">
-                <div className="rounded-2xl border border-[#77A625]/35 bg-[#F8F5EC] p-4">
-                  <p className="text-sm font-bold uppercase tracking-wide text-[#3B635D]">Goal</p>
-                  <p className="mt-1 text-3xl font-bold text-[#07361F]">80 wheelchairs</p>
-                </div>
-                <div className="rounded-2xl border border-[#77A625]/35 bg-[#F8F5EC] p-4">
-                  <p className="text-sm font-bold uppercase tracking-wide text-[#3B635D]">Confirmed</p>
-                  <p className="mt-1 text-3xl font-bold text-[#07361F]">
-                    {donationConfig.campaign.verifiedSponsored} / {donationConfig.campaign.totalGoal}
-                  </p>
-                </div>
+              <div className="mt-5 grid grid-cols-3 gap-2 sm:max-w-lg sm:gap-3">
+                <StatChip label="Goal" value={donationConfig.campaign.totalGoal} />
+                <StatChip label="Confirmed" value={donationConfig.campaign.verifiedSponsored} />
+                <StatChip label="Remaining" value={remainingWheelchairs} />
               </div>
 
-              <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
-                <CopyButton
-                  value={donationConfig.upi.id}
-                  label="Copy UPI ID"
-                  ariaLabel="Copy official Rahat UPI ID"
-                  className="w-full text-lg sm:w-auto"
-                />
-                <a href="#bank-details" className={secondaryLink}>
+              <p className="mt-5 rounded-2xl border border-[#D9A441]/45 bg-white px-4 py-3 text-sm font-semibold leading-6 text-[#5F4A12]">
+                Payee to verify before payment: {donationConfig.upi.payeeName}
+              </p>
+
+              <div className="mt-5 flex flex-col gap-3 sm:flex-row">
+                <a href="#official-verification" className={primaryButton}>
+                  Verify & Donate
+                </a>
+                <a href="#bank-details" className={secondaryButton}>
                   View Bank Details
                 </a>
-                <a
-                  href="#donor-details"
-                  className="inline-flex min-h-[52px] w-full items-center justify-center rounded-full px-5 py-3 text-lg font-bold text-[#07361F] underline decoration-[#D9A441] decoration-2 underline-offset-8 transition hover:text-[#25472D] focus:outline-none focus:ring-2 focus:ring-[#D9A441] focus:ring-offset-2 sm:w-auto"
-                >
-                  Submit Donation Details
-                </a>
               </div>
-
-              <p className="mt-5 rounded-2xl border border-[#D9A441] bg-[#FFF7DF] px-4 py-3 text-base font-bold leading-6 text-[#6A5518]">
-                {donationConfig.domesticWarning.short}
-              </p>
             </div>
 
-            <aside className="rounded-[1.5rem] border border-[#07361F]/15 bg-[#07361F] p-5 text-white shadow-[0_20px_50px_rgba(7,54,31,0.22)] sm:p-6">
-              <p className="text-sm font-bold uppercase tracking-[0.16em] text-[#D9A441]">Goal tracker</p>
-              <div className="mt-5">
-                <div className="flex items-end justify-between gap-4">
-                  <div>
-                    <p className="text-base font-semibold text-white/75">Confirmed</p>
-                    <p className="mt-1 text-5xl font-bold text-white">
-                      {donationConfig.campaign.verifiedSponsored} / {donationConfig.campaign.totalGoal}
-                    </p>
-                  </div>
-                  <p className="text-right text-base font-bold text-[#D9A441]">
-                    {remainingWheelchairs} remaining
-                  </p>
-                </div>
-                <div className="mt-6 h-4 overflow-hidden rounded-full bg-white/20" aria-hidden="true">
-                  <div className="h-full rounded-full bg-[#D9A441]" style={{ width: `${progressPercent}%` }} />
-                </div>
-                <p className="mt-5 text-lg leading-8 text-white/88">
-                  Progress reflects confirmed acknowledgements after payment confirmation and internal reconciliation.
-                </p>
-                <p className="mt-3 rounded-2xl bg-white/10 px-4 py-3 text-sm font-semibold text-white/80">
-                  Last updated: {donationConfig.campaign.lastUpdated}
-                </p>
-              </div>
+            <aside className="rounded-[1rem] border border-[#2A7A45]/20 bg-white p-4 shadow-[0_12px_32px_rgba(7,54,31,0.06)] sm:p-6">
+              <p className="text-sm font-bold uppercase tracking-[0.16em] text-[#3B635D]">
+                Donation flow
+              </p>
+              <ol className="mt-4 grid gap-3 text-sm font-semibold leading-6 text-slate-700">
+                <li className="rounded-2xl bg-[#F8F5EF] px-4 py-3">1. Confirm Rahat identity and payee name.</li>
+                <li className="rounded-2xl bg-[#F8F5EF] px-4 py-3">2. Use official UPI or bank transfer details.</li>
+                <li className="rounded-2xl bg-[#F8F5EF] px-4 py-3">3. Submit acknowledgement details after payment.</li>
+              </ol>
             </aside>
           </div>
         </div>
       </section>
 
-      <section className="mx-auto w-full max-w-7xl px-4 py-9 sm:px-6" aria-labelledby="amounts-title">
-        <SectionIntro
-          eyebrow="Choose an amount"
-          title="Quick donation amounts"
-          description="Razorpay is pending, so these cards take you to official UPI and bank transfer details."
-        />
-        <div id="amounts-title" className="sr-only">
-          Quick donation amounts
-        </div>
-        <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
-          {donationAmounts.map((item) => (
-            <a
-              key={item.amount}
-              href="#payment-methods"
-              className={`rounded-[1.25rem] border p-5 shadow-[0_12px_28px_rgba(7,54,31,0.07)] transition hover:-translate-y-1 hover:shadow-[0_18px_36px_rgba(7,54,31,0.12)] focus:outline-none focus:ring-2 focus:ring-[#D9A441] focus:ring-offset-2 ${
-                item.featured
-                  ? 'border-[#D9A441] bg-[#07361F] text-white'
-                  : 'border-[#D9A441]/30 bg-white text-[#1F2933] hover:border-[#77A625]'
-              }`}
-            >
-              <span className={`block text-3xl font-bold ${item.featured ? 'text-white' : 'text-[#07361F]'}`}>
-                {item.amount}
-              </span>
-              <span className="mt-2 block text-lg font-bold leading-7">{item.label}</span>
-            </a>
-          ))}
+      <section id="official-verification" className="mx-auto w-full max-w-7xl scroll-mt-6 px-4 py-8 sm:px-6 sm:py-10">
+        <div className="grid gap-5 lg:grid-cols-[0.82fr_1.18fr]">
+          <div>
+            <p className="text-sm font-bold uppercase tracking-[0.16em] text-[#3B635D]">Verification</p>
+            <h2 className="mt-2 text-2xl font-bold leading-tight text-[#07361F] sm:text-3xl">
+              Verify before you donate
+            </h2>
+            <p className="mt-3 max-w-xl text-base leading-7 text-slate-700">
+              Please confirm the website, payee name, and official contact details before making any payment.
+            </p>
+          </div>
+
+          <div className={cardClass}>
+            <div className="grid gap-3 sm:grid-cols-2">
+              <VerificationRow label="Website" value="rahatsocialimpact.com" />
+              <VerificationRow label="Payee" value={donationConfig.upi.payeeName} />
+              <VerificationRow label="Bank" value={`${donationConfig.bank.bankName} Current Account`} />
+              <VerificationRow label="Email" value={donationConfig.contact.displayEmail} href={donationConfig.contact.email} />
+              <VerificationRow label="Phone / WhatsApp" value={donatePhoneDisplay} href={donationConfig.contact.whatsapp} />
+            </div>
+            <p className="mt-4 rounded-2xl border border-[#D9A441]/50 bg-[#FFF8E6] px-4 py-3 text-sm font-bold leading-6 text-[#6A5518]">
+              Please donate only after confirming the payee name. Rahat is not responsible for payments made to unofficial QR codes or accounts.
+            </p>
+          </div>
         </div>
       </section>
 
-      <section id="payment-methods" className="mx-auto w-full max-w-7xl px-4 py-9 sm:px-6">
-        <SectionIntro
-          eyebrow="Payment methods"
-          title="Use official UPI or bank transfer until Razorpay activation is approved"
-          description="Please verify the payee name before payment. On mobile, copy the UPI ID first because scanning a QR from the same phone can be difficult inside Instagram."
-        />
-
-        <div className="mt-6 grid gap-5 lg:grid-cols-3">
-          <article className={surfaceCard}>
-            <p className="text-2xl font-bold text-[#07361F]">Secure Online Donation</p>
-            <p className="mt-4 text-lg leading-8 text-[#1F2933]">{donationConfig.razorpay.message}</p>
-            <p className="mt-5 inline-flex rounded-full border border-[#D9A441] bg-[#FFF7DF] px-4 py-2 text-base font-bold text-[#6A5518]">
-              Coming after approval
+      <section id="official-payment" className="mx-auto w-full max-w-7xl scroll-mt-6 px-4 py-8 sm:px-6 sm:py-10">
+        <div className="grid gap-5 lg:grid-cols-[0.9fr_1.1fr]">
+          <div>
+            <p className="text-sm font-bold uppercase tracking-[0.16em] text-[#3B635D]">Official payment</p>
+            <h2 className="mt-2 text-2xl font-bold leading-tight text-[#07361F] sm:text-3xl">
+              Use official UPI or bank transfer
+            </h2>
+            <p className="mt-3 max-w-xl text-base leading-7 text-slate-700">
+              Razorpay activation is pending. Do not use unofficial payment links or QR screenshots.
             </p>
-          </article>
-
-          <article className={surfaceCard}>
-            <p className="text-2xl font-bold text-[#07361F]">UPI / QR Donation</p>
-            <div className="mt-5 rounded-2xl border-2 border-[#77A625]/45 bg-[#F8F5EC] p-4">
-              <p className="text-sm font-bold uppercase tracking-wide text-[#3B635D]">UPI ID</p>
-              <p className="mt-2 break-all text-2xl font-bold leading-tight text-[#07361F]">
-                {donationConfig.upi.id}
-              </p>
-              <CopyButton
-                value={donationConfig.upi.id}
-                label="Copy UPI ID"
-                ariaLabel="Copy official Rahat UPI ID"
-                className="mt-4 w-full text-lg"
-              />
+            <div className="mt-5 flex flex-col gap-3 sm:flex-row">
+              <a href="#bank-details" className={secondaryButton}>
+                View Bank Details
+              </a>
+              <a href="#donor-details" className={primaryButton}>
+                Submit Donation Details
+              </a>
             </div>
-            <p className="mt-5 text-base font-bold text-[#1F2933]">Payee name</p>
-            <p className="mt-1 text-lg font-bold leading-7 text-[#07361F]">{donationConfig.upi.payeeName}</p>
-            <p className="mt-4 rounded-2xl border border-[#D9A441] bg-[#FFF7DF] px-4 py-3 text-base font-bold leading-6 text-[#6A5518]">
-              Verify payee name before payment.
-            </p>
-            <div className="mt-5 flex justify-center rounded-2xl border border-[#D9A441]/25 bg-white p-4">
-              <img
-                src={donationConfig.upi.qrPath}
-                alt={donationConfig.upi.qrAlt}
-                className="h-auto w-full max-w-[260px]"
-              />
-            </div>
-          </article>
-
-          <article id="bank-details" className={surfaceCard}>
-            <p className="text-2xl font-bold text-[#07361F]">Direct Bank Transfer</p>
-            <div className="mt-5 grid gap-3">
-              {bankFields.map((field) => (
-                <div key={field.label} className="rounded-2xl border border-[#D9A441]/25 bg-[#F8F5EC] p-4">
-                  <p className="text-sm font-bold uppercase tracking-wide text-[#3B635D]">{field.label}</p>
-                  <p className="mt-2 break-words text-lg font-bold leading-7 text-[#1F2933]">{field.value}</p>
-                  <CopyButton
-                    value={field.value}
-                    label="Copy"
-                    ariaLabel={`Copy ${field.label}`}
-                    className="mt-3 w-full"
-                  />
-                </div>
+            <div className="mt-5 grid gap-3 sm:grid-cols-2">
+              {donationAmounts.map((item) => (
+                <a
+                  key={item.amount}
+                  href="#official-payment"
+                  className={`rounded-2xl border px-4 py-3 text-left transition hover:-translate-y-0.5 focus:outline-none focus:ring-2 focus:ring-[#C8951A] focus:ring-offset-2 ${
+                    item.featured
+                      ? 'border-[#D9A441] bg-[#07361F] text-white'
+                      : 'border-[#D9A441]/25 bg-white text-[#1F2937]'
+                  }`}
+                >
+                  <span className={`block text-xl font-bold ${item.featured ? 'text-white' : 'text-[#07361F]'}`}>
+                    {item.amount}
+                  </span>
+                  <span className="mt-1 block text-sm font-semibold leading-5">{item.label}</span>
+                </a>
               ))}
             </div>
-          </article>
-        </div>
-      </section>
+          </div>
 
-      <section className="mx-auto w-full max-w-7xl px-4 py-9 sm:px-6">
-        <div className="rounded-[1.25rem] border border-[#D9A441] bg-white p-5 shadow-[0_14px_36px_rgba(7,54,31,0.08)] sm:p-8">
-          <h2 className="text-3xl font-bold text-[#07361F]">{donationConfig.domesticWarning.title}</h2>
-          <div className="mt-4 grid gap-4 text-lg leading-8 text-[#1F2933]">
-            {donationConfig.domesticWarning.body.map((line) => (
-              <p key={line}>{line}</p>
-            ))}
+          <div className="grid gap-4">
+            <article className={cardClass}>
+              <p className="text-lg font-bold text-[#07361F]">UPI / QR donation</p>
+              <div className="mt-4 rounded-2xl border border-[#2A7A45]/20 bg-[#F8F5EF] p-4">
+                <p className="text-xs font-bold uppercase tracking-[0.14em] text-[#3B635D]">UPI ID</p>
+                <p className="mt-2 break-all text-base font-bold leading-6 text-[#07361F]">
+                  {donationConfig.upi.id}
+                </p>
+                <CopyButton
+                  value={donationConfig.upi.id}
+                  label="Copy UPI ID"
+                  ariaLabel="Copy official Rahat UPI ID"
+                  className="mt-4 w-full"
+                />
+              </div>
+              <div className="mt-4 flex justify-center rounded-2xl border border-[#D9A441]/20 bg-white p-3">
+                <img
+                  src={donationConfig.upi.qrPath}
+                  alt={donationConfig.upi.qrAlt}
+                  className="h-auto w-full max-w-[220px]"
+                />
+              </div>
+            </article>
+
+            <article id="bank-details" className={cardClass}>
+              <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+                <div>
+                  <p className="text-lg font-bold text-[#07361F]">Direct bank transfer</p>
+                  <p className="mt-1 text-sm leading-6 text-slate-700">Use these details only after verification.</p>
+                </div>
+                <a href="#donor-details" className={secondaryButton}>
+                  Submit Donation Details
+                </a>
+              </div>
+              <div className="mt-4 grid gap-3 sm:grid-cols-2">
+                {bankFields.map((field) => (
+                  <div key={field.label} className="rounded-2xl border border-[#D9A441]/20 bg-[#F8F5EF] p-3">
+                    <p className="text-xs font-bold uppercase tracking-[0.14em] text-[#3B635D]">{field.label}</p>
+                    <p className="mt-1 break-words text-sm font-bold leading-6 text-[#1F2937]">{field.value}</p>
+                    <CopyButton
+                      value={field.value}
+                      label="Copy"
+                      ariaLabel={`Copy ${field.label}`}
+                      className="mt-3 w-full"
+                    />
+                  </div>
+                ))}
+              </div>
+            </article>
+
+            <article className={cardClass}>
+              <p className="text-lg font-bold text-[#07361F]">Razorpay</p>
+              <p className="mt-2 text-sm leading-6 text-slate-700">{donationConfig.razorpay.message}</p>
+              <p className="mt-3 inline-flex rounded-full border border-[#D9A441]/45 bg-[#FFF8E6] px-3 py-1.5 text-sm font-bold text-[#6A5518]">
+                Pending approval
+              </p>
+            </article>
           </div>
         </div>
       </section>
 
       <DonationPurposeAndForm />
 
-      <section className="mx-auto w-full max-w-7xl px-4 py-9 sm:px-6">
-        <SectionIntro
-          eyebrow="Coming soon"
-          title="Join Recurring Sadaqah"
-          description="Soon, donors will be able to support patient mobility weekly, monthly, or yearly through secure recurring payment options."
-        />
-        <div className="mt-6 grid gap-4 md:grid-cols-3">
-          {Object.entries(recurringOptions).map(([frequency, options]) => (
-            <article key={frequency} className={surfaceCard}>
-              <div className="flex items-center justify-between gap-3">
-                <h3 className="text-2xl font-bold text-[#07361F]">{frequency}</h3>
-                <span className="rounded-full border border-[#D9A441] bg-[#FFF7DF] px-3 py-1 text-sm font-bold text-[#6A5518]">
-                  Coming Soon
-                </span>
-              </div>
-              <ul className="mt-4 grid gap-3 text-lg leading-8 text-[#1F2933]">
-                {options.map((option) => (
-                  <li key={option} className="rounded-xl border border-[#D9A441]/20 bg-[#F8F5EC] px-4 py-3">
-                    {option}
-                  </li>
-                ))}
-              </ul>
-            </article>
-          ))}
+      <section className="mx-auto w-full max-w-7xl px-4 py-8 sm:px-6 sm:py-10">
+        <div className="grid gap-3 lg:grid-cols-2">
+          <AccordionCard title="How this campaign works">
+            <p>
+              Wheelchairs will be procured, tagged, recorded, and handed over through hospital coordination. Updates will be published after payment confirmation, procurement, tagging, and deployment.
+            </p>
+          </AccordionCard>
+
+          <AccordionCard title="After donation">
+            <p>
+              Keep your UTR or transaction ID. Submit the acknowledgement form so Rahat can match the payment and update internal records.
+            </p>
+            <p className="mt-2">Recurring Sadaqah remains coming soon.</p>
+          </AccordionCard>
+
+          <AccordionCard title="Zakat and FCRA guidance">
+            <ul className="grid gap-2">
+              <li>Zakat is not accepted through this account at present.</li>
+              <li>Foreign donations are not accepted until FCRA registration or prior permission.</li>
+              <li>{donationConfig.religiousGiving.riba}</li>
+            </ul>
+          </AccordionCard>
+
+          <AccordionCard title="Contact Rahat">
+            <div className="grid gap-2">
+              <a className="font-bold text-[#07361F] underline decoration-[#C8951A]/60 underline-offset-4" href={donationConfig.contact.whatsapp}>
+                WhatsApp {donatePhoneDisplay}
+              </a>
+              <a className="font-bold text-[#07361F] underline decoration-[#C8951A]/60 underline-offset-4" href={donationConfig.contact.phone}>
+                Call {donatePhoneDisplay}
+              </a>
+              <a className="font-bold text-[#07361F] underline decoration-[#C8951A]/60 underline-offset-4" href={donationConfig.contact.email}>
+                {donationConfig.contact.displayEmail}
+              </a>
+            </div>
+          </AccordionCard>
         </div>
       </section>
 
-      <section className="mx-auto grid w-full max-w-7xl gap-5 px-4 py-9 sm:px-6 lg:grid-cols-2">
-        <div className={surfaceCard}>
-          <h2 className="text-3xl font-bold text-[#07361F]">Need help?</h2>
-          <p className="mt-3 text-lg leading-8 text-[#1F2933]">{donationConfig.contact.note}</p>
-          <div className="mt-5 grid gap-3 sm:grid-cols-3">
-            {[
-              { label: 'WhatsApp', href: donationConfig.contact.whatsapp },
-              { label: 'Call', href: donationConfig.contact.phone },
-              { label: 'Email', href: donationConfig.contact.email },
-            ].map((item) => (
-              <a key={item.label} href={item.href} className={primaryLink}>
-                {item.label}
-              </a>
-            ))}
-          </div>
-          <p className="mt-4 text-base font-semibold text-[#1F2933]">
-            {donationConfig.contact.displayPhone} | {donationConfig.contact.displayEmail}
-          </p>
+      <nav
+        className="fixed inset-x-0 bottom-0 z-50 border-t border-[#D9A441]/25 bg-white/96 px-4 py-3 shadow-[0_-12px_28px_rgba(7,54,31,0.12)] backdrop-blur sm:hidden"
+        aria-label="Donation quick actions"
+      >
+        <div className="mx-auto grid max-w-md grid-cols-2 gap-3">
+          <a href="#official-payment" className="inline-flex min-h-[48px] items-center justify-center rounded-full bg-[#07361F] px-4 py-3 text-sm font-bold text-white">
+            Sponsor ₹5,800
+          </a>
+          <a href="#official-verification" className="inline-flex min-h-[48px] items-center justify-center rounded-full border border-[#1A4D2E] bg-white px-4 py-3 text-sm font-bold text-[#07361F]">
+            Verify Details
+          </a>
         </div>
-
-        <div className={surfaceCard}>
-          <h2 className="text-3xl font-bold text-[#07361F]">Follow Rahat updates</h2>
-          <p className="mt-3 text-lg leading-8 text-[#1F2933]">{donationConfig.social.note}</p>
-          <div className="mt-5 grid gap-3 sm:grid-cols-2">
-            {[
-              { label: 'Instagram', href: donationConfig.social.instagram },
-              { label: 'LinkedIn', href: donationConfig.social.linkedin },
-            ].map((item) => (
-              <a key={item.label} href={item.href} className={secondaryLink}>
-                {item.label}
-              </a>
-            ))}
-          </div>
-        </div>
-      </section>
+      </nav>
     </main>
   );
 }
