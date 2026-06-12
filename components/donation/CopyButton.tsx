@@ -6,44 +6,76 @@ type CopyButtonProps = {
   value: string;
   label?: string;
   className?: string;
+  ariaLabel?: string;
 };
 
-export function CopyButton({ value, label = 'Copy', className = '' }: CopyButtonProps) {
-  const [copied, setCopied] = useState(false);
+type CopyState = 'idle' | 'copied' | 'manual';
+
+export function CopyButton({ value, label = 'Copy', className = '', ariaLabel }: CopyButtonProps) {
+  const [copyState, setCopyState] = useState<CopyState>('idle');
 
   async function handleCopy() {
     let success = false;
 
     try {
-      await navigator.clipboard.writeText(value);
-      success = true;
+      if (navigator.clipboard?.writeText) {
+        await navigator.clipboard.writeText(value);
+        success = true;
+      }
     } catch {
+      success = false;
+    }
+
+    if (!success) {
       const textarea = document.createElement('textarea');
       textarea.value = value;
       textarea.setAttribute('readonly', '');
+      textarea.setAttribute('aria-hidden', 'true');
       textarea.style.position = 'fixed';
-      textarea.style.top = '-1000px';
-      textarea.style.left = '-1000px';
+      textarea.style.top = '0';
+      textarea.style.left = '-9999px';
+      textarea.style.width = '1px';
+      textarea.style.height = '1px';
+      textarea.style.opacity = '0';
       document.body.appendChild(textarea);
-      textarea.select();
-      success = document.execCommand('copy');
-      document.body.removeChild(textarea);
+
+      try {
+        textarea.focus();
+        textarea.select();
+        textarea.setSelectionRange(0, value.length);
+        success = document.execCommand('copy');
+      } catch {
+        success = false;
+      } finally {
+        document.body.removeChild(textarea);
+      }
     }
 
     if (success) {
-      setCopied(true);
-      window.setTimeout(() => setCopied(false), 1800);
+      setCopyState('copied');
+      window.setTimeout(() => setCopyState('idle'), 1800);
+      return;
     }
+
+    setCopyState('manual');
   }
 
   return (
-    <button
-      type="button"
-      onClick={handleCopy}
-      className={`inline-flex min-h-[44px] items-center justify-center rounded-full border border-[#1A4D2E] bg-white px-5 py-2 text-base font-semibold text-[#1A4D2E] transition hover:bg-[#E8F4E8] focus:outline-none focus:ring-2 focus:ring-[#2A7A45] focus:ring-offset-2 ${className}`}
-      aria-live="polite"
-    >
-      {copied ? 'Copied' : label}
-    </button>
+    <span className="block">
+      <button
+        type="button"
+        onClick={handleCopy}
+        className={`inline-flex min-h-[48px] items-center justify-center rounded-full border border-[#D9A441] bg-[#07361F] px-5 py-3 text-base font-bold text-white shadow-[0_10px_22px_rgba(7,54,31,0.22)] transition hover:-translate-y-0.5 hover:bg-[#25472D] hover:shadow-[0_14px_28px_rgba(7,54,31,0.28)] focus:outline-none focus:ring-2 focus:ring-[#D9A441] focus:ring-offset-2 active:translate-y-0 active:bg-[#07361F] ${className}`}
+        aria-label={ariaLabel ?? `${label} to clipboard`}
+        aria-live="polite"
+      >
+        {copyState === 'copied' ? 'Copied' : copyState === 'manual' ? 'Copy manually' : label}
+      </button>
+      {copyState === 'manual' ? (
+        <span className="mt-2 block text-sm font-semibold leading-5 text-[#7A5D13]" role="status" aria-live="polite">
+          Your browser blocked auto-copy. Long press and copy manually.
+        </span>
+      ) : null}
+    </span>
   );
 }

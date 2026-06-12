@@ -24,6 +24,11 @@ const wheelchairDetails = [
   'Optional donor recognition without pressure or public disclosure requirements',
 ];
 
+const primaryLink =
+  'inline-flex min-h-[52px] w-full items-center justify-center rounded-full border border-[#D9A441] bg-[#07361F] px-6 py-3 text-lg font-bold text-white shadow-[0_12px_28px_rgba(7,54,31,0.24)] transition hover:-translate-y-0.5 hover:bg-[#25472D] hover:shadow-[0_16px_32px_rgba(7,54,31,0.3)] focus:outline-none focus:ring-2 focus:ring-[#D9A441] focus:ring-offset-2 focus:ring-offset-[#F8F5EF] active:translate-y-0 sm:w-auto';
+const secondaryLink =
+  'inline-flex min-h-[52px] w-full items-center justify-center rounded-full border-2 border-[#07361F] bg-white px-6 py-3 text-lg font-bold text-[#07361F] shadow-sm transition hover:-translate-y-0.5 hover:border-[#D9A441] hover:bg-[#F8F5EC] focus:outline-none focus:ring-2 focus:ring-[#D9A441] focus:ring-offset-2 focus:ring-offset-[#F8F5EF] active:translate-y-0 sm:w-auto';
+
 export default function WheelchairPage() {
   return (
     <main className="min-h-screen bg-[#F8F5EF] pb-20 text-[#1F2937]">
@@ -42,13 +47,13 @@ export default function WheelchairPage() {
             <div className="mt-6 flex flex-col gap-3 sm:flex-row">
               <Link
                 href="/donate"
-                className="inline-flex min-h-[48px] w-full items-center justify-center rounded-full bg-[#1A4D2E] px-5 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-[#16402a] focus:outline-none focus:ring-2 focus:ring-[#2A7A45] focus:ring-offset-2 focus:ring-offset-[#F8F5EF] sm:w-auto"
+                className={primaryLink}
               >
                 Sponsor for Rs. 5,800
               </Link>
               <Link
                 href="/donate"
-                className="inline-flex min-h-[48px] w-full items-center justify-center rounded-full border border-[#1A4D2E] bg-white px-5 py-3 text-sm font-semibold text-[#1A4D2E] transition hover:bg-[#E8F4E8] focus:outline-none focus:ring-2 focus:ring-[#2A7A45] focus:ring-offset-2 focus:ring-offset-[#F8F5EF] sm:w-auto"
+                className={secondaryLink}
               >
                 Donate another amount
               </Link>
@@ -109,7 +114,7 @@ export default function WheelchairPage() {
           </p>
           <Link
             href="/donate"
-            className="mt-6 inline-flex min-h-[48px] w-full items-center justify-center rounded-full bg-[#1A4D2E] px-5 py-3 text-sm font-semibold text-white sm:w-auto"
+            className={`mt-6 ${primaryLink}`}
           >
             Go to official donate page
           </Link>
@@ -118,7 +123,7 @@ export default function WheelchairPage() {
 
       <Link
         href="/donate"
-        className="fixed inset-x-4 bottom-4 z-50 rounded-full bg-[#1A4D2E] px-5 py-4 text-center text-sm font-semibold text-white shadow-xl sm:hidden"
+        className="fixed inset-x-4 bottom-4 z-50 rounded-full border border-[#D9A441] bg-[#07361F] px-5 py-4 text-center text-lg font-bold text-white shadow-[0_16px_34px_rgba(7,54,31,0.3)] transition hover:bg-[#25472D] focus:outline-none focus:ring-2 focus:ring-[#D9A441] focus:ring-offset-2 sm:hidden"
       >
         Sponsor for Rs. 5,800
       </Link>

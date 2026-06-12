@@ -3,7 +3,8 @@
 import { useState } from 'react';
 
 const donationMethods = ['UPI', 'Bank Transfer', 'Razorpay', 'Other'];
-const donationPurposes = ['Wheelchair Sadaqah', 'General Sadaqah', 'Interest / Riba Disposal', 'Stretcher Support'];
+const ribaPurpose = 'Bank interest / impermissible income disposal';
+const donationPurposes = ['Wheelchair Sadaqah', 'General Sadaqah', ribaPurpose, 'Stretcher Support'];
 const recognitionPreferences = ['Anonymous', 'Display my name', 'In memory / honor of loved one'];
 
 const inputClass =
@@ -96,7 +97,7 @@ export function DonationAcknowledgementForm() {
         </span>
       </label>
 
-      {purpose === 'Interest / Riba Disposal' ? (
+      {purpose === ribaPurpose ? (
         <label className="flex items-start gap-3 rounded-2xl border border-slate-200 bg-white p-4 text-base leading-6 text-slate-700">
           <input className="mt-1 h-5 w-5 flex-shrink-0" type="checkbox" name="ribaDeclaration" required />
           <span>I understand this is not Zakat and may be used for public healthcare benefit.</span>

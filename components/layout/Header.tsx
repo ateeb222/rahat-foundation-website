@@ -15,11 +15,14 @@ const navLinks = [
   { label: 'Contact', href: '/contact' },
 ];
 
+const donateButtonClass =
+  'inline-flex min-h-[48px] items-center justify-center rounded-full border border-[#D9A441] bg-[#07361F] px-5 py-3 text-base font-bold text-white shadow-[0_10px_22px_rgba(7,54,31,0.22)] transition hover:-translate-y-0.5 hover:bg-[#25472D] focus:outline-none focus:ring-2 focus:ring-[#D9A441] focus:ring-offset-2 focus:ring-offset-[#F8F5EC] active:translate-y-0';
+
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
 
   return (
-    <header className="bg-[#F8F5EF] border-b border-slate-200">
+    <header className="border-b border-[#D9A441]/25 bg-[#F8F5EC]">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 md:px-6">
         <div className="flex items-center gap-4">
           <div className="flex items-center gap-3">
@@ -33,7 +36,7 @@ export default function Header() {
               />
             </div>
             <div>
-              <p className="text-sm font-semibold text-[#1A4D2E]">Rahat Social Impact Foundation</p>
+              <p className="text-sm font-semibold text-[#07361F]">Rahat Social Impact Foundation</p>
               <p className="text-[11px] text-slate-600">Healthcare impact through trust and transparency</p>
             </div>
           </div>
@@ -41,7 +44,7 @@ export default function Header() {
 
         <button
           type="button"
-          className="inline-flex items-center justify-center rounded-md border border-slate-300 bg-white p-2 text-slate-700 shadow-sm transition hover:bg-slate-50 focus:outline-none focus:ring-2 focus:ring-[#2A7A45] md:hidden"
+          className="inline-flex min-h-[44px] min-w-[44px] items-center justify-center rounded-md border border-[#D9A441]/40 bg-white p-2 text-[#07361F] shadow-sm transition hover:bg-[#F8F5EC] focus:outline-none focus:ring-2 focus:ring-[#D9A441] md:hidden"
           aria-controls="mobile-menu"
           aria-expanded={menuOpen}
           onClick={() => setMenuOpen((value) => !value)}
@@ -70,7 +73,7 @@ export default function Header() {
               <li key={link.href}>
                 <Link
                   href={link.href}
-                  className="transition hover:text-[#1A4D2E] focus:outline-none focus:ring-2 focus:ring-[#2A7A45] focus:ring-offset-2 focus:ring-offset-[#F8F5EF]"
+                  className="font-semibold transition hover:text-[#07361F] focus:outline-none focus:ring-2 focus:ring-[#D9A441] focus:ring-offset-2 focus:ring-offset-[#F8F5EC]"
                 >
                   {link.label}
                 </Link>
@@ -82,7 +85,7 @@ export default function Header() {
         <div className="hidden md:flex md:items-center md:gap-4">
           <Link
             href="/donate"
-            className="inline-flex items-center rounded-full bg-[#1A4D2E] px-4 py-2 text-sm font-semibold text-white shadow-md transition hover:bg-[#16402a] focus:outline-none focus:ring-2 focus:ring-[#2A7A45] focus:ring-offset-2 focus:ring-offset-[#F8F5EF]"
+            className={donateButtonClass}
           >
             Donate
           </Link>
@@ -91,7 +94,7 @@ export default function Header() {
 
       <div
         id="mobile-menu"
-        className={`${menuOpen ? 'block' : 'hidden'} border-t border-slate-200 bg-[#F8F5EF] md:hidden`}
+        className={`${menuOpen ? 'block' : 'hidden'} border-t border-[#D9A441]/25 bg-[#F8F5EC] md:hidden`}
       >
         <nav className="px-4 py-4" aria-label="Mobile primary navigation">
           <ul className="space-y-2 text-base text-slate-700">
@@ -99,7 +102,7 @@ export default function Header() {
               <li key={link.href}>
                 <Link
                   href={link.href}
-                  className="block rounded-lg px-3 py-2 transition hover:bg-[#E8F4E8] hover:text-[#1A4D2E] focus:outline-none focus:ring-2 focus:ring-[#2A7A45] focus:ring-offset-2 focus:ring-offset-[#F8F5EF]"
+                  className="block rounded-lg px-3 py-2 font-semibold transition hover:bg-white hover:text-[#07361F] focus:outline-none focus:ring-2 focus:ring-[#D9A441] focus:ring-offset-2 focus:ring-offset-[#F8F5EC]"
                   onClick={() => setMenuOpen(false)}
                 >
                   {link.label}
@@ -110,7 +113,7 @@ export default function Header() {
           <div className="mt-4">
             <Link
               href="/donate"
-              className="block rounded-full bg-[#1A4D2E] px-4 py-3 text-center text-sm font-semibold text-white shadow-sm transition hover:bg-[#16402a] focus:outline-none focus:ring-2 focus:ring-[#2A7A45] focus:ring-offset-2 focus:ring-offset-[#F8F5EF]"
+              className={`${donateButtonClass} w-full`}
               onClick={() => setMenuOpen(false)}
             >
               Donate
