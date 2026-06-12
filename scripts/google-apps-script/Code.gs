@@ -1,5 +1,5 @@
 const SHEET_ID = '1hSeTI1P7X8tDL9L1UTbGfpab4rZ0lisR45FvWOiNqvI';
-const FORM_SUBMISSION_SECRET = 'rahat_forms_2026_private_9Xk72LmQpA51';
+const FORM_SUBMISSION_SECRET = 'REPLACE_WITH_STRONG_SHARED_SECRET';
 const ALERT_EMAIL = '[info@rahatsocialimpact.com](mailto:info@rahatsocialimpact.com)';
 
 function doGet() {
