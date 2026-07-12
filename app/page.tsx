@@ -180,7 +180,10 @@ export default function HomePage() {
           </div>
           <div className={surfaceCard}>
             <p className="text-sm font-bold uppercase tracking-wide text-[#3B635D]">Updates</p>
-            <p className="mt-3 text-lg leading-8 text-[#1F2933]">Factory visit media, campaign updates, and verified implementation evidence will be added as official assets are ready.</p>
+            <p className="mt-3 text-sm font-bold uppercase tracking-[0.14em] text-[#6A5518]">Upcoming activity · 27 July 2026</p>
+            <p className="mt-2 text-lg leading-8 text-[#1F2933]">
+              Rahat will hand over the wheelchairs to JNMC Hospital, Aligarh Muslim University.
+            </p>
           </div>
         </div>
       </section>
