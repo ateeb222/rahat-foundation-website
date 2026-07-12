@@ -4,6 +4,9 @@
 
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 5.5rem;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
 }
 
 body {
@@ -12,4 +15,81 @@ body {
   background-color: #f8f5ef;
   color: #0f172a;
   overflow-x: hidden;
+}
+
+* {
+  min-width: 0;
+}
+
+p,
+li,
+a,
+button,
+label,
+summary,
+h1,
+h2,
+h3 {
+  overflow-wrap: anywhere;
+}
+
+button,
+a,
+input,
+select,
+summary {
+  touch-action: manipulation;
+}
+
+.policy-content h2 {
+  margin-top: 2rem;
+  color: #07361f;
+  font-size: 1.25rem;
+  font-weight: 700;
+  line-height: 1.35;
+}
+
+.policy-content h2:first-child {
+  margin-top: 0;
+}
+
+.policy-content p,
+.policy-content li {
+  color: #475569;
+  font-size: 1rem;
+  line-height: 1.75;
+}
+
+.policy-content p {
+  margin-top: 0.75rem;
+}
+
+.policy-content ul,
+.policy-content ol {
+  margin-top: 0.75rem;
+  display: grid;
+  gap: 0.5rem;
+  padding-left: 1.25rem;
+}
+
+.policy-content ul {
+  list-style: disc;
+}
+
+.policy-content ol {
+  list-style: decimal;
+}
+
+.policy-content a {
+  color: #07361f;
+  font-weight: 700;
+  text-decoration: underline;
+  text-decoration-color: rgba(200, 149, 26, 0.7);
+  text-underline-offset: 0.2em;
+}
+
+@media (min-width: 640px) {
+  .policy-content h2 {
+    font-size: 1.5rem;
+  }
 }
