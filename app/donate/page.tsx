@@ -3,6 +3,7 @@ import type { ReactNode } from 'react';
 
 import { CopyButton } from '@/components/donation/CopyButton';
 import { DonationPurposeAndForm } from '@/components/donation/DonationPurposeAndForm';
+import { RazorpayCheckout } from '@/components/donation/RazorpayCheckout';
 import { donationAmounts, donationConfig } from '@/lib/donation-config';
 
 export const metadata: Metadata = {
@@ -155,10 +156,10 @@ export default function DonatePage() {
           <div>
             <p className="text-sm font-bold uppercase tracking-[0.16em] text-[#3B635D]">Official payment</p>
             <h2 className="mt-2 text-2xl font-bold leading-tight text-[#07361F] sm:text-3xl">
-              Use official UPI or bank transfer
+              Donate securely online or use direct transfer
             </h2>
             <p className="mt-3 max-w-xl text-base leading-7 text-slate-700">
-              Razorpay activation is pending. Do not use unofficial payment links or QR screenshots.
+              Use the secure Razorpay checkout below, or the verified UPI and bank details on this page.
             </p>
             <div className="mt-5 flex flex-col gap-3 sm:flex-row">
               <a href="#bank-details" className={secondaryButton}>
@@ -189,6 +190,7 @@ export default function DonatePage() {
           </div>
 
           <div className="grid gap-4">
+            <RazorpayCheckout />
             <article className={cardClass}>
               <p className="text-lg font-bold text-[#07361F]">UPI / QR donation</p>
               <div className="mt-4 rounded-2xl border border-[#2A7A45]/20 bg-[#F8F5EF] p-4">
@@ -238,13 +240,6 @@ export default function DonatePage() {
               </div>
             </article>
 
-            <article className={cardClass}>
-              <p className="text-lg font-bold text-[#07361F]">Razorpay</p>
-              <p className="mt-2 text-sm leading-6 text-slate-700">{donationConfig.razorpay.message}</p>
-              <p className="mt-3 inline-flex rounded-full border border-[#D9A441]/45 bg-[#FFF8E6] px-3 py-1.5 text-sm font-bold text-[#6A5518]">
-                Pending approval
-              </p>
-            </article>
           </div>
         </div>
       </section>
