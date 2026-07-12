@@ -191,17 +191,17 @@ export function MonthlySadaqahCheckout() {
           </select>
         </label>
 
-        <details className="rounded-2xl border border-slate-200 bg-white p-4">
-          <summary className="cursor-pointer text-sm font-bold text-[#07361F]">Identification for donation reporting (optional)</summary>
-          <p className="mt-2 text-xs leading-5 text-slate-600">You may proceed without an ID. Rahat may contact you later to complete the donor record.</p>
+        <div className="rounded-2xl border border-slate-200 bg-white p-4">
+          <p className="text-sm font-bold text-[#07361F]">Identification for donor records (optional)</p>
+          <p className="mt-2 text-xs leading-5 text-slate-600">Voter ID, passport, or PAN can be used for records where applicable. You may proceed without an ID; Rahat may contact you later if documentation is required.</p>
           <div className="mt-3 grid gap-3 sm:grid-cols-2">
             <label className="grid gap-2 text-sm font-bold">
               ID type
-              <select className={inputClass} name="idType">
-                <option value="Not provided">Prefer not to provide now</option>
-                <option>PAN</option>
-                <option>Indian Passport</option>
+              <select className={inputClass} name="idType" defaultValue="Not provided">
+                <option value="Not provided">Provide later if needed</option>
                 <option>Voter ID</option>
+                <option>Indian Passport</option>
+                <option>PAN</option>
               </select>
             </label>
             <label className="grid gap-2 text-sm font-bold">
@@ -213,7 +213,7 @@ export function MonthlySadaqahCheckout() {
             Residential address (optional)
             <input className={inputClass} name="address" autoComplete="street-address" />
           </label>
-        </details>
+        </div>
 
         <label className="flex items-start gap-3 rounded-2xl border border-[#D9A441]/40 bg-[#FFF8E6] p-4 text-sm font-semibold leading-6 text-[#5F4A12]">
           <input className="mt-1 h-5 w-5 shrink-0" type="checkbox" required />

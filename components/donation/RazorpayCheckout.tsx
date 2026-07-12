@@ -45,7 +45,8 @@ export function RazorpayCheckout() {
     const fullName = String(data.get('fullName') || '').trim();
     const mobile = String(data.get('mobile') || '').trim();
     const email = String(data.get('email') || '').trim();
-    const pan = String(data.get('pan') || '').trim().toUpperCase();
+    const idType = String(data.get('idType') || 'Not provided');
+    const idNumber = String(data.get('idNumber') || '').trim().toUpperCase();
     const address = String(data.get('address') || '').trim();
 
     setStatus('loading'); setMessage('Creating secure payment order…');
@@ -69,7 +70,7 @@ export function RazorpayCheckout() {
               fullName, mobile, email, amount: String(amount), method: 'Razorpay',
               transactionId: verified.paymentId, purpose, recognition: 'Not specified', recognitionName: '', volunteerInterest: false,
               domesticDeclaration: true, ribaDeclaration: purpose === 'Interest / Riba Disposal',
-              message: `Razorpay Order: ${verified.orderId}; PAN: ${pan || 'Not provided'}; Address: ${address}`,
+              message: `Razorpay Order: ${verified.orderId}; ID type: ${idType}; ID number: ${idNumber || 'Pending phone follow-up'}; Address: ${address}`,
             });
             setStatus('success'); setMessage(`Payment verified successfully. Payment ID: ${verified.paymentId}`); form.reset();
           } catch (error) { setStatus('error'); setMessage(error instanceof Error ? error.message : 'Payment verification failed. Contact Rahat with your payment ID.'); }
@@ -82,7 +83,7 @@ export function RazorpayCheckout() {
   }
 
   return (
-    <article className="rounded-[1rem] border border-[#D9A441]/35 bg-white p-4 shadow-[0_12px_32px_rgba(7,54,31,0.08)] sm:p-6">
+    <article id="razorpay-checkout" className="scroll-mt-6 rounded-[1rem] border border-[#D9A441]/35 bg-white p-4 shadow-[0_12px_32px_rgba(7,54,31,0.08)] sm:p-6">
       <Script src="https://checkout.razorpay.com/v1/checkout.js" strategy="afterInteractive" />
       <p className="text-sm font-bold uppercase tracking-[0.16em] text-[#3B635D]">Secure online donation</p>
       <h3 className="mt-2 text-2xl font-bold text-[#07361F]">Pay securely with Razorpay</h3>
@@ -99,8 +100,20 @@ export function RazorpayCheckout() {
         </div>
         <div className="grid gap-4 sm:grid-cols-2">
           <label className={labelClass}>Email<input className={inputClass} name="email" type="email" autoComplete="email" required /></label>
-          <label className={labelClass}>PAN (for donation reporting)<input className={inputClass} name="pan" pattern="[A-Za-z]{5}[0-9]{4}[A-Za-z]" maxLength={10} placeholder="ABCDE1234F" /></label>
+          <label className={labelClass}>
+            ID type for records (optional)
+            <select className={inputClass} name="idType" defaultValue="Not provided">
+              <option value="Not provided">Provide later if needed</option>
+              <option>Voter ID</option>
+              <option>Indian Passport</option>
+              <option>PAN</option>
+            </select>
+          </label>
         </div>
+        <label className={labelClass}>ID number (optional)<input className={inputClass} name="idNumber" placeholder="Voter ID, passport, or PAN" /></label>
+        <p className="-mt-2 text-xs leading-5 text-slate-600">
+          This is only for donor records and Income Tax reporting where applicable. You may skip it now; Rahat can call later if documentation is required.
+        </p>
         <label className={labelClass}>Residential address<input className={inputClass} name="address" autoComplete="street-address" required /></label>
         <div className="grid gap-4 sm:grid-cols-2">
           <label className={labelClass}>Amount (₹)<input ref={amountInput} className={inputClass} name="amount" type="number" inputMode="numeric" min="10" max="500000" value={amount} onChange={(event) => setAmount(Number(event.target.value))} required /></label>

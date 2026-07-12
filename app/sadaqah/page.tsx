@@ -8,9 +8,9 @@ export const metadata: Metadata = {
 };
 
 const heroAmounts = [
-  { amount: '₹100', daily: 'about ₹3.30/day' },
-  { amount: '₹300', daily: 'about ₹10/day', recommended: true },
-  { amount: '₹600', daily: 'about ₹20/day' },
+  { amount: '₹100', daily: '₹3/day' },
+  { amount: '₹300', daily: '₹10/day', recommended: true },
+  { amount: '₹600', daily: '₹20/day' },
 ];
 
 export default function SadaqahPage() {
@@ -20,9 +20,9 @@ export default function SadaqahPage() {
         <div className="mx-auto grid max-w-7xl gap-7 px-4 py-9 sm:px-6 sm:py-16 lg:grid-cols-[1fr_0.9fr] lg:items-center lg:gap-10">
           <div>
             <p className="text-xs font-bold uppercase tracking-[0.16em] text-[#E7C76D] sm:text-sm sm:tracking-[0.2em]">Monthly Sadaqah</p>
-            <h1 className="mt-3 text-3xl font-bold leading-tight sm:mt-4 sm:text-5xl">Make Sadaqah a monthly habit.</h1>
+            <h1 className="mt-3 text-3xl font-bold leading-tight sm:mt-4 sm:text-5xl">Start Monthly Sadaqah from ₹3 a day.</h1>
             <p className="mt-4 max-w-2xl text-base leading-7 text-white/90 sm:text-lg sm:leading-8">
-              From about ₹3.30 a day, your monthly contribution can create dependable support for patient mobility and public healthcare. Choose an amount comfortable for you and approve secure AutoPay once.
+              ₹100/month is about ₹3 a day. ₹300/month is about ₹10 a day. Choose an amount comfortable for you, join Rahat&apos;s healthcare work, and approve secure AutoPay once.
             </p>
             <a href="#start" className="mt-6 inline-flex min-h-[52px] w-full items-center justify-center rounded-full border border-[#D9A441] bg-white px-6 py-3 text-base font-bold text-[#07361F] shadow-lg sm:w-auto sm:text-lg">
               Start Monthly Sadaqah

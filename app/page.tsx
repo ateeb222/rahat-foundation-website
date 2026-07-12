@@ -24,7 +24,7 @@ export default function HomePage() {
               ₹5,800 helps sponsor one wheelchair for Rahat&apos;s Phase 1 campaign at JNMC Hospital.
             </p>
             <p className="mt-3 max-w-2xl text-base leading-7 text-slate-700 sm:text-lg">
-              Secure Razorpay checkout is available. UPI and bank transfer remain available as optional alternatives.
+              Join Rahat&apos;s community-powered healthcare work through secure Sadaqah and voluntary support. UPI and bank transfer remain available as optional alternatives.
             </p>
             <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
               <Link href="/donate" className={primary}>Donate securely</Link>
@@ -40,6 +40,7 @@ export default function HomePage() {
                 alt="Rahat representative reviewing wheelchairs at the supplier facility"
                 fill
                 priority
+                unoptimized
                 sizes="(min-width: 1024px) 460px, 92vw"
                 className="object-cover"
               />
@@ -72,8 +73,8 @@ export default function HomePage() {
 
         <article className="rounded-3xl border border-[#C8951A] bg-[#07361F] p-5 text-white shadow-sm sm:p-7">
           <p className="text-sm font-bold uppercase tracking-[0.16em] text-[#D9A441]">Monthly Sadaqah</p>
-          <h2 className="mt-3 text-2xl font-bold leading-tight sm:text-3xl">Create dependable healthcare support from ₹100 per month.</h2>
-          <p className="mt-4 text-base leading-7 text-white/85">Approve secure AutoPay once and cancel future debits whenever required.</p>
+          <h2 className="mt-3 text-2xl font-bold leading-tight sm:text-3xl">Join monthly Sadaqah from ₹3 a day.</h2>
+          <p className="mt-4 text-base leading-7 text-white/85">₹100/month is about ₹3 a day. ₹300/month is about ₹10 a day. Approve secure AutoPay once and cancel future debits whenever required.</p>
           <Link href="/sadaqah" className="mt-5 inline-flex min-h-[50px] w-full items-center justify-center rounded-full border border-[#D9A441] bg-white px-5 py-3 text-base font-bold text-[#07361F] sm:w-auto">Start Monthly Sadaqah</Link>
         </article>
       </section>
