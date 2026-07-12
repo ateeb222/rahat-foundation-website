@@ -1,7 +1,7 @@
 'use client';
 
 import Script from 'next/script';
-import { FormEvent, useState } from 'react';
+import { FormEvent, useEffect, useRef, useState } from 'react';
 import { submitWebsiteForm } from '@/components/forms/submission';
 
 declare global {
@@ -17,6 +17,18 @@ const labelClass = 'grid gap-2 text-sm font-bold text-slate-800';
 export function RazorpayCheckout() {
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
   const [message, setMessage] = useState('');
+  const [amount, setAmount] = useState(5800);
+  const amountInput = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    function handleAmount(event: Event) {
+      const selected = (event as CustomEvent<{ amount?: number }>).detail.amount;
+      if (typeof selected === 'number') setAmount(selected);
+      else requestAnimationFrame(() => amountInput.current?.focus());
+    }
+    window.addEventListener('rahat:donation-amount', handleAmount);
+    return () => window.removeEventListener('rahat:donation-amount', handleAmount);
+  }, []);
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -85,7 +97,7 @@ export function RazorpayCheckout() {
         </div>
         <label className={labelClass}>Residential address<input className={inputClass} name="address" autoComplete="street-address" required /></label>
         <div className="grid gap-4 sm:grid-cols-2">
-          <label className={labelClass}>Amount (₹)<input className={inputClass} name="amount" type="number" inputMode="numeric" min="10" max="500000" defaultValue="5800" required /></label>
+          <label className={labelClass}>Amount (₹)<input ref={amountInput} className={inputClass} name="amount" type="number" inputMode="numeric" min="10" max="500000" value={amount} onChange={(event) => setAmount(Number(event.target.value))} required /></label>
           <label className={labelClass}>Purpose<select className={inputClass} name="purpose" defaultValue="Wheelchair Sadaqah">{purposes.map((purpose) => <option key={purpose}>{purpose}</option>)}</select></label>
         </div>
         <label className="flex items-start gap-3 rounded-xl border border-[#D9A441]/35 bg-[#FFF8E6] p-3 text-sm font-semibold leading-6 text-[#5F4A12]">
