@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import type { ReactNode } from 'react';
+import Link from 'next/link';
 
 import { CopyButton } from '@/components/donation/CopyButton';
 import { DonationPurposeAndForm } from '@/components/donation/DonationPurposeAndForm';
@@ -122,6 +123,13 @@ export default function DonatePage() {
               </ol>
             </aside>
           </div>
+        </div>
+      </section>
+
+      <section className="mx-auto w-full max-w-7xl px-4 pt-8 sm:px-6 sm:pt-10">
+        <div className="grid gap-4 rounded-[1rem] border border-[#D9A441] bg-[#07361F] p-5 text-white shadow-[0_14px_36px_rgba(7,54,31,0.15)] sm:grid-cols-[1fr_auto] sm:items-center sm:p-6">
+          <div><p className="text-xs font-bold uppercase tracking-[0.16em] text-[#D9A441]">New · Monthly AutoPay</p><h2 className="mt-2 text-2xl font-bold">Make Sadaqah a monthly habit.</h2><p className="mt-2 text-sm leading-6 text-white/85">Start from ₹100 per month through secure Razorpay AutoPay. Cancel anytime.</p></div>
+          <Link href="/sadaqah" className="inline-flex min-h-[50px] w-full items-center justify-center rounded-full border border-[#D9A441] bg-white px-5 py-3 font-bold text-[#07361F] sm:w-auto">Start Monthly Sadaqah</Link>
         </div>
       </section>
 
