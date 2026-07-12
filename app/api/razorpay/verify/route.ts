@@ -4,7 +4,8 @@ import { NextResponse } from 'next/server';
 function safeEqual(left: string, right: string) {
   const leftBuffer = Buffer.from(left);
   const rightBuffer = Buffer.from(right);
-  return leftBuffer.length === rightBuffer.length && timingSafeEqual(leftBuffer, rightBuffer);
+  return leftBuffer.length === rightBuffer.length
+    && timingSafeEqual(new Uint8Array(leftBuffer), new Uint8Array(rightBuffer));
 }
 
 export async function POST(request: Request) {
