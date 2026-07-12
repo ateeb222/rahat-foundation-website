@@ -3,9 +3,9 @@ export const donationConfig = {
     name: 'JNMC Hospital Patient Mobility Initiative',
     phase: 'Phase 1',
     totalGoal: 80,
-    verifiedSponsored: 30,
+    verifiedSponsored: 65,
     sponsorshipAmount: 5800,
-    lastUpdated: 'Updated after confirmed donor reconciliation',
+    lastUpdated: 'Updated 12 July 2026 after confirmed donor reconciliation',
   },
   razorpay: {
     status: 'pending',
