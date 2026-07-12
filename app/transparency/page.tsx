@@ -13,7 +13,7 @@ const taxApprovals = [
     urn: 'AAPCR8950CE20261',
     date: '18 June 2026',
     validity: 'Tax Years 2026–27 to 2028–29',
-    href: '/documents/rahat-provisional-registration-section-332.pdf',
+    href: '/documents/provisional-registration-section-332',
     description:
       'Digitally signed Income Tax Department order granting provisional registration for charitable activities.',
   },
@@ -23,7 +23,7 @@ const taxApprovals = [
     urn: 'AAPCR8950CF20261',
     date: '18 June 2026',
     validity: 'Tax Years 2026–27 to 2028–29',
-    href: '/documents/rahat-provisional-approval-section-354.pdf',
+    href: '/documents/provisional-approval-section-354',
     description:
       'Digitally signed Income Tax Department order granting provisional approval, subject to the order and applicable law.',
   },
@@ -64,7 +64,7 @@ export default function TransparencyPage() {
             Verified records for accountable healthcare support.
           </h1>
           <p className="mt-4 text-base leading-7 text-slate-700 sm:text-lg">
-            Rahat publishes verified statutory information and original digitally signed orders so donors, institutions, and payment partners can review the organisation&apos;s current status directly.
+            Rahat publishes verified statutory information so donors, institutions, and payment partners can review the organisation&apos;s current status directly.
           </p>
         </div>
       </section>
@@ -76,7 +76,7 @@ export default function TransparencyPage() {
             Provisional registration and approval granted on 18 June 2026
           </h2>
           <p className="mt-4 max-w-4xl text-sm leading-6 text-slate-700 sm:text-base sm:leading-7">
-            The approvals are provisional and valid for the period stated in the respective orders. The original PDFs below are published without alteration so their digital signatures and official contents remain intact.
+            The approvals are provisional and valid for the period stated in the respective digitally signed orders. Verified order details are published below; copies of the original signed orders may be requested through Rahat&apos;s official contact page.
           </p>
 
           <div className="mt-6 grid gap-4 lg:grid-cols-2">
@@ -106,11 +106,9 @@ export default function TransparencyPage() {
                 </dl>
                 <a
                   href={approval.href}
-                  target="_blank"
-                  rel="noreferrer"
                   className="mt-5 inline-flex min-h-[48px] w-full items-center justify-center rounded-full bg-[#07361F] px-5 py-3 text-center text-sm font-bold text-white transition hover:bg-[#1A4D2E] sm:w-auto"
                 >
-                  View Digitally Signed Order
+                  View Verified Order Details
                 </a>
               </article>
             ))}
