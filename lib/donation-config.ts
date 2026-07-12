@@ -8,9 +8,8 @@ export const donationConfig = {
     lastUpdated: 'Updated 12 July 2026 after confirmed donor reconciliation',
   },
   razorpay: {
-    status: 'pending',
-    message:
-      'Razorpay payment gateway activation is in progress. Until then, please use official UPI or bank transfer details below.',
+    status: 'active',
+    message: 'Secure one-time Razorpay Checkout is active for eligible Indian domestic donations in INR.',
   },
   upi: {
     payeeName: 'M/S. RAHAT SOCIAL IMPACT FOUNDATION',
