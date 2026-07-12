@@ -3,8 +3,9 @@ import type { ReactNode } from 'react';
 
 import { CopyButton } from '@/components/donation/CopyButton';
 import { DonationPurposeAndForm } from '@/components/donation/DonationPurposeAndForm';
+import { DonationAmountSelector } from '@/components/donation/DonationAmountSelector';
 import { RazorpayCheckout } from '@/components/donation/RazorpayCheckout';
-import { donationAmounts, donationConfig } from '@/lib/donation-config';
+import { donationConfig } from '@/lib/donation-config';
 
 export const metadata: Metadata = {
   title: 'Official Donation Page',
@@ -169,28 +170,11 @@ export default function DonatePage() {
                 Submit Donation Details
               </a>
             </div>
-            <div className="mt-5 grid gap-3 sm:grid-cols-2">
-              {donationAmounts.map((item) => (
-                <a
-                  key={item.amount}
-                  href="#official-payment"
-                  className={`rounded-2xl border px-4 py-3 text-left transition hover:-translate-y-0.5 focus:outline-none focus:ring-2 focus:ring-[#C8951A] focus:ring-offset-2 ${
-                    item.featured
-                      ? 'border-[#D9A441] bg-[#07361F] text-white'
-                      : 'border-[#D9A441]/25 bg-white text-[#1F2937]'
-                  }`}
-                >
-                  <span className={`block text-xl font-bold ${item.featured ? 'text-white' : 'text-[#07361F]'}`}>
-                    {item.amount}
-                  </span>
-                  <span className="mt-1 block text-sm font-semibold leading-5">{item.label}</span>
-                </a>
-              ))}
-            </div>
+            <DonationAmountSelector />
           </div>
 
           <div className="grid gap-4">
-            <RazorpayCheckout />
+            <div id="razorpay-checkout" className="scroll-mt-6"><RazorpayCheckout /></div>
             <article className={cardClass}>
               <p className="text-lg font-bold text-[#07361F]">UPI / QR donation</p>
               <div className="mt-4 rounded-2xl border border-[#2A7A45]/20 bg-[#F8F5EF] p-4">
