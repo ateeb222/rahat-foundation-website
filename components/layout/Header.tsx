@@ -28,10 +28,10 @@ export default function Header() {
       <header className="border-b border-[#D9A441]/20 bg-white">
         <div className="mx-auto flex max-w-7xl items-center justify-between gap-3 px-4 py-3 sm:px-6">
           <div className="min-w-0">
-            <p className="text-base font-bold leading-5 text-[#07361F]">Rahat Social Impact Foundation</p>
-            <p className="mt-0.5 text-sm font-semibold text-[#2A7A45]">Official donation page</p>
+            <p className="truncate text-sm font-bold leading-5 text-[#07361F] sm:text-base">Rahat Social Impact Foundation</p>
+            <p className="mt-0.5 text-xs font-semibold text-[#2A7A45] sm:text-sm">Official donation page</p>
           </div>
-          <p className="shrink-0 rounded-full border border-[#D9A441]/35 bg-[#F8F5EF] px-3 py-1.5 text-xs font-bold text-[#07361F]">
+          <p className="hidden shrink-0 rounded-full border border-[#D9A441]/35 bg-[#F8F5EF] px-3 py-1.5 text-xs font-bold text-[#07361F] min-[420px]:block">
             rahatsocialimpact.com
           </p>
         </div>
@@ -41,47 +41,33 @@ export default function Header() {
 
   return (
     <header className="sticky top-0 z-40 border-b border-[#D9A441]/25 bg-[#F8F5EC]/95 backdrop-blur">
-      <div className="mx-auto flex max-w-7xl items-center justify-between gap-3 px-4 py-3 md:px-6">
-        <div className="flex items-center gap-4">
-          <div className="flex items-center gap-3">
-            <div className="relative h-14 w-14 flex-shrink-0 overflow-hidden rounded-full bg-white sm:h-16 sm:w-16">
-              <Image
-                src="/images/LOGO/hero.jpg"
-                alt="Rahat Social Impact Foundation logo"
-                fill
-                sizes="64px"
-                className="object-cover"
-              />
-            </div>
-            <div className="min-w-0">
-              <p className="text-sm font-semibold leading-5 text-[#07361F] sm:text-base">Rahat Social Impact Foundation</p>
-              <p className="text-[11px] leading-4 text-slate-600 sm:text-xs">Healthcare impact through trust and transparency</p>
-            </div>
+      <div className="mx-auto flex max-w-7xl items-center justify-between gap-2 px-3 py-2.5 sm:gap-3 sm:px-4 sm:py-3 md:px-6">
+        <Link href="/" className="flex min-w-0 items-center gap-2.5 sm:gap-3" aria-label="Rahat Social Impact Foundation home">
+          <div className="relative h-11 w-11 shrink-0 overflow-hidden rounded-full bg-white sm:h-16 sm:w-16">
+            <Image
+              src="/images/LOGO/hero.jpg"
+              alt="Rahat Social Impact Foundation logo"
+              fill
+              sizes="64px"
+              className="object-cover"
+            />
           </div>
-        </div>
+          <div className="min-w-0">
+            <p className="text-[13px] font-semibold leading-4 text-[#07361F] min-[390px]:text-sm sm:text-base">Rahat Social Impact Foundation</p>
+            <p className="mt-0.5 hidden text-[11px] leading-4 text-slate-600 min-[390px]:block sm:text-xs">Healthcare impact through trust and transparency</p>
+          </div>
+        </Link>
 
         <button
           type="button"
-          className="inline-flex min-h-[48px] min-w-[48px] items-center justify-center rounded-md border border-[#D9A441]/40 bg-white p-2 text-[#07361F] shadow-sm transition hover:bg-[#F8F5EC] focus:outline-none focus:ring-2 focus:ring-[#D9A441] lg:hidden"
+          className="inline-flex min-h-[46px] min-w-[46px] shrink-0 items-center justify-center rounded-md border border-[#D9A441]/40 bg-white p-2 text-[#07361F] shadow-sm transition hover:bg-[#F8F5EC] focus:outline-none focus:ring-2 focus:ring-[#D9A441] lg:hidden"
           aria-controls="mobile-menu"
           aria-expanded={menuOpen}
           onClick={() => setMenuOpen((value) => !value)}
         >
           <span className="sr-only">Toggle navigation menu</span>
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="20"
-            height="20"
-            className="h-5 w-5"
-            viewBox="0 0 20 20"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="1.75"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            aria-hidden="true"
-          >
-            <path d="M3 6h14M3 10h14M3 14h14" />
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" className="h-5 w-5" viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+            {menuOpen ? <path d="M5 5l10 10M15 5L5 15" /> : <path d="M3 6h14M3 10h14M3 14h14" />}
           </svg>
         </button>
 
@@ -89,10 +75,7 @@ export default function Header() {
           <ul className="flex flex-wrap items-center justify-center gap-x-4 gap-y-2 text-sm text-slate-700 xl:gap-x-6">
             {navLinks.map((link) => (
               <li key={link.href}>
-                <Link
-                  href={link.href}
-                  className="font-semibold transition hover:text-[#07361F] focus:outline-none focus:ring-2 focus:ring-[#D9A441] focus:ring-offset-2 focus:ring-offset-[#F8F5EC]"
-                >
+                <Link href={link.href} className="font-semibold transition hover:text-[#07361F] focus:outline-none focus:ring-2 focus:ring-[#D9A441] focus:ring-offset-2 focus:ring-offset-[#F8F5EC]">
                   {link.label}
                 </Link>
               </li>
@@ -101,26 +84,18 @@ export default function Header() {
         </nav>
 
         <div className="hidden lg:flex lg:items-center lg:gap-4">
-          <Link
-            href="/donate"
-            className={donateButtonClass}
-          >
-            Donate
-          </Link>
+          <Link href="/donate" className={donateButtonClass}>Donate</Link>
         </div>
       </div>
 
-      <div
-        id="mobile-menu"
-        className={`${menuOpen ? 'block' : 'hidden'} border-t border-[#D9A441]/25 bg-[#F8F5EC] lg:hidden`}
-      >
+      <div id="mobile-menu" className={`${menuOpen ? 'block' : 'hidden'} max-h-[calc(100vh-68px)] overflow-y-auto border-t border-[#D9A441]/25 bg-[#F8F5EC] lg:hidden`}>
         <nav className="px-4 py-4" aria-label="Mobile primary navigation">
-          <ul className="space-y-2 text-base text-slate-700">
+          <ul className="grid grid-cols-2 gap-2 text-base text-slate-700 min-[520px]:grid-cols-3">
             {navLinks.map((link) => (
               <li key={link.href}>
                 <Link
                   href={link.href}
-                  className="block rounded-lg px-3 py-2 font-semibold transition hover:bg-white hover:text-[#07361F] focus:outline-none focus:ring-2 focus:ring-[#D9A441] focus:ring-offset-2 focus:ring-offset-[#F8F5EC]"
+                  className="flex min-h-[46px] items-center rounded-lg px-3 py-2 font-semibold transition hover:bg-white hover:text-[#07361F] focus:outline-none focus:ring-2 focus:ring-[#D9A441] focus:ring-offset-2 focus:ring-offset-[#F8F5EC]"
                   onClick={() => setMenuOpen(false)}
                 >
                   {link.label}
@@ -128,14 +103,9 @@ export default function Header() {
               </li>
             ))}
           </ul>
-          <div className="mt-4">
-            <Link
-              href="/donate"
-              className={`${donateButtonClass} w-full`}
-              onClick={() => setMenuOpen(false)}
-            >
-              Donate
-            </Link>
+          <div className="mt-4 grid gap-2 min-[440px]:grid-cols-2">
+            <Link href="/donate" className={`${donateButtonClass} w-full`} onClick={() => setMenuOpen(false)}>Donate</Link>
+            <Link href="/sadaqah" className="inline-flex min-h-[48px] w-full items-center justify-center rounded-full border border-[#07361F] bg-white px-5 py-3 text-base font-bold text-[#07361F]" onClick={() => setMenuOpen(false)}>Monthly Sadaqah</Link>
           </div>
         </nav>
       </div>
