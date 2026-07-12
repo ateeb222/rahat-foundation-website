@@ -189,6 +189,17 @@ export default function HomePage() {
       </section>
 
       <section className="mx-auto w-full max-w-7xl px-4 py-10 sm:px-6 sm:py-12">
+        <div className="grid gap-5 rounded-[1.5rem] border border-[#D9A441] bg-[#07361F] p-6 text-white shadow-[0_20px_50px_rgba(7,54,31,0.18)] sm:p-8 lg:grid-cols-[1fr_auto] lg:items-center">
+          <div>
+            <p className="text-sm font-bold uppercase tracking-[0.18em] text-[#D9A441]">Monthly Sadaqah</p>
+            <h2 className="mt-3 text-3xl font-bold leading-tight sm:text-4xl">Make Sadaqah a monthly habit.</h2>
+            <p className="mt-3 max-w-3xl text-lg leading-8 text-white/85">Start from ₹100 per month—about ₹3.30 a day—and create dependable support for patient mobility and public healthcare.</p>
+          </div>
+          <Link href="/sadaqah" className="inline-flex min-h-[54px] w-full items-center justify-center rounded-full border border-[#D9A441] bg-white px-6 py-3 text-lg font-bold text-[#07361F] shadow-lg sm:w-auto">Start Monthly Sadaqah</Link>
+        </div>
+      </section>
+
+      <section className="mx-auto w-full max-w-7xl px-4 py-10 sm:px-6 sm:py-12">
         <div className="rounded-[1.5rem] border border-[#D9A441] bg-[#07361F] p-6 text-white shadow-[0_20px_50px_rgba(7,54,31,0.2)] sm:p-8">
           <p className="text-sm font-bold uppercase tracking-[0.18em] text-[#D9A441]">Official donation path</p>
           <h2 className="mt-3 text-3xl font-bold leading-tight sm:text-4xl">Support patient mobility through the official Rahat donation page.</h2>
