@@ -1,5 +1,6 @@
 'use client';
 
+import Link from 'next/link';
 import Script from 'next/script';
 import { FormEvent, useEffect, useRef, useState } from 'react';
 import { submitWebsiteForm } from '@/components/forms/submission';
@@ -86,6 +87,11 @@ export function RazorpayCheckout() {
       <p className="text-sm font-bold uppercase tracking-[0.16em] text-[#3B635D]">Secure online donation</p>
       <h3 className="mt-2 text-2xl font-bold text-[#07361F]">Pay securely with Razorpay</h3>
       <p className="mt-2 text-sm leading-6 text-slate-700">One-time domestic donations in INR. UPI, cards and other available Indian payment methods appear in Razorpay Checkout.</p>
+      <div className="mt-4 rounded-2xl border border-[#2A7A45]/25 bg-[#F1F7EE] p-4 text-sm leading-6 text-slate-700">
+        <p className="font-bold text-[#07361F]">Verified provisional Income Tax status</p>
+        <p className="mt-1">Rahat holds provisional registration under section 332(8) and provisional approval under section 354(4), valid from TY 2026–27 to TY 2028–29.</p>
+        <Link href="/transparency" className="mt-2 inline-flex font-bold text-[#07361F] underline decoration-[#C8951A] underline-offset-4">View verified registration details</Link>
+      </div>
       <form className="mt-5 grid gap-4" onSubmit={handleSubmit}>
         <div className="grid gap-4 sm:grid-cols-2">
           <label className={labelClass}>Full legal name<input className={inputClass} name="fullName" autoComplete="name" required /></label>
