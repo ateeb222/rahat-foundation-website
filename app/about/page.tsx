@@ -1,8 +1,10 @@
 import type { Metadata } from 'next';
+import Image from 'next/image';
+import { directors, organization } from '@/lib/organization';
 
 export const metadata: Metadata = {
   title: 'About',
-  description: 'About Rahat Social Impact Foundation and its healthcare-focused mission.',
+  description: 'Meet the directors of Rahat Social Impact Foundation, a registered Section 8 nonprofit company supporting accountable healthcare action in India.',
 };
 
 export default function AboutPage() {
@@ -17,8 +19,40 @@ export default function AboutPage() {
             A healthcare-focused foundation built around dignity, access, and accountability.
           </h1>
           <p className="mt-4 text-base leading-7 text-slate-700 sm:text-lg">
-            Rahat Social Impact Foundation is a Section 8 NGO working to strengthen patient access, hospital support infrastructure, digital health transformation, patient navigation, and community healthcare outreach.
+            Rahat Social Impact Foundation is a registered Section 8 nonprofit company working to strengthen patient access, hospital support infrastructure, digital health transformation, patient navigation, and community healthcare outreach.
           </p>
+          <p className="mt-4 text-sm font-semibold leading-6 text-[#25472D]">CIN {organization.cin} · Registered office: New Delhi, India</p>
+        </div>
+      </section>
+
+      <section className="mx-auto w-full max-w-7xl px-4 py-10 sm:px-6 sm:py-14" aria-labelledby="leadership-heading">
+        <div className="max-w-3xl">
+          <p className="text-sm font-bold uppercase tracking-[0.14em] text-[#3B635D]">Leadership and accountability</p>
+          <h2 id="leadership-heading" className="mt-3 text-2xl font-bold leading-tight text-[#07361F] sm:text-4xl">People responsible for Rahat’s work.</h2>
+          <p className="mt-3 text-base leading-7 text-slate-700">Rahat’s directors combine public communication, healthcare-sector experience, policy understanding and ground-level execution.</p>
+        </div>
+
+        <div className="mt-7 grid gap-5 lg:grid-cols-2">
+          {directors.map((director) => (
+            <article key={director.name} className="grid overflow-hidden border border-slate-200 bg-white shadow-sm sm:grid-cols-[180px_1fr]">
+              <div className="relative flex min-h-[220px] items-center justify-center bg-[#EAF3E2] sm:min-h-full">
+                {director.image ? (
+                  <Image src={director.image} alt={`${director.name}, director of Rahat Social Impact Foundation`} fill className="object-cover" sizes="(min-width: 640px) 180px, 100vw" />
+                ) : (
+                  <div className="flex h-24 w-24 items-center justify-center rounded-full border border-[#C8951A]/45 bg-white text-3xl font-bold text-[#07361F]" aria-label={`${director.name} photograph pending`}>{director.initials}</div>
+                )}
+              </div>
+              <div className="p-5 sm:p-6">
+                <h3 className="text-2xl font-bold text-[#07361F]">{director.name}</h3>
+                <p className="mt-2 text-sm font-bold leading-6 text-[#3B635D]">{director.role}</p>
+                <p className="mt-2 text-sm font-semibold leading-6 text-slate-600">{director.credentials}</p>
+                <p className="mt-4 text-[15px] leading-7 text-slate-700">{director.description}</p>
+                <div className="mt-5 flex flex-wrap gap-x-4 gap-y-2 text-sm font-bold text-[#07361F]">
+                  {director.links.map((link) => <a key={link.href} href={link.href} target="_blank" rel="noreferrer" className="underline decoration-[#C8951A] underline-offset-4">{link.label}</a>)}
+                </div>
+              </div>
+            </article>
+          ))}
         </div>
       </section>
 
