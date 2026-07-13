@@ -31,7 +31,7 @@ export const directors: ReadonlyArray<Director> = [
     role: 'Director — Campaigns and Social Impact',
     credentials: 'B.Tech, Electronics and Communication Engineering · MBA',
     description:
-      'A digital creator and entrepreneur with an audience of millions across YouTube and Instagram. She leads Rahat’s campaign strategy, public awareness and social media work, bringing long-standing philanthropic involvement together with large-scale public communication.',
+      'A digital creator and entrepreneur with an audience of millions across YouTube and Instagram and more than 5 billion global impressions. She leads Rahat’s campaign strategy, public awareness and social media work, bringing long-standing philanthropic involvement together with large-scale public communication.',
     initials: 'RS',
     image: null,
     links: [
