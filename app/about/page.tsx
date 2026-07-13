@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import Image from 'next/image';
 import { directors, organization } from '@/lib/organization';
+import { SocialLink } from '@/components/social/SocialLink';
 
 export const metadata: Metadata = {
   title: 'About',
@@ -48,7 +49,14 @@ export default function AboutPage() {
                 <p className="mt-2 text-sm font-semibold leading-6 text-slate-600">{director.credentials}</p>
                 <p className="mt-4 text-[15px] leading-7 text-slate-700">{director.description}</p>
                 <div className="mt-5 flex flex-wrap gap-x-4 gap-y-2 text-sm font-bold text-[#07361F]">
-                  {director.links.map((link) => <a key={link.href} href={link.href} target="_blank" rel="noreferrer" className="underline decoration-[#C8951A] underline-offset-4">{link.label}</a>)}
+                  {director.links.map((link) => (
+                    <SocialLink
+                      key={link.href}
+                      platform={link.label.toLowerCase() as 'instagram' | 'linkedin' | 'youtube'}
+                      href={link.href}
+                      className="underline decoration-[#C8951A] underline-offset-4"
+                    />
+                  ))}
                 </div>
               </div>
             </article>
