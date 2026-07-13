@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
+import { CampaignUpdates } from '@/components/campaign/CampaignUpdates';
 
 export const metadata: Metadata = {
   title: 'Impact',
@@ -51,6 +52,13 @@ export default function ImpactPage() {
             View wheelchair campaign
           </Link>
         </div>
+      </section>
+
+      <section className="mx-auto w-full max-w-7xl px-4 py-10 sm:px-6 sm:py-14" aria-labelledby="updates-heading">
+        <p className="text-sm font-bold uppercase tracking-[0.14em] text-[#3B635D]">Dated field updates</p>
+        <h2 id="updates-heading" className="mt-3 text-2xl font-bold text-[#07361F] sm:text-3xl">See how each campaign progresses.</h2>
+        <p className="mt-3 max-w-3xl text-base leading-7 text-slate-700">Photographs and videos are labelled by stage so preparation is not presented as completed impact. Formal handover evidence will be published after completion.</p>
+        <div className="mt-7"><CampaignUpdates /></div>
       </section>
     </main>
   );
