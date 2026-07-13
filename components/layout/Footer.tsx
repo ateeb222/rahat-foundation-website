@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { organization } from '@/lib/organization';
+import { SocialLink } from '@/components/social/SocialLink';
 
 const footerLinks = [
   { label: 'Home', href: '/' },
@@ -31,8 +32,8 @@ export default function Footer() {
             <p className="mt-2 max-w-sm text-sm leading-6 text-slate-600">A registered Section 8 nonprofit company supporting practical, accountable healthcare action.</p>
             <p className="mt-3 text-xs leading-5 text-slate-500">Section 8 company · CIN U86909DL2026NPL466630</p>
             <div className="mt-4 flex flex-wrap gap-3 text-sm font-semibold text-[#07361F]">
-              <a href={organization.instagram} target="_blank" rel="noreferrer" className="underline decoration-[#C8951A] underline-offset-4">Instagram</a>
-              <a href={organization.linkedin} target="_blank" rel="noreferrer" className="underline decoration-[#C8951A] underline-offset-4">LinkedIn</a>
+              <SocialLink platform="instagram" href={organization.instagram} className="underline decoration-[#C8951A] underline-offset-4" />
+              <SocialLink platform="linkedin" href={organization.linkedin} className="underline decoration-[#C8951A] underline-offset-4" />
             </div>
           </div>
 
