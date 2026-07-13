@@ -54,7 +54,7 @@ export default function Header() {
           </div>
           <div className="min-w-0">
             <p className="text-[13px] font-semibold leading-4 text-[#07361F] min-[390px]:text-sm sm:text-base">Rahat Social Impact Foundation</p>
-            <p className="mt-0.5 hidden text-[11px] leading-4 text-slate-600 min-[390px]:block sm:text-xs">Healthcare impact through trust and transparency</p>
+            <p className="mt-0.5 hidden text-[11px] font-medium leading-4 text-slate-600 min-[390px]:block sm:text-xs">Registered Section 8 nonprofit company</p>
           </div>
         </Link>
 
