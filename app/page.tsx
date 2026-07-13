@@ -3,6 +3,7 @@ import Link from 'next/link';
 
 import { donationConfig } from '@/lib/donation-config';
 import { organization } from '@/lib/organization';
+import { SocialLink } from '@/components/social/SocialLink';
 
 const primary = 'inline-flex min-h-[50px] w-full items-center justify-center rounded-full bg-[#07361F] px-5 py-3 text-base font-bold text-white shadow-lg transition hover:bg-[#1A4D2E] sm:w-auto';
 const secondary = 'inline-flex min-h-[50px] w-full items-center justify-center rounded-full border border-[#07361F] bg-white px-5 py-3 text-base font-bold text-[#07361F] transition hover:border-[#C8951A] hover:bg-[#F8F5EF] sm:w-auto';
@@ -94,8 +95,8 @@ export default function HomePage() {
             <p className="mt-3 max-w-3xl text-base leading-7 text-slate-700">Follow procurement updates, field activity and campaign milestones through Rahat’s official social channels.</p>
           </div>
           <div className="flex flex-col gap-3 min-[460px]:flex-row">
-            <a href={organization.instagram} target="_blank" rel="noreferrer" className={primary}>Official Instagram</a>
-            <a href={organization.linkedin} target="_blank" rel="noreferrer" className={secondary}>LinkedIn</a>
+            <SocialLink platform="instagram" href={organization.instagram} label="Official Instagram" className={primary} />
+            <SocialLink platform="linkedin" href={organization.linkedin} className={secondary} />
           </div>
         </div>
       </section>
@@ -111,9 +112,6 @@ export default function HomePage() {
         </div>
       </section>
 
-      <Link href="/donate" className="fixed inset-x-4 bottom-4 z-50 rounded-full border border-[#D9A441] bg-[#07361F] px-5 py-4 text-center text-base font-bold text-white shadow-[0_16px_34px_rgba(7,54,31,0.3)] sm:hidden">
-        Donate securely
-      </Link>
     </main>
   );
 }

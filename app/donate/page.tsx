@@ -27,7 +27,7 @@ const bankFields = [
 
 export default function DonatePage() {
   return (
-    <main className="min-h-screen overflow-x-hidden bg-[#F8F5EF] pb-28 text-[#1F2937] sm:pb-16">
+    <main className="min-h-screen overflow-x-hidden bg-[#F8F5EF] pb-16 text-[#1F2937]">
       <section className="border-b border-[#D9A441]/25 bg-[linear-gradient(145deg,#07361F_0%,#145B37_100%)] text-white">
         <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 sm:py-12">
           <p className="text-xs font-bold uppercase tracking-[0.15em] text-[#E7C76D] sm:text-sm">Official Donation Page</p>
@@ -35,16 +35,16 @@ export default function DonatePage() {
           <p className="mt-4 max-w-3xl text-base leading-7 text-white/88 sm:text-lg sm:leading-8">
             Razorpay is the recommended and easiest method. UPI and bank transfer are available below only when you choose to open them.
           </p>
-          <div className="mt-6 grid gap-3 sm:grid-cols-3">
-            <div className="rounded-2xl bg-white/10 p-4"><p className="text-xs font-bold uppercase tracking-wide text-[#E7C76D]">Wheelchair goal</p><p className="mt-1 text-3xl font-bold">{donationConfig.campaign.totalGoal}</p></div>
-            <div className="rounded-2xl bg-white/10 p-4"><p className="text-xs font-bold uppercase tracking-wide text-[#E7C76D]">Verified sponsored</p><p className="mt-1 text-3xl font-bold">{donationConfig.campaign.verifiedSponsored}</p><p className="mt-1 text-sm text-white/75">{remaining} remaining</p></div>
-            <div className="rounded-2xl bg-white/10 p-4"><p className="text-xs font-bold uppercase tracking-wide text-[#E7C76D]">One wheelchair</p><p className="mt-1 text-3xl font-bold">₹5,800</p></div>
+          <div className="mt-6 grid grid-cols-3 gap-2 sm:gap-3">
+            <div className="rounded-xl bg-white/10 p-3 sm:rounded-2xl sm:p-4"><p className="text-[10px] font-bold uppercase leading-4 tracking-wide text-[#E7C76D] sm:text-xs">Goal</p><p className="mt-1 text-2xl font-bold sm:text-3xl">{donationConfig.campaign.totalGoal}</p></div>
+            <div className="rounded-xl bg-white/10 p-3 sm:rounded-2xl sm:p-4"><p className="text-[10px] font-bold uppercase leading-4 tracking-wide text-[#E7C76D] sm:text-xs">Sponsored</p><p className="mt-1 text-2xl font-bold sm:text-3xl">{donationConfig.campaign.verifiedSponsored}</p><p className="mt-1 text-[11px] text-white/75 sm:text-sm">{remaining} left</p></div>
+            <div className="rounded-xl bg-white/10 p-3 sm:rounded-2xl sm:p-4"><p className="text-[10px] font-bold uppercase leading-4 tracking-wide text-[#E7C76D] sm:text-xs">Wheelchair</p><p className="mt-1 text-xl font-bold sm:text-3xl">₹5,800</p></div>
           </div>
         </div>
       </section>
 
-      <section className="mx-auto grid max-w-7xl gap-5 px-4 py-8 sm:px-6 lg:grid-cols-[0.72fr_1.28fr]">
-        <aside className="space-y-4">
+      <section className="mx-auto grid max-w-7xl gap-5 px-4 py-6 sm:px-6 sm:py-8 lg:grid-cols-[0.72fr_1.28fr]">
+        <aside className="hidden space-y-4 lg:block">
           <div className="rounded-2xl border border-[#D9A441]/30 bg-white p-5 shadow-sm">
             <p className="text-sm font-bold uppercase tracking-[0.15em] text-[#3B635D]">Recommended flow</p>
             <ol className="mt-4 grid gap-3 text-sm font-semibold leading-6 text-slate-700">
@@ -62,7 +62,11 @@ export default function DonatePage() {
         </aside>
 
         <div className="grid gap-5">
-          <div className="rounded-2xl border border-[#D9A441]/35 bg-white p-4 shadow-[0_14px_36px_rgba(7,54,31,0.08)] sm:p-6">
+          <div className="border border-[#D9A441]/35 bg-white p-4 shadow-[0_10px_28px_rgba(7,54,31,0.07)] sm:rounded-2xl sm:p-6">
+            <div className="mb-4 flex items-center justify-between gap-3 border-b border-slate-200 pb-4 lg:hidden">
+              <div><p className="text-sm font-bold text-[#07361F]">Secure domestic donation</p><p className="mt-1 text-xs text-slate-600">Choose an amount and pay through Razorpay.</p></div>
+              <Link href="/transparency" className="shrink-0 text-xs font-bold text-[#07361F] underline decoration-[#C8951A] underline-offset-4">Verify Rahat</Link>
+            </div>
             <DonationAmountSelector />
             <div className="mt-5"><RazorpayCheckout /></div>
           </div>
@@ -108,7 +112,16 @@ export default function DonatePage() {
         </div>
       </section>
 
-      <DonationPurposeAndForm />
+      <section className="mx-auto max-w-7xl px-4 py-5 sm:px-6">
+        <details className="group border border-slate-200 bg-white p-4 sm:rounded-2xl sm:p-6">
+          <summary className="flex min-h-[48px] cursor-pointer items-center justify-between gap-4 font-bold text-[#07361F]">
+            <span>Already paid by UPI or bank transfer?</span>
+            <span aria-hidden="true" className="text-xl transition group-open:rotate-45">+</span>
+          </summary>
+          <p className="mt-2 text-sm leading-6 text-slate-600">Open this only to submit payment details for acknowledgement and reconciliation.</p>
+          <div className="mt-4 border-t border-slate-200 pt-2"><DonationPurposeAndForm /></div>
+        </details>
+      </section>
 
       <section className="mx-auto max-w-7xl px-4 py-8 sm:px-6">
         <div className="rounded-2xl border border-[#D9A441]/30 bg-white p-5 shadow-sm sm:p-6">
@@ -121,12 +134,6 @@ export default function DonatePage() {
         </div>
       </section>
 
-      <nav className="fixed inset-x-0 bottom-0 z-50 border-t border-[#D9A441]/25 bg-white/96 px-4 py-3 shadow-[0_-12px_28px_rgba(7,54,31,0.12)] backdrop-blur sm:hidden" aria-label="Donation quick actions">
-        <div className="mx-auto grid max-w-md grid-cols-2 gap-3">
-          <a href="#razorpay-checkout" className="inline-flex min-h-[48px] items-center justify-center rounded-full bg-[#07361F] px-4 py-3 text-sm font-bold text-white">Donate online</a>
-          <Link href="/sadaqah" className="inline-flex min-h-[48px] items-center justify-center rounded-full border border-[#07361F] bg-white px-4 py-3 text-sm font-bold text-[#07361F]">Monthly</Link>
-        </div>
-      </nav>
     </main>
   );
 }

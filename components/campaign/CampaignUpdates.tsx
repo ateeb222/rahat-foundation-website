@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import { campaignUpdates } from '@/lib/campaign-updates';
+import { SocialLink } from '@/components/social/SocialLink';
 
 export function CampaignUpdates() {
   return (
@@ -7,8 +8,8 @@ export function CampaignUpdates() {
       {campaignUpdates.map((update) => (
         <article key={update.slug} className="overflow-hidden border border-slate-200 bg-white shadow-sm">
           {update.image && update.imageAlt && (
-            <div className="relative aspect-[4/3] bg-[#EAF3E2]">
-              <Image src={update.image} alt={update.imageAlt} fill className="object-cover" sizes="(min-width: 1024px) 390px, (min-width: 768px) 50vw, 100vw" />
+            <div className="bg-[#EAF3E2]">
+              <Image src={update.image} alt={update.imageAlt} width={1082} height={1916} className="h-auto w-full object-contain" sizes="(min-width: 1024px) 390px, (min-width: 768px) 50vw, 100vw" />
             </div>
           )}
           <div className="p-5 sm:p-6">
@@ -20,8 +21,8 @@ export function CampaignUpdates() {
             <h3 className="mt-2 text-xl font-bold leading-tight text-[#07361F]">{update.title}</h3>
             <p className="mt-3 text-[15px] leading-7 text-slate-700">{update.summary}</p>
             <div className="mt-5 flex flex-wrap gap-3 text-sm font-bold text-[#07361F]">
-              {update.instagramUrl && <a href={update.instagramUrl} target="_blank" rel="noreferrer" className="underline decoration-[#C8951A] underline-offset-4">View on Instagram</a>}
-              {update.youtubeUrl && <a href={update.youtubeUrl} target="_blank" rel="noreferrer" className="underline decoration-[#C8951A] underline-offset-4">Watch video</a>}
+              {update.instagramUrl && <SocialLink platform="instagram" href={update.instagramUrl} label="View on Instagram" className="underline decoration-[#C8951A] underline-offset-4" />}
+              {update.youtubeUrl && <SocialLink platform="youtube" href={update.youtubeUrl} label="Watch video" className="underline decoration-[#C8951A] underline-offset-4" />}
             </div>
           </div>
         </article>

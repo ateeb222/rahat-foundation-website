@@ -11,13 +11,13 @@ export function DonationAmountSelector() {
   }
 
   return (
-    <div className="mt-5 grid gap-3 sm:grid-cols-2">
+    <div className="grid grid-cols-2 gap-2 sm:gap-3">
       {donationAmounts.map((item, index) => (
         <button
           key={item.amount}
           type="button"
           onClick={() => selectAmount(numericAmounts[index])}
-          className={`rounded-2xl border px-4 py-3 text-left transition hover:-translate-y-0.5 focus:outline-none focus:ring-2 focus:ring-[#C8951A] focus:ring-offset-2 ${
+          className={`rounded-xl border px-3 py-3 text-left transition hover:-translate-y-0.5 focus:outline-none focus:ring-2 focus:ring-[#C8951A] focus:ring-offset-2 sm:rounded-2xl sm:px-4 ${index === donationAmounts.length - 1 ? 'col-span-2 sm:col-span-1' : ''} ${
             item.featured
               ? 'border-[#D9A441] bg-[#07361F] text-white'
               : 'border-[#D9A441]/25 bg-white text-[#1F2937]'
