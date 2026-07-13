@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { organization } from '@/lib/organization';
 
 const footerLinks = [
   { label: 'Home', href: '/' },
@@ -27,8 +28,12 @@ export default function Footer() {
         <div className="grid grid-cols-1 gap-8 md:grid-cols-[0.9fr_1.1fr_1fr]">
           <div>
             <p className="text-base font-bold text-[#1A4D2E]">Rahat Social Impact Foundation</p>
-            <p className="mt-2 max-w-sm text-sm leading-6 text-slate-600">Healthcare impact through trust and transparency.</p>
+            <p className="mt-2 max-w-sm text-sm leading-6 text-slate-600">A registered Section 8 nonprofit company supporting practical, accountable healthcare action.</p>
             <p className="mt-3 text-xs leading-5 text-slate-500">Section 8 company · CIN U86909DL2026NPL466630</p>
+            <div className="mt-4 flex flex-wrap gap-3 text-sm font-semibold text-[#07361F]">
+              <a href={organization.instagram} target="_blank" rel="noreferrer" className="underline decoration-[#C8951A] underline-offset-4">Instagram</a>
+              <a href={organization.linkedin} target="_blank" rel="noreferrer" className="underline decoration-[#C8951A] underline-offset-4">LinkedIn</a>
+            </div>
           </div>
 
           <nav aria-label="Footer navigation">
