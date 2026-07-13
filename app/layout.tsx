@@ -58,7 +58,13 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       addressCountry: 'IN',
     },
     sameAs: [organization.instagram, organization.linkedin],
-    founder: directors.map((director) => ({
+    founder: {
+      '@type': 'Person',
+      name: directors[0].name,
+      jobTitle: directors[0].role,
+      sameAs: directors[0].links.map((link) => link.href),
+    },
+    member: directors.map((director) => ({
       '@type': 'Person',
       name: director.name,
       jobTitle: director.role,
