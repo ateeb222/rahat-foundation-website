@@ -43,18 +43,18 @@ export default function Header() {
     <header className="sticky top-0 z-40 border-b border-[#D9A441]/25 bg-[#F8F5EC]/95 backdrop-blur">
       <div className="mx-auto flex max-w-7xl items-center justify-between gap-2 px-3 py-2.5 sm:gap-3 sm:px-4 sm:py-3 md:px-6">
         <Link href="/" className="flex min-w-0 items-center gap-2.5 sm:gap-3" aria-label="Rahat Social Impact Foundation home">
-          <div className="relative h-11 w-11 shrink-0 overflow-hidden rounded-full bg-white sm:h-16 sm:w-16">
+          <div className="relative h-12 w-12 shrink-0 overflow-hidden rounded-full bg-white sm:h-16 sm:w-16">
             <Image
               src="/images/LOGO/hero.jpg"
               alt="Rahat Social Impact Foundation logo"
               fill
               sizes="64px"
-              className="object-cover"
+              className="object-contain"
             />
           </div>
           <div className="min-w-0">
-            <p className="text-[13px] font-semibold leading-4 text-[#07361F] min-[390px]:text-sm sm:text-base">Rahat Social Impact Foundation</p>
-            <p className="mt-0.5 hidden text-[11px] font-medium leading-4 text-slate-600 min-[390px]:block sm:text-xs">Registered Section 8 nonprofit company</p>
+            <p className="text-[12px] font-bold leading-4 text-[#07361F] min-[360px]:text-[13px] sm:text-base">Rahat Social Impact Foundation</p>
+            <p className="mt-0.5 text-[9px] font-semibold leading-3 text-slate-600 min-[360px]:text-[10px] sm:text-xs sm:leading-4">Registered Section 8 nonprofit company</p>
           </div>
         </Link>
 
