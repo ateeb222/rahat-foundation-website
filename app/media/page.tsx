@@ -2,7 +2,10 @@ import type { Metadata } from 'next';
 
 import { MediaClippingGallery } from '@/components/media/MediaClippingGallery';
 import { SocialCoverageCards } from '@/components/media/SocialCoverageCards';
+import { jnmcWheelchairHandoverPhotos } from '@/lib/jnmc-handover-media';
 import { mediaClippings, onlineCoverage, socialCoverage } from '@/lib/media-coverage';
+
+const featuredEventPhoto = jnmcWheelchairHandoverPhotos[0];
 
 export const metadata: Metadata = {
   title: { absolute: 'Media & Coverage | Rahat Social Impact Foundation' },
@@ -16,14 +19,9 @@ export const metadata: Metadata = {
     url: '/media',
     siteName: 'Rahat Social Impact Foundation',
     type: 'website',
-    images: [
-      {
-        url: '/images/impact/jnmc-wheelchair-handover-2026/event/rahat-foundation-jnmc-amu-handover-ceremony-2026.jpg',
-        width: 2400,
-        height: 1600,
-        alt: 'Formal JNMC wheelchair handover ceremony',
-      },
-    ],
+    images: featuredEventPhoto
+      ? [{ url: featuredEventPhoto.src, width: featuredEventPhoto.width, height: featuredEventPhoto.height, alt: featuredEventPhoto.alt }]
+      : [],
   },
 };
 

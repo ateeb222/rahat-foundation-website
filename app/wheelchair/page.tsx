@@ -6,6 +6,8 @@ import { EventPhotoCarousel } from '@/components/impact/EventPhotoCarousel';
 import { donationConfig } from '@/lib/donation-config';
 import { jnmcWheelchairHandoverPhotos } from '@/lib/jnmc-handover-media';
 
+const featuredEventPhoto = jnmcWheelchairHandoverPhotos[0];
+
 export const metadata: Metadata = {
   title: '80 Wheelchairs Delivered to JNMC Hospital',
   description:
@@ -16,7 +18,9 @@ export const metadata: Metadata = {
       'Completed patient mobility initiative with formal handover on 14 August 2026.',
     url: '/wheelchair',
     siteName: 'Rahat Social Impact Foundation',
-    images: ['/images/impact/jnmc-wheelchair-handover-2026/event/rahat-foundation-jnmc-amu-handover-ceremony-2026.jpg'],
+    images: featuredEventPhoto
+      ? [{ url: featuredEventPhoto.src, width: featuredEventPhoto.width, height: featuredEventPhoto.height, alt: featuredEventPhoto.alt }]
+      : [],
     type: 'website',
   },
 };
@@ -99,7 +103,11 @@ export default function WheelchairPage() {
             Formal handover at JNMC Hospital
           </h2>
           <div className="mt-6">
-            <EventPhotoCarousel photos={jnmcWheelchairHandoverPhotos} ariaLabel="JNMC wheelchair handover photographs" />
+            <EventPhotoCarousel
+              photos={jnmcWheelchairHandoverPhotos}
+              ariaLabel="JNMC wheelchair handover photographs"
+              imageSizes="(min-width: 1280px) 1152px, (min-width: 640px) calc(100vw - 48px), calc(100vw - 32px)"
+            />
           </div>
         </section>
       )}

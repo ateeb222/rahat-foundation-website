@@ -1,3 +1,4 @@
+import type { Metadata } from 'next';
 import Link from 'next/link';
 
 import { EventPhotoCarousel } from '@/components/impact/EventPhotoCarousel';
@@ -10,6 +11,22 @@ import { organization } from '@/lib/organization';
 
 const primary = 'inline-flex min-h-[50px] w-full items-center justify-center rounded-full bg-[#07361F] px-5 py-3 text-base font-bold text-white shadow-lg transition hover:bg-[#1A4D2E] sm:w-auto';
 const secondary = 'inline-flex min-h-[50px] w-full items-center justify-center rounded-full border border-[#07361F] bg-white px-5 py-3 text-base font-bold text-[#07361F] transition hover:border-[#C8951A] hover:bg-[#F8F5EF] sm:w-auto';
+const featuredEventPhoto = jnmcWheelchairHandoverPhotos[0];
+
+export const metadata: Metadata = {
+  title: 'Healthcare Access and Patient Mobility Support',
+  description:
+    'Rahat Social Impact Foundation is a healthcare NGO in India supporting verified patient mobility, hospital equipment and healthcare-access initiatives.',
+  openGraph: {
+    title: '80 Wheelchairs Delivered to JNMC Hospital',
+    description:
+      'See the completed patient-mobility initiative, formal institutional handover and documented healthcare work of Rahat Social Impact Foundation.',
+    url: '/',
+    images: featuredEventPhoto
+      ? [{ url: featuredEventPhoto.src, width: featuredEventPhoto.width, height: featuredEventPhoto.height, alt: featuredEventPhoto.alt }]
+      : [],
+  },
+};
 
 export default function HomePage() {
   return (
@@ -28,11 +45,12 @@ export default function HomePage() {
             </p>
           </div>
 
-          <div className="min-w-0 rounded-lg border border-[#D9A441]/35 bg-white p-2 shadow-[0_20px_55px_rgba(7,54,31,0.13)] lg:col-start-2 lg:row-span-2 lg:row-start-1">
+          <div className="min-w-0 lg:col-start-2 lg:row-span-2 lg:row-start-1">
             <EventPhotoCarousel
               photos={jnmcWheelchairHandoverPhotos}
               ariaLabel="JNMC wheelchair handover highlights"
               autoplayIntervalMs={6500}
+              imageSizes="(min-width: 1024px) 520px, (min-width: 640px) calc(100vw - 48px), calc(100vw - 32px)"
             />
           </div>
 
@@ -60,6 +78,24 @@ export default function HomePage() {
           <div className="rounded-2xl bg-[#F8F5EF] p-4"><p className="text-xs font-bold uppercase tracking-wide text-slate-500">Delivered</p><p className="mt-1 text-3xl font-bold text-[#07361F]">{donationConfig.campaign.totalDelivered}</p><p className="mt-1 text-sm text-slate-600">wheelchairs</p></div>
           <div className="rounded-2xl bg-[#F8F5EF] p-4"><p className="text-xs font-bold uppercase tracking-wide text-slate-500">Status</p><p className="mt-1 text-3xl font-bold text-[#07361F]">{donationConfig.campaign.status}</p><p className="mt-1 text-sm text-slate-600">Formal handover: {donationConfig.campaign.handoverDate}</p></div>
           <div className="rounded-2xl bg-[#F8F5EF] p-4"><p className="text-xs font-bold uppercase tracking-wide text-slate-500">Recipient</p><p className="mt-1 text-xl font-bold text-[#07361F]">JNMC Hospital</p><p className="mt-1 text-sm text-slate-600">Aligarh Muslim University, Aligarh</p></div>
+        </div>
+      </section>
+
+      <section className="border-b border-[#D9A441]/25 bg-[#EAF3E2]" aria-labelledby="healthcare-partner-heading">
+        <div className="mx-auto grid max-w-7xl gap-5 px-4 py-8 sm:px-6 sm:py-10 lg:grid-cols-[1fr_auto] lg:items-center">
+          <div className="max-w-4xl">
+            <p className="text-sm font-bold uppercase tracking-[0.14em] text-[#3B635D]">Future healthcare support</p>
+            <h2 id="healthcare-partner-heading" className="mt-2 text-2xl font-bold leading-tight text-[#07361F] sm:text-3xl">
+              Looking to support wheelchairs or hospital equipment?
+            </h2>
+            <p className="mt-3 text-base leading-7 text-slate-700">
+              Rahat Social Impact Foundation works on verified healthcare-access and patient-mobility needs. Individuals, institutions and organisations interested in donating wheelchairs, patient-mobility equipment or supporting hospital healthcare initiatives in India can connect with Rahat Foundation.
+            </p>
+            <p className="mt-2 text-sm leading-6 text-slate-600">
+              Partnership enquiries may cover wheelchair donation, medical equipment support and future government-hospital patient mobility needs.
+            </p>
+          </div>
+          <Link href="/contact" className={primary}>Partner with Rahat Foundation</Link>
         </div>
       </section>
 
