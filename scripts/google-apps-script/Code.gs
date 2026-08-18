@@ -1,6 +1,6 @@
 const SHEET_ID = '1hSeTI1P7X8tDL9L1UTbGfpab4rZ0lisR45FvWOiNqvI';
 const FORM_SUBMISSION_SECRET = 'REPLACE_WITH_STRONG_SHARED_SECRET';
-const ALERT_EMAIL = '[info@rahatsocialimpact.com](mailto:info@rahatsocialimpact.com)';
+const ALERT_EMAIL = 'info@rahatsocialimpact.com';
 
 function doGet() {
 return jsonResponse({
@@ -17,7 +17,6 @@ var submissionId = createSubmissionId(timestamp);
 try {
 var rawBody = '{}';
 
-```
 if (e && e.postData && e.postData.contents) {
   rawBody = e.postData.contents;
 }
@@ -59,18 +58,15 @@ return jsonResponse({
   submissionId: submissionId,
   message: 'Submission received'
 });
-```
 
 } catch (error) {
 appendAudit(timestamp, submissionId, 'unknown', 'Error', String(error));
 
-```
 return jsonResponse({
   ok: false,
   success: false,
   error: String(error)
 });
-```
 
 }
 }
@@ -175,7 +171,6 @@ var sheet = getSheetWithHeaders('Audit_Log', [
 'Note'
 ]);
 
-```
 sheet.appendRow([
   timestamp,
   submissionId,
@@ -183,7 +178,6 @@ sheet.appendRow([
   cleanValue(status),
   cleanValue(note)
 ]);
-```
 
 } catch (error) {
 // Audit logging should not block form submission.
@@ -212,7 +206,6 @@ function sendAlertEmail(type, submissionId, data) {
 try {
 var subject = '[Rahat Website] New ' + type + ' submission - ' + submissionId;
 
-```
 var body = [
   'A new Rahat website submission has been received.',
   '',
@@ -226,7 +219,6 @@ var body = [
 ].join('\n');
 
 MailApp.sendEmail(ALERT_EMAIL, subject, body);
-```
 
 } catch (error) {
 appendAudit(new Date(), submissionId, type, 'Email Error', String(error));
@@ -238,15 +230,21 @@ if (value === null || value === undefined) {
 return '';
 }
 
+var cleanedValue;
+
 if (Array.isArray(value)) {
-return value.join(', ');
+cleanedValue = value.join(', ');
+} else if (typeof value === 'object') {
+cleanedValue = JSON.stringify(value);
+} else {
+cleanedValue = String(value).trim();
 }
 
-if (typeof value === 'object') {
-return JSON.stringify(value);
+if (/^[=+\-@]/.test(cleanedValue)) {
+return "'" + cleanedValue;
 }
 
-return String(value).trim();
+return cleanedValue;
 }
 
 function createSubmissionId(dateValue) {

@@ -42,8 +42,8 @@ Use the `/exec` URL, not the `/dev` URL, for production.
 In Vercel project settings, add:
 
 ```text
-APPS_SCRIPT_WEB_APP_URL=https://script.google.com/macros/s/AKfycbxgwRPnn5qw3m3glQ6mtVppt1Avakzmqku5uck4oFybiaPICxgb9xWWoIIhrLIohruM/exec
-FORM_SUBMISSION_SECRET=rahat_forms_2026_private_9Xk72LmQpA51Secure
+APPS_SCRIPT_WEB_APP_URL=REPLACE_WITH_APPS_SCRIPT_WEB_APP_URL
+FORM_SUBMISSION_SECRET=REPLACE_WITH_STRONG_SHARED_SECRET
 ```
 
 Redeploy the website after adding the variables.
