@@ -8,6 +8,7 @@ const footerLinks = [
   { label: 'About', href: '/about' },
   { label: 'Programs', href: '/programs' },
   { label: 'Impact', href: '/impact' },
+  { label: 'Media', href: '/media' },
   { label: 'Transparency', href: '/transparency' },
   { label: 'Donate', href: '/donate' },
   { label: 'Monthly Sadaqah', href: '/sadaqah' },

@@ -6,6 +6,7 @@ const routes = [
   '/wheelchair',
   '/programs',
   '/impact',
+  '/media',
   '/transparency',
   '/donate',
   '/donor-details',
@@ -17,7 +18,7 @@ const routes = [
 export default function sitemap(): MetadataRoute.Sitemap {
   return routes.map((route) => ({
     url: `https://www.rahatsocialimpact.com${route}`,
-    lastModified: new Date('2026-07-13'),
+    lastModified: new Date('2026-08-18'),
     changeFrequency: route === '' || route === '/impact' ? 'weekly' : 'monthly',
     priority: route === '' ? 1 : route === '/donate' || route === '/about' ? 0.9 : 0.7,
   }));

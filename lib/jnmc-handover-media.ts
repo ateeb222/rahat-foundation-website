@@ -3,7 +3,7 @@ export type EventPhoto = Readonly<{
   alt: string;
   width: number;
   height: number;
-  caption?: string;
+  caption: string;
 }>;
 
 export const jnmcWheelchairHandoverPhotos: readonly EventPhoto[] = [
@@ -12,17 +12,20 @@ export const jnmcWheelchairHandoverPhotos: readonly EventPhoto[] = [
     alt: 'Formal presentation of a commemorative plaque during the JNMC wheelchair handover ceremony',
     width: 2400,
     height: 1600,
+    caption: 'Formal handover of 80 wheelchairs to JNMC Hospital, Aligarh Muslim University - 14 August 2026.',
   },
   {
     src: '/images/impact/jnmc-wheelchair-handover-2026/event/rahat-foundation-wheelchair-handover-officials-jnmc-2026.jpg',
     alt: 'Officials displaying a certificate of appreciation during the JNMC wheelchair handover ceremony',
     width: 2400,
     height: 1600,
+    caption: 'Rahat Social Impact Foundation at the formal wheelchair handover programme at JNMC, AMU.',
   },
   {
     src: '/images/impact/jnmc-wheelchair-handover-2026/event/rahat-foundation-jnmc-wheelchair-handover-group-photo-2026.jpg',
     alt: 'Officials seated beneath the wheelchair donation and handover ceremony banner at JNMC Hospital',
     width: 2400,
     height: 1437,
+    caption: 'Participants and institutional representatives at the JNMC wheelchair handover programme.',
   },
 ];

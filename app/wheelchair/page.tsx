@@ -16,7 +16,7 @@ export const metadata: Metadata = {
       'Completed patient mobility initiative with formal handover on 14 August 2026.',
     url: '/wheelchair',
     siteName: 'Rahat Social Impact Foundation',
-    images: ['/images/wheelchair/factory-visit.jpeg'],
+    images: ['/images/impact/jnmc-wheelchair-handover-2026/event/rahat-foundation-jnmc-amu-handover-ceremony-2026.jpg'],
     type: 'website',
   },
 };

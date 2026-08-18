@@ -1,34 +1,68 @@
 'use client';
 
 import Image from 'next/image';
-import { useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 
 import type { EventPhoto } from '@/lib/jnmc-handover-media';
 
 type EventPhotoCarouselProps = {
   photos: readonly EventPhoto[];
   ariaLabel: string;
+  autoplayIntervalMs?: number;
 };
 
-export function EventPhotoCarousel({ photos, ariaLabel }: EventPhotoCarouselProps) {
+export function EventPhotoCarousel({ photos, ariaLabel, autoplayIntervalMs }: EventPhotoCarouselProps) {
   const viewportRef = useRef<HTMLDivElement>(null);
   const [activeIndex, setActiveIndex] = useState(0);
+  const [hasInteracted, setHasInteracted] = useState(false);
+  const [isHovered, setIsHovered] = useState(false);
+  const [isFocusedWithin, setIsFocusedWithin] = useState(false);
+  const [prefersReducedMotion, setPrefersReducedMotion] = useState(true);
 
-  if (photos.length === 0) {
-    return null;
-  }
+  useEffect(() => {
+    const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const updatePreference = () => setPrefersReducedMotion(mediaQuery.matches);
 
-  function goToSlide(index: number) {
+    updatePreference();
+    mediaQuery.addEventListener('change', updatePreference);
+    return () => mediaQuery.removeEventListener('change', updatePreference);
+  }, []);
+
+  const goToSlide = useCallback((index: number, userInitiated = true) => {
     const viewport = viewportRef.current;
     if (!viewport) return;
 
     const nextIndex = Math.max(0, Math.min(index, photos.length - 1));
-    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     viewport.scrollTo({
       left: nextIndex * viewport.clientWidth,
-      behavior: reduceMotion ? 'auto' : 'smooth',
+      behavior: prefersReducedMotion ? 'auto' : 'smooth',
     });
     setActiveIndex(nextIndex);
+    if (userInitiated) setHasInteracted(true);
+  }, [photos.length, prefersReducedMotion]);
+
+  useEffect(() => {
+    if (
+      !autoplayIntervalMs ||
+      photos.length < 2 ||
+      prefersReducedMotion ||
+      hasInteracted ||
+      isHovered ||
+      isFocusedWithin
+    ) {
+      return;
+    }
+
+    const timer = window.setTimeout(() => {
+      const nextIndex = activeIndex === photos.length - 1 ? 0 : activeIndex + 1;
+      goToSlide(nextIndex, false);
+    }, autoplayIntervalMs);
+
+    return () => window.clearTimeout(timer);
+  }, [activeIndex, autoplayIntervalMs, goToSlide, hasInteracted, isFocusedWithin, isHovered, photos.length, prefersReducedMotion]);
+
+  if (photos.length === 0) {
+    return null;
   }
 
   function updateActiveSlide() {
@@ -40,10 +74,22 @@ export function EventPhotoCarousel({ photos, ariaLabel }: EventPhotoCarouselProp
   }
 
   return (
-    <section aria-label={ariaLabel} aria-roledescription="carousel" className="w-full max-w-full overflow-hidden">
+    <section
+      aria-label={ariaLabel}
+      aria-roledescription="carousel"
+      className="w-full max-w-full overflow-hidden"
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+      onFocusCapture={() => setIsFocusedWithin(true)}
+      onBlurCapture={(event) => {
+        if (!event.currentTarget.contains(event.relatedTarget)) setIsFocusedWithin(false);
+      }}
+    >
       <div
         ref={viewportRef}
         onScroll={updateActiveSlide}
+        onPointerDown={() => setHasInteracted(true)}
+        onKeyDown={() => setHasInteracted(true)}
         className="flex w-full snap-x snap-mandatory overflow-x-auto overscroll-x-contain rounded-lg border border-slate-200 bg-white [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
       >
         {photos.map((photo, index) => (
@@ -53,7 +99,7 @@ export function EventPhotoCarousel({ photos, ariaLabel }: EventPhotoCarouselProp
             aria-roledescription="slide"
             className="w-full min-w-full snap-center"
           >
-            <div className="flex min-h-[320px] items-center justify-center bg-[#F1F3F2] p-2 sm:min-h-[480px] sm:p-4">
+            <div className="flex min-h-[260px] items-center justify-center bg-[#F1F3F2] p-2 sm:min-h-[480px] sm:p-4">
               <Image
                 src={photo.src}
                 alt={photo.alt}
@@ -65,11 +111,9 @@ export function EventPhotoCarousel({ photos, ariaLabel }: EventPhotoCarouselProp
                 className="h-auto max-h-[78svh] w-auto max-w-full object-contain"
               />
             </div>
-            {photo.caption && (
-              <figcaption className="border-t border-slate-200 px-4 py-3 text-sm leading-6 text-slate-700">
-                {photo.caption}
-              </figcaption>
-            )}
+            <figcaption className="min-h-[72px] border-t border-slate-200 px-4 py-3 text-sm leading-6 text-slate-700">
+              {photo.caption}
+            </figcaption>
           </figure>
         ))}
       </div>

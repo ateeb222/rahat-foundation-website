@@ -1,9 +1,12 @@
-import Image from 'next/image';
 import Link from 'next/link';
 
-import { donationConfig } from '@/lib/donation-config';
-import { organization } from '@/lib/organization';
+import { EventPhotoCarousel } from '@/components/impact/EventPhotoCarousel';
+import { MediaClippingGallery } from '@/components/media/MediaClippingGallery';
 import { SocialLink } from '@/components/social/SocialLink';
+import { donationConfig } from '@/lib/donation-config';
+import { jnmcWheelchairHandoverPhotos } from '@/lib/jnmc-handover-media';
+import { mediaClippings, onlineCoverage } from '@/lib/media-coverage';
+import { organization } from '@/lib/organization';
 
 const primary = 'inline-flex min-h-[50px] w-full items-center justify-center rounded-full bg-[#07361F] px-5 py-3 text-base font-bold text-white shadow-lg transition hover:bg-[#1A4D2E] sm:w-auto';
 const secondary = 'inline-flex min-h-[50px] w-full items-center justify-center rounded-full border border-[#07361F] bg-white px-5 py-3 text-base font-bold text-[#07361F] transition hover:border-[#C8951A] hover:bg-[#F8F5EF] sm:w-auto';
@@ -12,8 +15,8 @@ export default function HomePage() {
   return (
     <main className="min-h-screen overflow-x-hidden bg-[#F8F5EF] pb-24 text-[#1F2937] sm:pb-16">
       <section className="bg-[radial-gradient(circle_at_top_left,rgba(119,166,37,0.18),transparent_32%),linear-gradient(135deg,#F8F5EF_0%,#FFFFFF_52%,#EAF3E2_100%)]">
-        <div className="mx-auto grid max-w-7xl gap-7 px-4 py-9 sm:px-6 sm:py-14 lg:grid-cols-[1fr_0.82fr] lg:items-center">
-          <div>
+        <div className="mx-auto grid max-w-7xl gap-6 px-4 py-9 sm:px-6 sm:py-14 lg:grid-cols-[1fr_0.82fr] lg:items-center lg:gap-x-7">
+          <div className="lg:col-start-1 lg:row-start-1">
             <p className="inline-flex rounded-full border border-[#77A625]/45 bg-white px-3 py-1.5 text-xs font-bold uppercase tracking-[0.14em] text-[#25472D]">
               Completed · Formal handover 14 August 2026
             </p>
@@ -23,6 +26,17 @@ export default function HomePage() {
             <p className="mt-4 max-w-2xl text-lg font-semibold leading-7 text-[#25472D] sm:text-xl sm:leading-8">
               Rahat Foundation formally handed over 80 wheelchairs on 14 August 2026 to {donationConfig.campaign.recipient}.
             </p>
+          </div>
+
+          <div className="min-w-0 rounded-lg border border-[#D9A441]/35 bg-white p-2 shadow-[0_20px_55px_rgba(7,54,31,0.13)] lg:col-start-2 lg:row-span-2 lg:row-start-1">
+            <EventPhotoCarousel
+              photos={jnmcWheelchairHandoverPhotos}
+              ariaLabel="JNMC wheelchair handover highlights"
+              autoplayIntervalMs={6500}
+            />
+          </div>
+
+          <div className="lg:col-start-1 lg:row-start-2">
             <p className="mt-3 max-w-2xl text-base leading-7 text-slate-700 sm:text-lg">
               Join Rahat Foundation&apos;s community-powered healthcare work through secure Sadaqah and voluntary support. UPI and bank transfer remain available as optional alternatives.
             </p>
@@ -38,23 +52,6 @@ export default function HomePage() {
               <Link href="/sadaqah" className={secondary}>Monthly Sadaqah</Link>
             </div>
           </div>
-
-          <figure className="overflow-hidden rounded-[1.4rem] border border-[#D9A441]/35 bg-white p-2 shadow-[0_20px_55px_rgba(7,54,31,0.13)]">
-            <div className="relative aspect-[3/4] overflow-hidden rounded-[1.05rem] bg-[#EAF3E2] sm:aspect-[4/5]">
-              <Image
-                src="/images/wheelchair/factory-visit.jpeg"
-                alt="Rahat Foundation representative reviewing wheelchairs at the supplier facility"
-                fill
-                priority
-                unoptimized
-                sizes="(min-width: 1024px) 460px, 92vw"
-                className="object-cover"
-              />
-            </div>
-            <figcaption className="px-3 py-3 text-sm leading-6 text-slate-600">
-              Preparation-stage physical review before the formal handover completed on 14 August 2026.
-            </figcaption>
-          </figure>
         </div>
       </section>
 
@@ -63,6 +60,36 @@ export default function HomePage() {
           <div className="rounded-2xl bg-[#F8F5EF] p-4"><p className="text-xs font-bold uppercase tracking-wide text-slate-500">Delivered</p><p className="mt-1 text-3xl font-bold text-[#07361F]">{donationConfig.campaign.totalDelivered}</p><p className="mt-1 text-sm text-slate-600">wheelchairs</p></div>
           <div className="rounded-2xl bg-[#F8F5EF] p-4"><p className="text-xs font-bold uppercase tracking-wide text-slate-500">Status</p><p className="mt-1 text-3xl font-bold text-[#07361F]">{donationConfig.campaign.status}</p><p className="mt-1 text-sm text-slate-600">Formal handover: {donationConfig.campaign.handoverDate}</p></div>
           <div className="rounded-2xl bg-[#F8F5EF] p-4"><p className="text-xs font-bold uppercase tracking-wide text-slate-500">Recipient</p><p className="mt-1 text-xl font-bold text-[#07361F]">JNMC Hospital</p><p className="mt-1 text-sm text-slate-600">Aligarh Muslim University, Aligarh</p></div>
+        </div>
+      </section>
+
+      <section className="border-b border-[#D9A441]/25 bg-white" aria-labelledby="home-media-heading">
+        <div className="mx-auto max-w-7xl px-4 py-10 sm:px-6 sm:py-14">
+          <div className="max-w-3xl">
+            <p className="text-sm font-bold uppercase tracking-[0.16em] text-[#3B635D]">Media &amp; institutional coverage</p>
+            <h2 id="home-media-heading" className="mt-3 text-2xl font-bold leading-tight text-[#07361F] sm:text-4xl">
+              Impact recognised beyond our website.
+            </h2>
+            <p className="mt-3 text-base leading-7 text-slate-700">
+              The completed JNMC wheelchair handover appears in institutional, online, social, and newspaper coverage. Coverage is archived as a public record and does not imply endorsement.
+            </p>
+          </div>
+
+          <div className="mt-5 flex flex-wrap gap-2" aria-label="Online coverage sources">
+            {onlineCoverage.map((item) => (
+              <span key={item.url} className="rounded-full border border-[#2A7A45]/30 bg-[#F1F7EE] px-3 py-1.5 text-sm font-semibold text-[#07361F]">
+                {item.source}
+              </span>
+            ))}
+          </div>
+
+          <div className="mt-7">
+            <MediaClippingGallery items={mediaClippings.slice(0, 3)} />
+          </div>
+
+          <Link href="/media" className={`${primary} mt-6`}>
+            View all media coverage
+          </Link>
         </div>
       </section>
 

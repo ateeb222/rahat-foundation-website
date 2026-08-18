@@ -11,6 +11,7 @@ const navLinks = [
   { label: 'About', href: '/about' },
   { label: 'Programs', href: '/programs' },
   { label: 'Impact', href: '/impact' },
+  { label: 'Media', href: '/media' },
   { label: 'Transparency', href: '/transparency' },
   { label: 'Volunteer', href: '/volunteer' },
   { label: 'Contact', href: '/contact' },
@@ -60,7 +61,7 @@ export default function Header() {
 
         <button
           type="button"
-          className="inline-flex min-h-[46px] min-w-[46px] shrink-0 items-center justify-center rounded-md border border-[#D9A441]/40 bg-white p-2 text-[#07361F] shadow-sm transition hover:bg-[#F8F5EC] focus:outline-none focus:ring-2 focus:ring-[#D9A441] lg:hidden"
+          className="inline-flex min-h-[46px] min-w-[46px] shrink-0 items-center justify-center rounded-md border border-[#D9A441]/40 bg-white p-2 text-[#07361F] shadow-sm transition hover:bg-[#F8F5EC] focus:outline-none focus:ring-2 focus:ring-[#D9A441] xl:hidden"
           aria-controls="mobile-menu"
           aria-expanded={menuOpen}
           onClick={() => setMenuOpen((value) => !value)}
@@ -71,8 +72,8 @@ export default function Header() {
           </svg>
         </button>
 
-        <nav className="hidden flex-1 justify-center lg:flex" aria-label="Primary navigation">
-          <ul className="flex flex-wrap items-center justify-center gap-x-4 gap-y-2 text-sm text-slate-700 xl:gap-x-6">
+        <nav className="hidden flex-1 justify-center xl:flex" aria-label="Primary navigation">
+          <ul className="flex flex-wrap items-center justify-center gap-x-4 gap-y-2 text-sm text-slate-700 2xl:gap-x-6">
             {navLinks.map((link) => (
               <li key={link.href}>
                 <Link href={link.href} className="font-semibold transition hover:text-[#07361F] focus:outline-none focus:ring-2 focus:ring-[#D9A441] focus:ring-offset-2 focus:ring-offset-[#F8F5EC]">
@@ -83,12 +84,12 @@ export default function Header() {
           </ul>
         </nav>
 
-        <div className="hidden lg:flex lg:items-center lg:gap-4">
+        <div className="hidden xl:flex xl:items-center xl:gap-4">
           <Link href="/donate" className={donateButtonClass}>Donate</Link>
         </div>
       </div>
 
-      <div id="mobile-menu" className={`${menuOpen ? 'block' : 'hidden'} max-h-[calc(100vh-68px)] overflow-y-auto border-t border-[#D9A441]/25 bg-[#F8F5EC] lg:hidden`}>
+      <div id="mobile-menu" className={`${menuOpen ? 'block' : 'hidden'} max-h-[calc(100vh-68px)] overflow-y-auto border-t border-[#D9A441]/25 bg-[#F8F5EC] xl:hidden`}>
         <nav className="px-4 py-4" aria-label="Mobile primary navigation">
           <ul className="grid grid-cols-2 gap-2 text-base text-slate-700 min-[520px]:grid-cols-3">
             {navLinks.map((link) => (
