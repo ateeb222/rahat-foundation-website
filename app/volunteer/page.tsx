@@ -22,13 +22,13 @@ export default function VolunteerPage() {
       <section className="mx-auto w-full max-w-7xl px-4 py-10 sm:px-6 sm:py-14 lg:py-16">
         <div className="max-w-3xl">
           <p className="inline-flex rounded-full border border-[#2A7A45] bg-white px-3 py-1 text-xs font-semibold uppercase tracking-[0.18em] text-[#1A4D2E]">
-            Volunteer with Rahat
+            Volunteer with Rahat Foundation
           </p>
           <h1 className="mt-5 text-3xl font-semibold leading-tight text-[#1A4D2E] sm:text-4xl lg:text-5xl">
             Support healthcare access with structured volunteer roles.
           </h1>
           <p className="mt-4 text-base leading-7 text-slate-700 sm:text-lg">
-            Rahat welcomes volunteers who can support patient mobility campaigns, campus outreach, professional coordination, hospital implementation, and remote operations.
+            Rahat Foundation welcomes volunteers who can support patient mobility campaigns, campus outreach, professional coordination, hospital implementation, and remote operations.
           </p>
         </div>
       </section>
@@ -52,7 +52,7 @@ export default function VolunteerPage() {
                 Share your availability and skills.
               </h2>
               <p className="mt-4 text-base leading-7 text-slate-700">
-                Keep it short. Rahat will review your application and follow up through official contact channels.
+                Keep it short. Rahat Foundation will review your application and follow up through official contact channels.
               </p>
             </div>
 

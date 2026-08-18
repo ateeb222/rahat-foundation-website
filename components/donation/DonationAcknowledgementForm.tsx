@@ -137,7 +137,7 @@ export function DonationAcknowledgementForm({
 
       <label className="flex items-start gap-3 rounded-2xl border border-slate-200 bg-[#F8F5EF] p-4 text-base leading-6 text-slate-700">
         <input className="mt-1 h-5 w-5 flex-shrink-0" type="checkbox" name="volunteerInterest" />
-        <span>I am also interested in volunteering with Rahat.</span>
+        <span>I am also interested in volunteering with Rahat Foundation.</span>
       </label>
 
       <label className="flex items-start gap-3 rounded-2xl border border-[#C8951A] bg-[#FFF8E6] p-4 text-base leading-6 text-slate-800">

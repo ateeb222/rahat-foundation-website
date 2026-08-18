@@ -43,7 +43,7 @@ export function PolicyPage({
             href="/contact"
             className="inline-flex min-h-[48px] w-full items-center justify-center rounded-full bg-[#07361F] px-5 py-3 font-bold text-white sm:w-auto"
           >
-            Contact Rahat
+            Contact Rahat Foundation
           </Link>
         </div>
       </section>

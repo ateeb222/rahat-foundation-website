@@ -37,7 +37,7 @@ export function DonationPurposeAndForm() {
             <SectionIntro
               eyebrow="Acknowledgement"
               title="Submit donation details"
-              description="After payment, submit details so Rahat can match and acknowledge your donation."
+              description="After payment, submit details so Rahat Foundation can match and acknowledge your donation."
             />
             <div className="mt-5 grid gap-3">
               <p className="rounded-2xl border border-[#D9A441]/35 bg-[#FFF8E6] px-4 py-3 text-sm font-semibold leading-6 text-[#6A5518]">

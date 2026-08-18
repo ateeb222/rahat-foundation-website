@@ -21,7 +21,7 @@ export default function ApprovalOrderPage() {
           <div className="sm:col-span-2"><dt className="text-sm font-bold text-slate-500">Unique Registration Number</dt><dd className="mt-1 break-all font-bold">AAPCR8950CF20261</dd></div>
           <div className="sm:col-span-2"><dt className="text-sm font-bold text-slate-500">Issuing authority</dt><dd className="mt-1 font-bold">Principal Director of Income Tax</dd></div>
         </dl>
-        <p className="mt-6 rounded-2xl border border-[#D9A441]/40 bg-[#FFF8E6] p-4 text-sm leading-6 text-[#6A5518]">The original order is digitally signed and retained by Rahat. A copy may be requested through the official contact page. Donor eligibility and any deduction remain subject to applicable law, permitted payment mode, statutory reporting, and the donor&apos;s circumstances.</p>
+        <p className="mt-6 rounded-2xl border border-[#D9A441]/40 bg-[#FFF8E6] p-4 text-sm leading-6 text-[#6A5518]">The original order is digitally signed and retained by Rahat Foundation. A copy may be requested through the official contact page. Donor eligibility and any deduction remain subject to applicable law, permitted payment mode, statutory reporting, and the donor&apos;s circumstances.</p>
         <div className="mt-6 flex flex-col gap-3 sm:flex-row">
           <Link href="/transparency" className="inline-flex min-h-[48px] items-center justify-center rounded-full bg-[#07361F] px-5 py-3 font-bold text-white">Back to Transparency</Link>
           <Link href="/contact" className="inline-flex min-h-[48px] items-center justify-center rounded-full border border-[#07361F] px-5 py-3 font-bold text-[#07361F]">Request Original Copy</Link>

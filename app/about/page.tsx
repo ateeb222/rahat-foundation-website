@@ -14,7 +14,7 @@ export default function AboutPage() {
       <section className="mx-auto w-full max-w-7xl px-4 py-10 sm:px-6 sm:py-14 lg:py-16">
         <div className="max-w-3xl">
           <p className="inline-flex rounded-full border border-[#2A7A45] bg-white px-3 py-1 text-xs font-semibold uppercase tracking-[0.18em] text-[#1A4D2E]">
-            About Rahat
+            About Rahat Foundation
           </p>
           <h1 className="mt-5 text-3xl font-semibold leading-tight text-[#1A4D2E] sm:text-4xl lg:text-5xl">
             A healthcare-focused foundation built around dignity, access, and accountability.
@@ -29,8 +29,8 @@ export default function AboutPage() {
       <section className="mx-auto w-full max-w-7xl px-4 py-10 sm:px-6 sm:py-14" aria-labelledby="leadership-heading">
         <div className="max-w-3xl">
           <p className="text-sm font-bold uppercase tracking-[0.14em] text-[#3B635D]">Leadership and accountability</p>
-          <h2 id="leadership-heading" className="mt-3 text-2xl font-bold leading-tight text-[#07361F] sm:text-4xl">People responsible for Rahat’s work.</h2>
-          <p className="mt-3 text-base leading-7 text-slate-700">Rahat’s directors combine public communication, healthcare-sector experience, policy understanding and ground-level execution.</p>
+          <h2 id="leadership-heading" className="mt-3 text-2xl font-bold leading-tight text-[#07361F] sm:text-4xl">People responsible for Rahat Foundation’s work.</h2>
+          <p className="mt-3 text-base leading-7 text-slate-700">Rahat Foundation’s directors combine public communication, healthcare-sector experience, policy understanding and ground-level execution.</p>
         </div>
 
         <div className="mt-7 grid gap-5 lg:grid-cols-2">
@@ -75,7 +75,7 @@ export default function AboutPage() {
         </div>
         <div className="rounded-3xl border border-slate-200 bg-white p-5 shadow-sm sm:p-6">
           <h2 className="text-xl font-semibold text-[#1A4D2E]">Governance</h2>
-          <p className="mt-3 text-sm leading-6 text-slate-700">Rahat is preparing public governance and reporting materials for its transparency center.</p>
+          <p className="mt-3 text-sm leading-6 text-slate-700">Rahat Foundation is preparing public governance and reporting materials for its transparency center.</p>
         </div>
       </section>
     </main>

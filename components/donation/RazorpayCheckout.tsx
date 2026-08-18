@@ -1,6 +1,5 @@
 'use client';
 
-import Link from 'next/link';
 import Script from 'next/script';
 import { FormEvent, useEffect, useRef, useState } from 'react';
 import { submitWebsiteForm } from '@/components/forms/submission';
@@ -18,7 +17,7 @@ const labelClass = 'grid gap-2 text-sm font-bold text-slate-800';
 export function RazorpayCheckout() {
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
   const [message, setMessage] = useState('');
-  const [amount, setAmount] = useState(5800);
+  const [amount, setAmount] = useState(1000);
   const amountInput = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
@@ -73,7 +72,7 @@ export function RazorpayCheckout() {
               message: `Razorpay Order: ${verified.orderId}; ID type: ${idType}; ID number: ${idNumber || 'Pending phone follow-up'}; Address: ${address}`,
             });
             setStatus('success'); setMessage(`Payment verified successfully. Payment ID: ${verified.paymentId}`); form.reset();
-          } catch (error) { setStatus('error'); setMessage(error instanceof Error ? error.message : 'Payment verification failed. Contact Rahat with your payment ID.'); }
+          } catch (error) { setStatus('error'); setMessage(error instanceof Error ? error.message : 'Payment verification failed. Contact Rahat Foundation with your payment ID.'); }
         },
         modal: { ondismiss: () => { setStatus('idle'); setMessage('Payment window closed. No confirmation was recorded.'); } },
       });
@@ -88,16 +87,6 @@ export function RazorpayCheckout() {
       <p className="text-sm font-bold uppercase tracking-[0.16em] text-[#3B635D]">Secure online donation</p>
       <h3 className="mt-2 text-2xl font-bold text-[#07361F]">Pay securely with Razorpay</h3>
       <p className="mt-2 text-sm leading-6 text-slate-700">One-time domestic donations in INR. UPI, cards and other available Indian payment methods appear in Razorpay Checkout.</p>
-      <div className="mt-4 hidden rounded-xl border border-[#2A7A45]/25 bg-[#F1F7EE] p-4 text-sm leading-6 text-slate-700 sm:block">
-        <p className="font-bold text-[#07361F]">Verified provisional Income Tax status</p>
-        <p className="mt-1">Rahat holds provisional registration under section 332(8) and provisional approval under section 354(4), valid from TY 2026–27 to TY 2028–29.</p>
-        <Link href="/transparency" className="mt-2 inline-flex font-bold text-[#07361F] underline decoration-[#C8951A] underline-offset-4">View verified registration details</Link>
-      </div>
-      <details className="group mt-4 rounded-xl border border-[#2A7A45]/25 bg-[#F1F7EE] p-3 text-sm sm:hidden">
-        <summary className="flex cursor-pointer items-center justify-between gap-3 font-bold text-[#07361F]"><span>Verified provisional tax status</span><span aria-hidden="true" className="text-lg group-open:rotate-45">+</span></summary>
-        <p className="mt-3 leading-6 text-slate-700">Provisional registration under section 332(8) and provisional approval under section 354(4), valid from TY 2026–27 to TY 2028–29.</p>
-        <Link href="/transparency" className="mt-2 inline-flex font-bold text-[#07361F] underline decoration-[#C8951A] underline-offset-4">View verified details</Link>
-      </details>
       <form className="mt-5 grid gap-4" onSubmit={handleSubmit}>
         <div className="grid gap-4 sm:grid-cols-2">
           <label className={labelClass}>Full legal name<input className={inputClass} name="fullName" autoComplete="name" required /></label>
@@ -110,12 +99,12 @@ export function RazorpayCheckout() {
             <label className={labelClass}>ID type<select className={inputClass} name="idType" defaultValue="Not provided"><option value="Not provided">Provide later if needed</option><option>Voter ID</option><option>Indian Passport</option><option>PAN</option></select></label>
             <label className={labelClass}>ID number<input className={inputClass} name="idNumber" placeholder="Voter ID, passport, or PAN" /></label>
           </div>
-          <p className="mt-3 text-xs leading-5 text-slate-600">You may skip this now. Rahat can contact you later if documentation is required.</p>
+          <p className="mt-3 text-xs leading-5 text-slate-600">You may skip this now. Rahat Foundation can contact you later if documentation is required.</p>
         </details>
         <label className={labelClass}>Residential address<input className={inputClass} name="address" autoComplete="street-address" required /></label>
         <div className="grid gap-4 sm:grid-cols-2">
           <label className={labelClass}>Amount (₹)<input ref={amountInput} className={inputClass} name="amount" type="number" inputMode="numeric" min="10" max="500000" value={amount} onChange={(event) => setAmount(Number(event.target.value))} required /></label>
-          <label className={labelClass}>Purpose<select className={inputClass} name="purpose" defaultValue="Wheelchair Sadaqah">{purposes.map((purpose) => <option key={purpose}>{purpose}</option>)}</select></label>
+          <label className={labelClass}>Purpose<select className={inputClass} name="purpose" defaultValue="General Sadaqah">{purposes.map((purpose) => <option key={purpose}>{purpose}</option>)}</select></label>
         </div>
         <label className="flex items-start gap-3 rounded-xl border border-[#D9A441]/35 bg-[#FFF8E6] p-3 text-sm font-semibold leading-6 text-[#5F4A12]">
           <input className="mt-1 h-5 w-5" name="domestic" type="checkbox" required />

@@ -8,6 +8,7 @@ const routes = [
   '/impact',
   '/transparency',
   '/donate',
+  '/donor-details',
   '/sadaqah',
   '/volunteer',
   '/contact',

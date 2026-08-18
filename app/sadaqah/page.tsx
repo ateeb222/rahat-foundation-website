@@ -4,13 +4,13 @@ import { MonthlySadaqahCheckout } from '@/components/donation/MonthlySadaqahChec
 
 export const metadata: Metadata = {
   title: 'Monthly Sadaqah',
-  description: 'Make Sadaqah a monthly habit through secure Razorpay AutoPay for Rahat healthcare initiatives.',
+  description: 'Make Sadaqah a monthly habit through secure Razorpay AutoPay for Rahat Social Impact Foundation healthcare initiatives.',
 };
 
 const heroAmounts = [
   { amount: '₹100', daily: '₹3/day' },
-  { amount: '₹300', daily: '₹10/day', recommended: true },
-  { amount: '₹600', daily: '₹20/day' },
+  { amount: '₹300', daily: '₹10/day' },
+  { amount: '₹600', daily: '₹20/day', recommended: true },
 ];
 
 export default function SadaqahPage() {
@@ -22,7 +22,7 @@ export default function SadaqahPage() {
             <p className="text-xs font-bold uppercase tracking-[0.16em] text-[#E7C76D] sm:text-sm sm:tracking-[0.2em]">Monthly Sadaqah</p>
             <h1 className="mt-3 text-3xl font-bold leading-tight sm:mt-4 sm:text-5xl">Start Monthly Sadaqah from ₹3 a day.</h1>
             <p className="mt-4 max-w-2xl text-base leading-7 text-white/90 sm:text-lg sm:leading-8">
-              ₹100/month is about ₹3 a day. ₹300/month is about ₹10 a day. Choose an amount comfortable for you, join Rahat&apos;s healthcare work, and approve secure AutoPay once.
+              ₹100/month is about ₹3 a day. ₹300/month is about ₹10 a day. Choose an amount comfortable for you, join Rahat Foundation&apos;s healthcare work, and approve secure AutoPay once.
             </p>
             <a href="#start" className="mt-6 inline-flex min-h-[52px] w-full items-center justify-center rounded-full border border-[#D9A441] bg-white px-6 py-3 text-base font-bold text-[#07361F] shadow-lg sm:w-auto sm:text-lg">
               Start Monthly Sadaqah
@@ -71,7 +71,7 @@ export default function SadaqahPage() {
             <p className="mt-2">This facility is for voluntary Sadaqah and healthcare support. It is not presently offered for Zakat or foreign contributions.</p>
           </div>
           <Link href="/donate" className="inline-flex min-h-[48px] w-full items-center justify-center rounded-full border border-[#1A4D2E] bg-white px-5 py-3 text-center font-bold text-[#07361F]">
-            Prefer a one-time donation?
+            View all donation options
           </Link>
         </aside>
         <div className="rounded-[1.25rem] border border-[#D9A441]/35 bg-white p-4 shadow-[0_18px_50px_rgba(7,54,31,0.1)] sm:p-7">

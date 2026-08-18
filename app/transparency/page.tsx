@@ -64,7 +64,7 @@ export default function TransparencyPage() {
             Verified records for accountable healthcare support.
           </h1>
           <p className="mt-4 text-base leading-7 text-slate-700 sm:text-lg">
-            Rahat publishes verified statutory information so donors, institutions, and payment partners can review the organisation&apos;s current status directly.
+            Rahat Foundation publishes verified statutory information so donors, institutions, and payment partners can review the organisation&apos;s current status directly.
           </p>
         </div>
       </section>
@@ -76,7 +76,7 @@ export default function TransparencyPage() {
             Provisional registration and approval granted on 18 June 2026
           </h2>
           <p className="mt-4 max-w-4xl text-sm leading-6 text-slate-700 sm:text-base sm:leading-7">
-            The approvals are provisional and valid for the period stated in the respective digitally signed orders. Verified order details are published below; copies of the original signed orders may be requested through Rahat&apos;s official contact page.
+            The approvals are provisional and valid for the period stated in the respective digitally signed orders. Verified order details are published below; copies of the original signed orders may be requested through Rahat Foundation&apos;s official contact page.
           </p>
 
           <div className="mt-6 grid gap-4 lg:grid-cols-2">
@@ -139,7 +139,7 @@ export default function TransparencyPage() {
             Verified progress is published only after reconciliation.
           </h2>
           <p className="mt-4 max-w-3xl text-sm leading-6 text-slate-700">
-            Rahat avoids unverified sponsorship claims. Wheelchair and stretcher progress is updated only when donations, procurement, transfer, and implementation details are confirmed.
+            Rahat Foundation avoids unverified sponsorship claims. Wheelchair and stretcher progress is updated only when donations, procurement, transfer, and implementation details are confirmed.
           </p>
         </div>
       </section>

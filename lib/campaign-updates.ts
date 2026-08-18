@@ -15,14 +15,22 @@ export type CampaignUpdate = {
 // The public layout adapts automatically without requiring a new page design.
 export const campaignUpdates: CampaignUpdate[] = [
   {
+    slug: 'jnmc-wheelchair-handover',
+    campaign: 'JNMC Hospital Patient Mobility Initiative',
+    status: 'Handover completed',
+    title: '80 wheelchairs formally handed over to JNMC Hospital',
+    summary: 'Rahat Foundation completed the initiative with the formal handover of 80 wheelchairs to Jawaharlal Nehru Medical College & Hospital, Aligarh Muslim University, Aligarh.',
+    date: '14 August 2026',
+  },
+  {
     slug: 'wheelchair-quality-review',
     campaign: 'JNMC Hospital Patient Mobility Initiative',
     status: 'Procurement and preparation',
     title: 'Wheelchairs reviewed during campaign preparation',
-    summary: 'Rahat reviewed wheelchair preparation as the community-funded campaign progresses towards its formal handover stage.',
+    summary: 'Rahat Foundation reviewed wheelchair preparation before the completed initiative\'s formal handover on 14 August 2026.',
     date: 'July 2026',
     image: '/images/wheelchair/factory-visit.jpeg',
-    imageAlt: 'Rahat representative reviewing wheelchairs during campaign preparation',
+    imageAlt: 'Rahat Foundation representative reviewing wheelchairs during campaign preparation',
     instagramUrl: 'https://www.instagram.com/rahat.social.impact.foundation/',
   },
 ];

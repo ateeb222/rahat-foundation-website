@@ -19,12 +19,12 @@ const inputClass =
   'min-h-[50px] w-full rounded-xl border border-slate-300 bg-white px-4 text-base text-slate-900 focus:border-[#2A7A45] focus:outline-none focus:ring-2 focus:ring-[#2A7A45]';
 
 export function MonthlySadaqahCheckout() {
-  const [planId, setPlanId] = useState('plan_TCX7z3N8FrlsRy');
+  const [planId, setPlanId] = useState('plan_TCX9aDxi0bEchm');
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
   const [message, setMessage] = useState('');
-  const selected = sadaqahPlans.find((plan) => plan.planId === planId) || sadaqahPlans[1];
-  const primary = sadaqahPlans.filter((plan) => !('secondary' in plan));
-  const additional = sadaqahPlans.filter((plan) => 'secondary' in plan && plan.secondary);
+  const selected = sadaqahPlans.find((plan) => plan.planId === planId) || sadaqahPlans[2];
+  const primary = sadaqahPlans.slice(0, 3);
+  const additional = sadaqahPlans.slice(3);
 
   async function submit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -90,7 +90,7 @@ export function MonthlySadaqahCheckout() {
             setMessage(`Monthly Sadaqah mandate verified. Subscription ID: ${verified.subscriptionId}`);
           } catch (error) {
             setStatus('error');
-            setMessage(error instanceof Error ? error.message : 'Verification failed. Contact Rahat with your Subscription ID.');
+            setMessage(error instanceof Error ? error.message : 'Verification failed. Contact Rahat Foundation with your Subscription ID.');
           }
         },
       });
@@ -111,7 +111,7 @@ export function MonthlySadaqahCheckout() {
       <form className="grid gap-5" onSubmit={submit}>
         <fieldset>
           <legend className="text-lg font-bold text-[#07361F]">Choose your monthly Sadaqah</legend>
-          <div className="mt-3 grid grid-cols-1 gap-3 min-[440px]:grid-cols-2">
+          <div className="mt-3 grid grid-cols-3 gap-2 sm:gap-3">
             {primary.map((plan) => {
               const recommended = 'recommended' in plan && plan.recommended;
               const active = planId === plan.planId;
@@ -121,30 +121,27 @@ export function MonthlySadaqahCheckout() {
                   type="button"
                   aria-pressed={active}
                   onClick={() => setPlanId(plan.planId)}
-                  className={`min-h-[118px] overflow-hidden rounded-2xl border p-4 text-left transition focus:outline-none focus:ring-2 focus:ring-[#C8951A] ${
+                  className={`flex min-h-[112px] flex-col items-center justify-center overflow-hidden rounded-lg border px-2 py-3 text-center transition focus:outline-none focus:ring-2 focus:ring-[#C8951A] sm:min-h-[124px] sm:px-4 ${
                     active
                       ? 'border-[#C8951A] bg-[#07361F] text-white shadow-lg'
                       : 'border-[#D9A441]/30 bg-white text-[#07361F]'
                   }`}
                 >
-                  {recommended && (
-                    <span className={`mb-2 inline-flex rounded-full px-2 py-1 text-[10px] font-bold uppercase tracking-wide ${active ? 'bg-[#D9A441] text-[#07361F]' : 'bg-[#FFF3C4] text-[#6A5518]'}`}>
-                      Recommended
-                    </span>
-                  )}
-                  <span className="block text-xl font-bold leading-tight sm:text-2xl">
-                    ₹{plan.amount.toLocaleString('en-IN')}
-                    <span className="ml-1 text-sm font-semibold">/month</span>
+                  <span className={`mb-2 block min-h-4 text-[9px] font-bold uppercase tracking-wide sm:text-[10px] ${recommended ? (active ? 'text-[#E7C76D]' : 'text-[#8A6817]') : 'invisible'}`}>
+                    Recommended
                   </span>
-                  <span className="mt-2 block text-xs font-semibold opacity-80">{plan.daily}</span>
-                  <span className="mt-1 block text-sm font-bold leading-5">{plan.name}</span>
+                  <span className="block text-lg font-bold leading-tight min-[390px]:text-xl sm:text-2xl">
+                    ₹{plan.amount.toLocaleString('en-IN')}
+                    <span className="block text-[10px] font-semibold sm:text-xs">per month</span>
+                  </span>
+                  <span className="mt-2 block text-[11px] font-semibold opacity-80 sm:text-xs">{plan.daily}</span>
                 </button>
               );
             })}
           </div>
 
           <details className="mt-3 rounded-2xl border border-[#D9A441]/30 bg-white p-4">
-            <summary className="cursor-pointer font-bold text-[#07361F]">Looking to contribute more?</summary>
+            <summary className="min-h-[44px] cursor-pointer py-2 font-bold text-[#07361F]">Looking to contribute more?</summary>
             <div className="mt-3 grid gap-2 sm:grid-cols-3">
               {additional.map((plan) => (
                 <button
@@ -193,7 +190,7 @@ export function MonthlySadaqahCheckout() {
 
         <div className="rounded-2xl border border-slate-200 bg-white p-4">
           <p className="text-sm font-bold text-[#07361F]">Identification for donor records (optional)</p>
-          <p className="mt-2 text-xs leading-5 text-slate-600">Voter ID, passport, or PAN can be used for records where applicable. You may proceed without an ID; Rahat may contact you later if documentation is required.</p>
+          <p className="mt-2 text-xs leading-5 text-slate-600">Voter ID, passport, or PAN can be used for records where applicable. You may proceed without an ID; Rahat Foundation may contact you later if documentation is required.</p>
           <div className="mt-3 grid gap-3 sm:grid-cols-2">
             <label className="grid gap-2 text-sm font-bold">
               ID type

@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'Programs',
-  description: 'Rahat healthcare programs across mobility, hospital infrastructure, digital health, navigation, and outreach.',
+  description: 'Rahat Social Impact Foundation healthcare programs across mobility, hospital infrastructure, digital health, navigation, and outreach.',
 };
 
 const programs = [
@@ -40,7 +40,7 @@ export default function ProgramsPage() {
             Healthcare support programs with institutional clarity.
           </h1>
           <p className="mt-4 text-base leading-7 text-slate-700 sm:text-lg">
-            Rahat focuses on practical healthcare access and hospital support, beginning with the JNMC Hospital Patient Mobility Initiative.
+            Rahat Foundation focuses on practical healthcare access and hospital support, beginning with the JNMC Hospital Patient Mobility Initiative.
           </p>
         </div>
       </section>

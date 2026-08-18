@@ -12,11 +12,11 @@ export default function PrivacyPolicyPage() {
     <PolicyPage
       eyebrow="Privacy and data protection"
       title="Privacy Policy"
-      summary="This policy explains how Rahat handles personal information provided through its website, donation forms, recurring mandates, volunteer forms, and official communications."
+      summary="This policy explains how Rahat Foundation handles personal information provided through its website, donation forms, recurring mandates, volunteer forms, and official communications."
     >
       <h2>1. Organisation responsible for your information</h2>
       <p>
-        {organization.legalName}, CIN {organization.cin}, is responsible for personal information collected directly through this website and Rahat&apos;s official channels. The registered office is {organization.registeredOffice}.
+        {organization.legalName}, CIN {organization.cin}, is responsible for personal information collected directly through this website and Rahat Foundation&apos;s official channels. The registered office is {organization.registeredOffice}.
       </p>
 
       <h2>2. Information we may collect</h2>
@@ -31,7 +31,7 @@ export default function PrivacyPolicyPage() {
 
       <h2>3. Payment information</h2>
       <p>
-        Payments may be processed by Razorpay, banks, UPI applications, card networks, and other payment partners. Rahat does not intentionally collect or store your complete card number, CVV, UPI PIN, internet-banking password, or similar authentication credentials. Those details are handled by the relevant regulated payment provider under its own privacy and security terms.
+        Payments may be processed by Razorpay, banks, UPI applications, card networks, and other payment partners. Rahat Foundation does not intentionally collect or store your complete card number, CVV, UPI PIN, internet-banking password, or similar authentication credentials. Those details are handled by the relevant regulated payment provider under its own privacy and security terms.
       </p>
 
       <h2>4. How we use information</h2>
@@ -41,25 +41,25 @@ export default function PrivacyPolicyPage() {
         <li>To issue receipts, respond to enquiries, provide requested updates, and communicate about a donation or mandate.</li>
         <li>To assess domestic-donation eligibility and comply with applicable tax, company, banking, anti-fraud, and foreign-contribution requirements.</li>
         <li>To administer volunteer applications, partnerships, events, beneficiary support, and programme operations.</li>
-        <li>To protect Rahat, donors, beneficiaries, and the website against fraud, misuse, security incidents, or unauthorised fundraising.</li>
+        <li>To protect Rahat Foundation, donors, beneficiaries, and the website against fraud, misuse, security incidents, or unauthorised fundraising.</li>
         <li>To improve website accessibility, reliability, content, and donor experience using aggregated or operational data.</li>
       </ul>
 
       <h2>5. Legal and operational basis</h2>
       <p>
-        Rahat processes information where it is necessary to provide a requested service, administer a donation or mandate, comply with legal obligations, protect legitimate organisational and security interests, or act on consent where consent is the appropriate basis. You may withdraw consent for optional communications without affecting records that Rahat must retain for legal, accounting, audit, or fraud-prevention purposes.
+        Rahat Foundation processes information where it is necessary to provide a requested service, administer a donation or mandate, comply with legal obligations, protect legitimate organisational and security interests, or act on consent where consent is the appropriate basis. You may withdraw consent for optional communications without affecting records that Rahat Foundation must retain for legal, accounting, audit, or fraud-prevention purposes.
       </p>
 
       <h2>6. When information may be shared</h2>
-      <p>Rahat may share relevant information only as reasonably necessary with:</p>
+      <p>Rahat Foundation may share relevant information only as reasonably necessary with:</p>
       <ul>
         <li>Razorpay, banks, UPI participants, payment networks, and reconciliation providers.</li>
-        <li>Website hosting, form, email, cloud-storage, accounting, audit, legal, compliance, and technology service providers acting for Rahat.</li>
-        <li>Authorised Rahat directors, employees, volunteers, consultants, and programme personnel who need the information for their assigned work.</li>
+        <li>Website hosting, form, email, cloud-storage, accounting, audit, legal, compliance, and technology service providers acting for Rahat Foundation.</li>
+        <li>Authorised Rahat Foundation directors, employees, volunteers, consultants, and programme personnel who need the information for their assigned work.</li>
         <li>Government authorities, regulators, courts, law-enforcement bodies, auditors, or professional advisers where required by law or reasonably necessary to protect lawful interests.</li>
         <li>A beneficiary institution or implementation partner where necessary to administer a restricted donation, recognition request, or programme, while limiting the information shared.</li>
       </ul>
-      <p>Rahat does not sell personal information to advertisers or data brokers.</p>
+      <p>Rahat Foundation does not sell personal information to advertisers or data brokers.</p>
 
       <h2>7. Public recognition</h2>
       <p>
@@ -73,22 +73,22 @@ export default function PrivacyPolicyPage() {
 
       <h2>9. Security</h2>
       <p>
-        Rahat uses reasonable administrative, technical, and access-control measures appropriate to its operations. No internet, email, cloud, or payment system can be guaranteed completely secure. Please use only official Rahat pages and immediately report suspicious links, QR codes, messages, or payment requests.
+        Rahat Foundation uses reasonable administrative, technical, and access-control measures appropriate to its operations. No internet, email, cloud, or payment system can be guaranteed completely secure. Please use only official Rahat Foundation pages and immediately report suspicious links, QR codes, messages, or payment requests.
       </p>
 
       <h2>10. Your choices and requests</h2>
       <p>
-        Subject to applicable law and necessary verification, you may request access to, correction of, or deletion of information that Rahat controls; ask how it is being used; withdraw optional communication consent; or raise a privacy concern. Some information cannot be deleted while it is required for legal, accounting, audit, payment, or fraud-prevention records.
+        Subject to applicable law and necessary verification, you may request access to, correction of, or deletion of information that Rahat Foundation controls; ask how it is being used; withdraw optional communication consent; or raise a privacy concern. Some information cannot be deleted while it is required for legal, accounting, audit, payment, or fraud-prevention records.
       </p>
 
       <h2>11. Children&apos;s information</h2>
       <p>
-        The donation facility is intended for persons legally capable of making the payment or acting through an authorised guardian. Rahat does not knowingly seek unnecessary personal information from children through the donation checkout.
+        The donation facility is intended for persons legally capable of making the payment or acting through an authorised guardian. Rahat Foundation does not knowingly seek unnecessary personal information from children through the donation checkout.
       </p>
 
       <h2>12. External services and policy changes</h2>
       <p>
-        This website may link to third-party services whose privacy practices are governed by their own policies. Rahat may update this policy when its systems, programmes, or legal obligations change. The current version is the one published on this page with its effective date.
+        This website may link to third-party services whose privacy practices are governed by their own policies. Rahat Foundation may update this policy when its systems, programmes, or legal obligations change. The current version is the one published on this page with its effective date.
       </p>
     </PolicyPage>
   );

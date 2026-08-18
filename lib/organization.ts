@@ -31,7 +31,7 @@ export const directors: ReadonlyArray<Director> = [
     role: 'Director — Campaigns and Social Impact',
     credentials: 'B.Tech, Electronics and Communication Engineering · MBA',
     description:
-      'A digital creator and entrepreneur with an audience of millions across YouTube and Instagram and more than 5 billion global impressions. She leads Rahat’s campaign strategy, public awareness and social media work, bringing long-standing philanthropic involvement together with large-scale public communication.',
+      'A digital creator and entrepreneur with an audience of millions across YouTube and Instagram and more than 5 billion global impressions. She leads Rahat Foundation’s campaign strategy, public awareness and social media work, bringing long-standing philanthropic involvement together with large-scale public communication.',
     initials: 'RS',
     image: null,
     links: [
@@ -45,7 +45,7 @@ export const directors: ReadonlyArray<Director> = [
     role: 'Director — Policy, Healthcare and Institutional Coordination',
     credentials: 'BBA LL.B. · Advocate',
     description:
-      'A law and healthcare-sector professional coordinating Rahat’s hospital-support, patient-mobility and digital-care initiatives. He leads institutional coordination, ground-level execution and the foundation’s volunteer network.',
+      'A law and healthcare-sector professional coordinating Rahat Foundation’s hospital-support, patient-mobility and digital-care initiatives. He leads institutional coordination, ground-level execution and the foundation’s volunteer network.',
     initials: 'AK',
     image: null,
     links: [

@@ -14,13 +14,13 @@ export default function ContactPage() {
       <section className="mx-auto w-full max-w-7xl px-4 py-10 sm:px-6 sm:py-14 lg:py-16">
         <div className="max-w-3xl">
           <p className="inline-flex rounded-full border border-[#2A7A45] bg-white px-3 py-1 text-xs font-semibold uppercase tracking-[0.18em] text-[#1A4D2E]">
-            Contact Rahat
+            Contact Rahat Foundation
           </p>
           <h1 className="mt-5 text-3xl font-semibold leading-tight text-[#1A4D2E] sm:text-4xl lg:text-5xl">
             Donation, volunteer, and healthcare support enquiries.
           </h1>
           <p className="mt-4 text-base leading-7 text-slate-700 sm:text-lg">
-            Use this page for official Rahat communication. You can also call, WhatsApp, or email the team directly.
+            Use this page for official Rahat Foundation communication. You can also call, WhatsApp, or email the team directly.
           </p>
         </div>
       </section>
@@ -29,7 +29,7 @@ export default function ContactPage() {
         <div className="rounded-3xl border border-[#C8951A] bg-white p-5 shadow-sm sm:p-8">
           <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[#1A4D2E]">Official-channel notice</p>
           <p className="mt-3 text-sm leading-6 text-slate-700">
-            Do not donate through unofficial QR codes, screenshots, or social media payment links. Official payment details will be published only through verified Rahat channels.
+            Do not donate through unofficial QR codes, screenshots, or social media payment links. Official payment details will be published only through verified Rahat Foundation channels.
           </p>
           <div className="mt-5 grid gap-3">
             <a className="rounded-2xl border border-[#2A7A45]/30 bg-[#F8F5EF] px-4 py-3 text-base font-semibold text-[#1A4D2E]" href={donationConfig.contact.phone}>
