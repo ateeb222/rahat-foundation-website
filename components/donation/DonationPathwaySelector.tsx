@@ -5,6 +5,7 @@ import { useState } from 'react';
 import { DonationAmountSelector } from '@/components/donation/DonationAmountSelector';
 import { MonthlySadaqahCheckout } from '@/components/donation/MonthlySadaqahCheckout';
 import { RazorpayCheckout } from '@/components/donation/RazorpayCheckout';
+import { WheelchairPhase2Campaign } from '@/components/impact/WheelchairPhase2Campaign';
 
 type DonationPathway = 'monthly' | 'one-time';
 
@@ -23,8 +24,16 @@ const pathways = [
   },
 ];
 
-export function DonationPathwaySelector() {
-  const [pathway, setPathway] = useState<DonationPathway>('monthly');
+export function DonationPathwaySelector({
+  initialPathway = 'monthly',
+  initialAmount = 1000,
+  initialPurpose = 'General Sadaqah',
+}: {
+  initialPathway?: DonationPathway;
+  initialAmount?: number;
+  initialPurpose?: string;
+}) {
+  const [pathway, setPathway] = useState<DonationPathway>(initialPathway);
 
   return (
     <section className="mx-auto w-full max-w-5xl px-4 py-6 sm:px-6 sm:py-10" aria-labelledby="support-pathway-heading">
@@ -76,9 +85,12 @@ export function DonationPathwaySelector() {
           <MonthlySadaqahCheckout />
         ) : (
           <div>
-            <DonationAmountSelector />
+            <div className="-mx-4 -mt-4 mb-5 sm:-mx-7 sm:-mt-7 sm:mb-7">
+              <WheelchairPhase2Campaign compact headingLevel="h3" />
+            </div>
+            <DonationAmountSelector initialAmount={initialAmount} />
             <div className="mt-6 border-t border-slate-200 pt-6">
-              <RazorpayCheckout />
+              <RazorpayCheckout initialAmount={initialAmount} initialPurpose={initialPurpose} />
             </div>
           </div>
         )}

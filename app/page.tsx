@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 
 import { EventPhotoCarousel } from '@/components/impact/EventPhotoCarousel';
+import { WheelchairPhase2Campaign } from '@/components/impact/WheelchairPhase2Campaign';
 import { MediaClippingGallery } from '@/components/media/MediaClippingGallery';
 import { SocialLink } from '@/components/social/SocialLink';
 import { donationConfig } from '@/lib/donation-config';
@@ -79,6 +80,10 @@ export default function HomePage() {
           <div className="rounded-2xl bg-[#F8F5EF] p-4"><p className="text-xs font-bold uppercase tracking-wide text-slate-500">Status</p><p className="mt-1 text-3xl font-bold text-[#07361F]">{donationConfig.campaign.status}</p><p className="mt-1 text-sm text-slate-600">Formal handover: {donationConfig.campaign.handoverDate}</p></div>
           <div className="rounded-2xl bg-[#F8F5EF] p-4"><p className="text-xs font-bold uppercase tracking-wide text-slate-500">Recipient</p><p className="mt-1 text-xl font-bold text-[#07361F]">JNMC Hospital</p><p className="mt-1 text-sm text-slate-600">Aligarh Muslim University, Aligarh</p></div>
         </div>
+      </section>
+
+      <section className="mx-auto max-w-7xl px-4 py-8 sm:px-6 sm:py-12" aria-label="Active Phase 2 wheelchair campaign">
+        <WheelchairPhase2Campaign />
       </section>
 
       <section className="border-b border-[#D9A441]/25 bg-[#EAF3E2]" aria-labelledby="healthcare-partner-heading">

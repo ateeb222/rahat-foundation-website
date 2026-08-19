@@ -8,6 +8,14 @@ export const donationConfig = {
     recipient: 'Jawaharlal Nehru Medical College & Hospital, Aligarh Muslim University, Aligarh',
     lastUpdated: 'Completed 14 August 2026',
   },
+  phase2Campaign: {
+    title: 'Phase 2 — 50 Wheelchairs',
+    status: 'active',
+    goalUnits: 50,
+    fundedUnits: 0,
+    unitCost: 5800,
+    goalAmount: 290000,
+  },
   razorpay: {
     status: 'active',
     message: 'Secure one-time Razorpay Checkout is active for eligible Indian domestic donations in INR.',
@@ -60,8 +68,29 @@ export const donationConfig = {
 } as const;
 
 export const donationAmounts = [
-  { amount: '\u20b9500', label: 'General healthcare support' },
-  { amount: '\u20b91,000', label: 'General healthcare support' },
-  { amount: '\u20b92,500', label: 'General healthcare support' },
-  { amount: 'Custom Amount', label: 'Choose your amount' },
+  { amount: 500, displayAmount: '₹500', label: 'General healthcare support' },
+  { amount: 1000, displayAmount: '₹1,000', label: 'General healthcare support' },
+  { amount: 2500, displayAmount: '₹2,500', label: 'General healthcare support' },
+  {
+    amount: 5800,
+    displayAmount: '₹5,800',
+    label: 'Sponsor 1 wheelchair',
+    description: 'Phase 2 patient mobility campaign',
+    badge: '1 wheelchair',
+    purpose: 'Wheelchair Sadaqah',
+  },
+  { amount: undefined, displayAmount: 'Custom Amount', label: 'Choose your amount' },
 ] as const;
+
+export const phase2CampaignProgress = {
+  remainingUnits: Math.max(
+    donationConfig.phase2Campaign.goalUnits - donationConfig.phase2Campaign.fundedUnits,
+    0,
+  ),
+  progressPercentage: Math.min(
+    Math.round(
+      (donationConfig.phase2Campaign.fundedUnits / donationConfig.phase2Campaign.goalUnits) * 100,
+    ),
+    100,
+  ),
+} as const;

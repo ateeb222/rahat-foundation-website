@@ -3,6 +3,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 
 import { EventPhotoCarousel } from '@/components/impact/EventPhotoCarousel';
+import { WheelchairPhase2Campaign } from '@/components/impact/WheelchairPhase2Campaign';
 import { donationConfig } from '@/lib/donation-config';
 import { jnmcWheelchairHandoverPhotos } from '@/lib/jnmc-handover-media';
 
@@ -112,6 +113,10 @@ export default function WheelchairPage() {
         </section>
       )}
 
+      <section className="mx-auto max-w-7xl px-4 py-8 sm:px-6" aria-label="Active Phase 2 wheelchair campaign">
+        <WheelchairPhase2Campaign />
+      </section>
+
       <section className="mx-auto grid max-w-7xl gap-5 px-4 py-8 sm:px-6 lg:grid-cols-2">
         <article className="rounded-3xl border border-slate-200 bg-white p-5 shadow-sm sm:p-7">
           <p className="text-sm font-bold uppercase tracking-[0.16em] text-[#3B635D]">Completed initiative</p>
@@ -140,8 +145,8 @@ export default function WheelchairPage() {
         </article>
       </section>
 
-      <Link href="/impact" className="fixed inset-x-4 bottom-4 z-50 rounded-full border border-[#D9A441] bg-[#07361F] px-5 py-4 text-center text-base font-bold text-white shadow-[0_16px_34px_rgba(7,54,31,0.3)] sm:hidden">
-        View completed initiative
+      <Link href="/donate?type=one-time&amount=5800&purpose=wheelchair-phase-2" className="fixed inset-x-4 bottom-4 z-50 rounded-full border border-[#D9A441] bg-[#07361F] px-5 py-4 text-center text-base font-bold text-white shadow-[0_16px_34px_rgba(7,54,31,0.3)] sm:hidden">
+        Sponsor a wheelchair — ₹5,800
       </Link>
     </main>
   );

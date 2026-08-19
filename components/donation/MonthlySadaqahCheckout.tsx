@@ -142,7 +142,7 @@ export function MonthlySadaqahCheckout() {
 
           <details className="mt-3 rounded-2xl border border-[#D9A441]/30 bg-white p-4">
             <summary className="min-h-[44px] cursor-pointer py-2 font-bold text-[#07361F]">Looking to contribute more?</summary>
-            <div className="mt-3 grid gap-2 sm:grid-cols-3">
+            <div className="mt-3 grid grid-cols-2 gap-2 sm:grid-cols-3">
               {additional.map((plan) => (
                 <button
                   key={plan.planId}
@@ -155,10 +155,25 @@ export function MonthlySadaqahCheckout() {
                       : 'border-slate-200 bg-[#F8F5EF] text-[#07361F]'
                   }`}
                 >
-                  <span className="block text-lg font-bold">₹{plan.amount.toLocaleString('en-IN')}/month</span>
-                  <span className="text-xs font-semibold leading-5">{plan.daily} · {plan.name}</span>
+                  <span className="block whitespace-nowrap text-lg font-bold">₹{plan.amount.toLocaleString('en-IN')}</span>
+                  <span className="block text-xs font-semibold">per month</span>
+                  <span className="mt-1 block text-xs font-semibold leading-5">{plan.daily} · {plan.name}</span>
                 </button>
               ))}
+            </div>
+            <div className="mt-4 border-t border-slate-200 pt-4">
+              <p className="font-bold text-[#07361F]">Planning a larger monthly contribution?</p>
+              <p className="mt-2 text-sm leading-6 text-slate-700">
+                For monthly support of ₹30,000, ₹40,000, ₹50,000 or more, connect with Rahat Foundation and we will help arrange your recurring contribution.
+              </p>
+              <div className="mt-3 flex flex-wrap gap-2 text-sm font-bold text-[#07361F]" aria-label="Higher monthly contribution amounts available by enquiry">
+                {['₹30,000/month', '₹40,000/month', '₹50,000+/month'].map((amount) => (
+                  <span key={amount} className="rounded-full border border-[#D9A441]/35 bg-[#FFF8E6] px-3 py-2">{amount}</span>
+                ))}
+              </div>
+              <Link href="/contact?interest=monthly-support" className="mt-4 inline-flex min-h-[48px] w-full items-center justify-center rounded-full border border-[#07361F] px-4 py-2 text-center text-sm font-bold text-[#07361F] sm:w-auto">
+                Arrange higher monthly support
+              </Link>
             </div>
           </details>
         </fieldset>

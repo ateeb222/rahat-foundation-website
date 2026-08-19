@@ -14,17 +14,27 @@ const purposes = ['Wheelchair Sadaqah', 'General Sadaqah', 'Interest / Riba Disp
 const inputClass = 'min-h-[50px] w-full rounded-xl border border-slate-300 bg-white px-4 text-base text-slate-900 focus:border-[#2A7A45] focus:outline-none focus:ring-2 focus:ring-[#2A7A45]';
 const labelClass = 'grid gap-2 text-sm font-bold text-slate-800';
 
-export function RazorpayCheckout() {
+export function RazorpayCheckout({
+  initialAmount = 1000,
+  initialPurpose = 'General Sadaqah',
+}: {
+  initialAmount?: number;
+  initialPurpose?: string;
+}) {
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
   const [message, setMessage] = useState('');
-  const [amount, setAmount] = useState(1000);
+  const [amount, setAmount] = useState(initialAmount);
+  const [purpose, setPurpose] = useState(initialPurpose);
   const amountInput = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
     function handleAmount(event: Event) {
-      const selected = (event as CustomEvent<{ amount?: number }>).detail.amount;
+      const detail = (event as CustomEvent<{ amount?: number; purpose?: string }>).detail;
+      const selected = detail.amount;
       if (typeof selected === 'number') setAmount(selected);
       else requestAnimationFrame(() => amountInput.current?.focus());
+      if (detail.purpose) setPurpose(detail.purpose);
+      else if (typeof selected === 'number') setPurpose('General Sadaqah');
     }
     window.addEventListener('rahat:donation-amount', handleAmount);
     return () => window.removeEventListener('rahat:donation-amount', handleAmount);
@@ -40,7 +50,7 @@ export function RazorpayCheckout() {
     const form = event.currentTarget;
     const data = new FormData(form);
     const amount = Number(data.get('amount'));
-    const purpose = String(data.get('purpose') || '');
+    const selectedPurpose = String(data.get('purpose') || '');
     const fullName = String(data.get('fullName') || '').trim();
     const mobile = String(data.get('mobile') || '').trim();
     const email = String(data.get('email') || '').trim();
@@ -50,16 +60,16 @@ export function RazorpayCheckout() {
 
     setStatus('loading'); setMessage('Creating secure payment order…');
     try {
-      const orderResponse = await fetch('/api/razorpay/order', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ amount, purpose }) });
+      const orderResponse = await fetch('/api/razorpay/order', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ amount, purpose: selectedPurpose }) });
       const order = await orderResponse.json();
       if (!orderResponse.ok) throw new Error(order.error || 'Unable to start checkout.');
 
       const checkout = new Razorpay({
         key: order.keyId, amount: order.amount, currency: 'INR', order_id: order.orderId,
-        name: 'Rahat Social Impact Foundation', description: purpose,
+        name: 'Rahat Social Impact Foundation', description: selectedPurpose,
         prefill: { name: fullName, contact: mobile, email },
         theme: { color: '#1A4D2E' },
-        notes: { purpose },
+        notes: { purpose: selectedPurpose },
         handler: async (response: Record<string, string>) => {
           try {
             const verifyResponse = await fetch('/api/razorpay/verify', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(response) });
@@ -67,8 +77,8 @@ export function RazorpayCheckout() {
             if (!verifyResponse.ok || !verified.success) throw new Error(verified.error || 'Payment verification failed.');
             await submitWebsiteForm('donation', {
               fullName, mobile, email, amount: String(amount), method: 'Razorpay',
-              transactionId: verified.paymentId, purpose, recognition: 'Not specified', recognitionName: '', volunteerInterest: false,
-              domesticDeclaration: true, ribaDeclaration: purpose === 'Interest / Riba Disposal',
+              transactionId: verified.paymentId, purpose: selectedPurpose, recognition: 'Not specified', recognitionName: '', volunteerInterest: false,
+              domesticDeclaration: true, ribaDeclaration: selectedPurpose === 'Interest / Riba Disposal',
               message: `Razorpay Order: ${verified.orderId}; ID type: ${idType}; ID number: ${idNumber || 'Pending phone follow-up'}; Address: ${address}`,
             });
             setStatus('success'); setMessage(`Payment verified successfully. Payment ID: ${verified.paymentId}`); form.reset();
@@ -104,7 +114,7 @@ export function RazorpayCheckout() {
         <label className={labelClass}>Residential address<input className={inputClass} name="address" autoComplete="street-address" required /></label>
         <div className="grid gap-4 sm:grid-cols-2">
           <label className={labelClass}>Amount (₹)<input ref={amountInput} className={inputClass} name="amount" type="number" inputMode="numeric" min="10" max="500000" value={amount} onChange={(event) => setAmount(Number(event.target.value))} required /></label>
-          <label className={labelClass}>Purpose<select className={inputClass} name="purpose" defaultValue="General Sadaqah">{purposes.map((purpose) => <option key={purpose}>{purpose}</option>)}</select></label>
+          <label className={labelClass}>Purpose<select className={inputClass} name="purpose" value={purpose} onChange={(event) => setPurpose(event.target.value)}>{purposes.map((item) => <option key={item}>{item}</option>)}</select></label>
         </div>
         <label className="flex items-start gap-3 rounded-xl border border-[#D9A441]/35 bg-[#FFF8E6] p-3 text-sm font-semibold leading-6 text-[#5F4A12]">
           <input className="mt-1 h-5 w-5" name="domestic" type="checkbox" required />

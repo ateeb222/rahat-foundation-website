@@ -22,7 +22,15 @@ const bankFields = [
   { label: 'Account Type', value: donationConfig.bank.accountType },
 ];
 
-export default function DonatePage() {
+type DonatePageProps = {
+  searchParams: Promise<Record<string, string | string[] | undefined>>;
+};
+
+export default async function DonatePage({ searchParams }: DonatePageProps) {
+  const query = await searchParams;
+  const isPhase2Prefill =
+    query.type === 'one-time' && query.amount === '5800' && query.purpose === 'wheelchair-phase-2';
+
   return (
     <main className="min-h-screen overflow-x-hidden bg-[#F8F5EF] pb-16 text-[#1F2937]">
       <section className="border-b border-[#D9A441]/25 bg-[linear-gradient(145deg,#07361F_0%,#145B37_100%)] text-white">
@@ -35,7 +43,11 @@ export default function DonatePage() {
         </div>
       </section>
 
-      <DonationPathwaySelector />
+      <DonationPathwaySelector
+        initialPathway={isPhase2Prefill ? 'one-time' : 'monthly'}
+        initialAmount={isPhase2Prefill ? 5800 : 1000}
+        initialPurpose={isPhase2Prefill ? 'Wheelchair Sadaqah' : 'General Sadaqah'}
+      />
 
       <section className="border-y border-[#D9A441]/25 bg-white" aria-label="Donation trust information">
         <div className="mx-auto grid max-w-5xl gap-5 px-4 py-6 sm:px-6 md:grid-cols-3 md:py-8">

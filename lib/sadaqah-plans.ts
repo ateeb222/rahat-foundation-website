@@ -6,6 +6,8 @@ export const sadaqahPlans = [
   { amount: 1500, daily: '₹50/day', name: 'Extended Support', planId: 'plan_TCYiJ40NQdN1oe', secondary: true },
   { amount: 5000, daily: '₹164/day', name: 'Healthcare Partner', planId: 'plan_TCYjr8pyBvJn51', secondary: true },
   { amount: 10000, daily: '₹329/day', name: 'Healthcare Partner Plus', planId: 'plan_TCYkMbrUprlbO2', secondary: true },
+  { amount: 15000, daily: '₹493/day', name: 'Healthcare Partner Plus', planId: 'plan_TRh354FEhT8YqQ', secondary: true },
+  { amount: 20000, daily: '₹658/day', name: 'Major Healthcare Supporter', planId: 'plan_TRh4Bw9JgDyIxs', secondary: true },
 ] as const;
 
 export const planById: ReadonlyMap<string, (typeof sadaqahPlans)[number]> = new Map(
